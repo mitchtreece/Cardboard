@@ -1,0 +1,6 @@
+framework module Pods_Cardboard_Tests {
+  umbrella header "Pods-Cardboard_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

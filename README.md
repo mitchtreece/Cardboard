@@ -1,29 +1,38 @@
-# Cardboard
+![Cardboard](Resources/banner.png)
 
-[![CI Status](https://img.shields.io/travis/Mitch Treece/Cardboard.svg?style=flat)](https://travis-ci.org/Mitch Treece/Cardboard)
-[![Version](https://img.shields.io/cocoapods/v/Cardboard.svg?style=flat)](https://cocoapods.org/pods/Cardboard)
-[![License](https://img.shields.io/cocoapods/l/Cardboard.svg?style=flat)](https://cocoapods.org/pods/Cardboard)
-[![Platform](https://img.shields.io/cocoapods/p/Cardboard.svg?style=flat)](https://cocoapods.org/pods/Cardboard)
+[![Version](https://img.shields.io/cocoapods/v/Cardboard.svg?style=for-the-badge)](http://cocoapods.org/pods/Cardboard)
+![Swift](https://img.shields.io/badge/Swift-5-orange.svg?style=for-the-badge)
+![iOS](https://img.shields.io/badge/iOS-13--15-green.svg?style=for-the-badge)
+[![License](https://img.shields.io/cocoapods/l/Cardboard.svg?style=for-the-badge)](http://cocoapods.org/pods/Cardboard)
 
-## Example
+## Overview
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
-## Requirements
+TODO
 
 ## Installation
 
-Cardboard is available through [CocoaPods](https://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+### CocoaPods
+Cardboard is integrated with CocoaPods!
 
-```ruby
-pod 'Cardboard'
+1. Add the following to your `Podfile`:
 ```
+use_frameworks!
+pod 'Cardboard', '~> 1.0'
+```
+2. In your project directory, run `pod install`
+3. Import the `Cardboard` module wherever you need it
+4. Profit
 
-## Author
+### Manually
+You can also manually add the source files to your project.
 
-Mitch Treece, mitchtreece@me.com
+1. Clone this git repo
+2. Add all the Swift files in the `Cardboard/` subdirectory to your project
+3. Profit
 
-## License
+## Cardboard
 
-Cardboard is available under the MIT license. See the LICENSE file for more info.
+TODO
+
+## Contributing
+Pull-requests are more than welcome. Bug fix? Feature? Open a PR and we'll get it merged in!
