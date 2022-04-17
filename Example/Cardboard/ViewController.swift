@@ -11,20 +11,18 @@ import Cardboard
 
 class ViewController: UIViewController {
     
+    private var cardBackgroundStyle: Card.BackgroundStyle {
+        return .color(.systemRed)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     @IBAction private func didTapSystem(_ sender: UIButton) {
         
-        let card: Card = .system(contentView: contentView(height: 300))
-        card.present(from: self)
-        
-    }
-
-    @IBAction private func didTapDefaultBottom(_ sender: UIButton) {
-        
-        let card: Card = .default(contentView: contentView(height: 400))
+        var card: Card = .system(contentView: contentView(height: 300))
+        card.background = .color(.red)
         card.present(from: self)
         
     }
@@ -33,38 +31,96 @@ class ViewController: UIViewController {
 
         var card: Card = .default(contentView: contentView(height: 400))
         card.anchor = .top
+        card.background = self.cardBackgroundStyle
+        card.present(from: self)
+        
+    }
+
+    @IBAction private func didTapDefaultBottom(_ sender: UIButton) {
+        
+        var card: Card = .default(contentView: contentView(height: 400))
+        card.background = self.cardBackgroundStyle
+        card.present(from: self)
+        
+    }
+    
+    @IBAction private func didTapDefaultLeft(_ sender: UIButton) {
+
+        let width = (UIScreen.main.bounds.width / 1.3)
+        
+        var card: Card = .default(contentView: contentView(width: width))
+        card.anchor = .left
+        card.background = self.cardBackgroundStyle
+        card.corners = .none
+        card.present(from: self)
+        
+    }
+    
+    @IBAction private func didTapDefaultRight(_ sender: UIButton) {
+
+        let width = (UIScreen.main.bounds.width / 1.3)
+        
+        var card: Card = .default(contentView: contentView(width: width))
+        card.anchor = .right
+        card.background = self.cardBackgroundStyle
+        card.corners = .none
         card.present(from: self)
         
     }
     
     @IBAction private func didTapAlert(_ sender: UIButton) {
         
-        let card: Card = .alert(contentView: contentView(width: 300, height: 300))
+        var card: Card = .alert(contentView: contentView(height: 260))
+        card.background = self.cardBackgroundStyle
+        card.present(from: self)
+        
+    }
+    
+    @IBAction private func didTapFullscreen(_ sender: UIButton) {
+        
+        var card: Card = .fullscreen(contentView: contentView())
+        card.background = self.cardBackgroundStyle
         card.present(from: self)
         
     }
     
     @IBAction private func didTapNotification(_ sender: UIButton) {
         
-        let card: Card = .notification(contentView: contentView(height: 100))
-        card.present(from: self)
+        var card: Card = .notification(contentView: contentView(height: 100))
+        card.background = self.cardBackgroundStyle
+        card.duration = .none
         
+        card.action = {
+            
+            print("tap")
+            
+        }
+        
+        card.present(from: self)
+
     }
     
     @IBAction private func didTapToast(_ sender: UIButton) {
         
-        let card: Card = .toast(contentView: contentView(height: 64))
+        var card: Card = .toast(contentView: contentView(height: 64))
+        card.background = self.cardBackgroundStyle
+        card.duration = .none
+        
+        card.action = {
+            
+            print("tap")
+            
+        }
+        
         card.present(from: self)
         
     }
     
-    private func contentView(width: CGFloat? = 0,
-                             height: CGFloat? = 0,
-                             color: UIColor = .clear) -> CardContentView {
+    private func contentView(width: CGFloat? = nil,
+                             height: CGFloat? = nil) -> CardContentView {
         
         let view = CardContentView()
-        
-        view.backgroundColor = color
+        view.backgroundColor = .white
         view.snp.makeConstraints { make in
             
             if let w = width {

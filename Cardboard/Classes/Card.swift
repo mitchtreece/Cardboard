@@ -18,6 +18,15 @@ public struct Card {
             return CornerStyle()
         }
         
+        public static var none: CornerStyle {
+            
+            var style = CornerStyle()
+            style.roundedCorners = []
+            style.roundedCornerRadius = 0
+            return style
+            
+        }
+        
     }
     
     public struct ShadowStyle {
@@ -36,7 +45,7 @@ public struct Card {
             case .left: offset = CGSize(width: 2, height: 0)
             case .bottom: offset = CGSize(width: 0, height: -2)
             case .right: offset = CGSize(width: -2, height: 0)
-            case .none: break
+            case .center, .edges: break
             }
             
             var style = ShadowStyle()
@@ -60,11 +69,19 @@ public struct Card {
     
     public enum Anchor {
         
-        case none
+        public enum Axis {
+            
+            case horizontal
+            case vertical
+            
+        }
+        
         case top
         case left
         case bottom
         case right
+        case center(Axis)
+        case edges
 
     }
     
@@ -96,6 +113,7 @@ public struct Card {
         public enum Interaction {
 
             case swipe
+            case contentTap
             case backgroundTap
 
         }
@@ -108,23 +126,22 @@ public struct Card {
     public let contentView: CardContentView
     
     public var anchor: Anchor = .bottom
-    public var duration: Duration = .none // TODO: Implement this
+    public var duration: Duration = .none
     public var statusBar: UIStatusBarStyle = .default
     public var hidesHomeIndicator: Bool = false
-    public var contentOverlay: BackgroundStyle = .color(.black.withAlphaComponent(0.4))
+    public var contentOverlay: BackgroundStyle = .color(.black.withAlphaComponent(0.5))
     public var background: BackgroundStyle = .color(.white)
     public var safeAreaAvoidance: SafeAreaAvoidance = .content
     public var corners: CornerStyle = .default
     public var shadow: ShadowStyle = .default(for: .bottom)
     public var insets: UIEdgeInsets = .zero
-
+    public var animator: CardAnimator = SlideCardAnimator()
+    
     public var isContentOverlayTapToDismissEnabled: Bool = true
     public var isSwipeToDismissEnabled: Bool = true
-    public var isBounceable: Bool = true // TODO: Implement this
-    
-    // TODO: Card present/dismiss animation customization
-    // TODO: Card present over/under status bar ???? would be nice for status bar overlay notifications
-    
+//    public var isBounceable: Bool = true // TODO: Implement this
+        
+    public var action: (()->())?
     public var willPresentAction: (()->())?
     public var didPresentAction: (()->())?
     public var willDismissAction: ((DismissalReason)->())?
@@ -140,6 +157,7 @@ public struct Card {
     
     @discardableResult
     public func present(from viewController: UIViewController,
+                        animator: CardAnimator? = nil,
                         completion: (()->())? = nil) -> Self {
         
         CardViewController(card: self)
@@ -171,13 +189,12 @@ public extension Card {
     static func system(contentView: CardContentView) -> Card {
         
         var card = Card(contentView: contentView)
-        
+                
         card.safeAreaAvoidance = .none
         card.hidesHomeIndicator = true
-        
         card.corners.roundedCornerRadius = 44
         
-        card.insets = UIEdgeInsets(
+        card.insets = .init(
             top: 6,
             left: 6,
             bottom: 6,
@@ -187,31 +204,19 @@ public extension Card {
         return card
         
     }
-    
-    static func alert(contentView: CardContentView) -> Card {
-        
-        var card = Card(contentView: contentView)
-        
-        card.anchor = .none
-        card.safeAreaAvoidance = .none
-        card.shadow = .default(for: .none)
-        card.insets = .zero
-        
-        return card
-        
-    }
 
     static func notification(contentView: CardContentView) -> Card {
 
         var card = Card(contentView: contentView)
-        
-        card.anchor = .top
+        let anchor: Anchor = .top
+
+        card.anchor = anchor
+        card.duration = .seconds(3)
         card.safeAreaAvoidance = .card
-        
         card.corners.roundedCornerRadius = 24
-        card.shadow = .default(for: .top)
+        card.shadow = .default(for: anchor)
         
-        card.insets = UIEdgeInsets(
+        card.insets = .init(
             top: 0,
             left: 12,
             bottom: 0,
@@ -225,16 +230,55 @@ public extension Card {
     static func toast(contentView: CardContentView) -> Card {
         
         var card = Card(contentView: contentView)
+        let anchor: Anchor = .bottom
         
+        card.anchor = anchor
+        card.duration = .seconds(3)
         card.safeAreaAvoidance = .card
         card.corners.roundedCornerRadius = 18
-
-        card.insets = UIEdgeInsets(
+        card.shadow = .default(for: anchor)
+        
+        card.insets = .init(
             top: 0,
             left: 12,
             bottom: 0,
             right: 12
         )
+
+        return card
+        
+    }
+    
+    static func alert(contentView: CardContentView) -> Card {
+        
+        var card = Card(contentView: contentView)
+        let anchor: Anchor = .center(.vertical)
+                
+        card.anchor = anchor
+        card.safeAreaAvoidance = .none
+        card.shadow = .default(for: anchor)
+        card.animator = AlertCardAnimator()
+
+        card.insets = .init(
+            top: 0,
+            left: 12,
+            bottom: 0,
+            right: 12
+        )
+        
+        return card
+        
+    }
+    
+    static func fullscreen(contentView: CardContentView) -> Card {
+        
+        var card = Card(contentView: contentView)
+        let anchor: Anchor = .edges
+        
+        card.anchor = anchor
+        card.safeAreaAvoidance = .content
+        card.shadow = .default(for: anchor)
+        card.animator = AlertCardAnimator()
 
         return card
         

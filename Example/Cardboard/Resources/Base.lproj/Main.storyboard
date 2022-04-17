@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="S4q-8t-s36">
-                                <rect key="frame" x="20" y="387" width="335" height="280"/>
+                                <rect key="frame" x="20" y="243" width="335" height="424"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rv0-NA-YFW">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="40"/>
@@ -55,8 +55,19 @@
                                             <action selector="didTapAlert:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="6h8-8j-FyE"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dh6-W9-Vtf">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1SU-XX-7JX">
                                         <rect key="frame" x="0.0" y="144" width="335" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="2Ub-Jj-ItN"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Fullscreen"/>
+                                        <connections>
+                                            <action selector="didTapFullscreen:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="NBY-Ho-ko7"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dh6-W9-Vtf">
+                                        <rect key="frame" x="0.0" y="192" width="335" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="En3-3t-4Ix"/>
                                         </constraints>
@@ -67,7 +78,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tAx-XF-doU">
-                                        <rect key="frame" x="0.0" y="192" width="335" height="40"/>
+                                        <rect key="frame" x="0.0" y="240" width="335" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="ZcV-dM-3Gs"/>
                                         </constraints>
@@ -77,8 +88,30 @@
                                             <action selector="didTapDefaultBottom:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="WHo-uc-q5h"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="olG-bA-aFW">
+                                        <rect key="frame" x="0.0" y="288" width="335" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Tiu-nI-qqF"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Default (Left)"/>
+                                        <connections>
+                                            <action selector="didTapDefaultLeft:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="XSW-hi-aUy"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AeP-Og-Ohb">
+                                        <rect key="frame" x="0.0" y="336" width="335" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="7Fo-gT-6bf"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Default (Right)"/>
+                                        <connections>
+                                            <action selector="didTapDefaultRight:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="kvn-qQ-zmD"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a8l-Sx-JnT">
-                                        <rect key="frame" x="0.0" y="240" width="335" height="40"/>
+                                        <rect key="frame" x="0.0" y="384" width="335" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="56A-SJ-9A1"/>
                                         </constraints>

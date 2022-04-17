@@ -75,7 +75,7 @@ internal class CardView: UIView {
         case .blurred(let style):
 
             self.effectView = UIVisualEffectView(effect: UIBlurEffect(style: style))
-            addSubview(self.effectView!)
+            self.contentView.addSubview(self.effectView!)
             self.effectView!.snp.makeConstraints { make in
                 make.edges.equalToSuperview()
             }
