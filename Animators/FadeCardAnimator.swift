@@ -8,21 +8,19 @@
 import UIKit
 
 internal class FadeCardAnimator: CardAnimator {
-
-    init() {
+    
+    override func setup(ctx: CardAnimator.Context) {
         
-        super.init(setup: { ctx in
-                       
-            ctx.contentOverlayView.alpha = (ctx.animation == .presentation) ? 0 : 1
-            ctx.cardView.alpha = (ctx.animation == .presentation) ? 0 : 1
-            
-        }, animations: { ctx in
-            
-            ctx.contentOverlayView.alpha = (ctx.animation == .presentation) ? 1 : 0
-            ctx.cardView.alpha = (ctx.animation == .presentation) ? 1 : 0
-            
-        }, completion: nil)
-                        
+        ctx.contentOverlayView.alpha = (ctx.animation == .presentation) ? 0 : 1
+        ctx.cardView.alpha = (ctx.animation == .presentation) ? 0 : 1
+        
+    }
+    
+    override func animate(ctx: CardAnimator.Context) {
+        
+        ctx.contentOverlayView.alpha = (ctx.animation == .presentation) ? 1 : 0
+        ctx.cardView.alpha = (ctx.animation == .presentation) ? 1 : 0
+        
     }
     
 }

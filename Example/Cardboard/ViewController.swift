@@ -21,15 +21,15 @@ class ViewController: UIViewController {
     
     @IBAction private func didTapSystem(_ sender: UIButton) {
         
-        var card: Card = .system(contentView: contentView(height: 300))
-        card.background = .color(.red)
+        var card: Card = .system(contentView: contentView(height: 400))
+        card.background = self.cardBackgroundStyle
         card.present(from: self)
         
     }
     
     @IBAction private func didTapDefaultTop(_ sender: UIButton) {
 
-        var card: Card = .default(contentView: contentView(height: 400))
+        var card: Card = .default(contentView: contentView(height: 500))
         card.anchor = .top
         card.background = self.cardBackgroundStyle
         card.present(from: self)
@@ -38,7 +38,7 @@ class ViewController: UIViewController {
 
     @IBAction private func didTapDefaultBottom(_ sender: UIButton) {
         
-        var card: Card = .default(contentView: contentView(height: 400))
+        var card: Card = .default(contentView: contentView(height: 500))
         card.background = self.cardBackgroundStyle
         card.present(from: self)
         
@@ -51,7 +51,6 @@ class ViewController: UIViewController {
         var card: Card = .default(contentView: contentView(width: width))
         card.anchor = .left
         card.background = self.cardBackgroundStyle
-        card.corners = .none
         card.present(from: self)
         
     }
@@ -63,27 +62,21 @@ class ViewController: UIViewController {
         var card: Card = .default(contentView: contentView(width: width))
         card.anchor = .right
         card.background = self.cardBackgroundStyle
-        card.corners = .none
         card.present(from: self)
         
     }
     
     @IBAction private func didTapAlert(_ sender: UIButton) {
         
-        var card: Card = .alert(contentView: contentView(height: 260))
+        let width = (UIScreen.main.bounds.width - (12 * 2))
+        let height = (width * 0.7)
+        
+        var card: Card = .alert(contentView: contentView(width: width, height: height))
         card.background = self.cardBackgroundStyle
         card.present(from: self)
         
     }
-    
-    @IBAction private func didTapFullscreen(_ sender: UIButton) {
-        
-        var card: Card = .fullscreen(contentView: contentView())
-        card.background = self.cardBackgroundStyle
-        card.present(from: self)
-        
-    }
-    
+
     @IBAction private func didTapNotification(_ sender: UIButton) {
         
         var card: Card = .notification(contentView: contentView(height: 100))
@@ -91,9 +84,7 @@ class ViewController: UIViewController {
         card.duration = .none
         
         card.action = {
-            
-            print("tap")
-            
+            print("Notification Tap!")
         }
         
         card.present(from: self)
@@ -102,16 +93,15 @@ class ViewController: UIViewController {
     
     @IBAction private func didTapToast(_ sender: UIButton) {
         
-        var card: Card = .toast(contentView: contentView(height: 64))
+        var card: Card = .toast(contentView: contentView(height: 50))
         card.background = self.cardBackgroundStyle
+        card.corners.roundedCornerRadius = 14
         card.duration = .none
-        
+
         card.action = {
-            
-            print("tap")
-            
+            print("Toast Tap!")
         }
-        
+
         card.present(from: self)
         
     }

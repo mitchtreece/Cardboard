@@ -11,11 +11,9 @@ import SnapKit
 public class CardViewController: UIViewController {
     
     private var containerView: UIView!
-    
     private var contentOverlayContentView: UIView!
     private var contentOverlayDimmingView: UIView?
     private var contentOverlayEffectView: UIVisualEffectView?
-    
     private var cardView: CardView!
     private var cardContentContainerView: UIView!
     
@@ -23,25 +21,11 @@ public class CardViewController: UIViewController {
     private var swipeRecognizer: UIPanGestureRecognizer?
     private var actionRecognizer: UILongPressGestureRecognizer?
     private var dismissTimer: Timer?
+    private var insetsCalculator: CardInsetsCalculator!
     
     private var isCardBeingDismissed: Bool = false
     
     private let card: Card
-    
-    private var safeAreaInsets: UIEdgeInsets {
-        
-        return UIApplication.shared
-            .connectedScenes
-            .filter { $0.activationState == .foregroundActive }
-            .map { $0 as? UIWindowScene }
-            .compactMap { $0 }
-            .first?
-            .windows
-            .filter { $0.isKeyWindow }
-            .first?
-            .safeAreaInsets ?? .zero
-            
-    }
     
     public override var preferredStatusBarStyle: UIStatusBarStyle {
         return self.card.statusBar
@@ -54,6 +38,7 @@ public class CardViewController: UIViewController {
     public init(card: Card) {
         
         self.card = card
+        self.insetsCalculator = CardInsetsCalculator(card: card)
         
         super.init(
             nibName: nil,
@@ -163,8 +148,8 @@ public class CardViewController: UIViewController {
         
         // Card
         
-        let cardInsets = calculateCardInsets()
-        let contentInsets = calculateContentInsets()
+        let cardInsets = self.insetsCalculator.cardInsets()
+        let contentInsets = self.insetsCalculator.contentInsets()
         
         self.cardView = CardView(card: self.card)
         self.view.addSubview(self.cardView)
@@ -194,28 +179,8 @@ public class CardViewController: UIViewController {
                 make.right.equalTo(-cardInsets.right)
                 make.top.equalTo(cardInsets.top)
                 make.bottom.equalTo(-cardInsets.bottom)
-                
-            case .center(let axis):
-                
-                switch axis {
-                case .horizontal:
-                    
-                    make.centerX.equalToSuperview()
-                    make.top.equalTo(cardInsets.top)
-                    make.bottom.equalTo(-cardInsets.bottom)
-                    
-                case .vertical:
-                    
-                    make.centerY.equalToSuperview()
-                    make.left.equalTo(cardInsets.left)
-                    make.right.equalTo(-cardInsets.right)
-                    
-                }
-                
-            case .edges:
-                
-                make.edges.equalToSuperview().inset(cardInsets)
-                
+
+            case .center: make.center.equalToSuperview()
             }
 
         }
@@ -247,7 +212,7 @@ public class CardViewController: UIViewController {
         self.view.layoutIfNeeded()
 
         self.card.animator
-            .setup(animationContext(animation: .presentation))
+            .setup(ctx: animationContext(animation: .presentation))
 
         viewController.present(
             self,
@@ -292,7 +257,7 @@ public class CardViewController: UIViewController {
             contentOverlayView: self.contentOverlayContentView,
             cardView: self.cardView,
             anchor: self.card.anchor,
-            insets: calculateCardInsets(),
+            insets: self.insetsCalculator.cardInsets(),
             animation: animation
         )
         
@@ -340,8 +305,8 @@ public class CardViewController: UIViewController {
         viewAnimtor.addAnimations { [weak self] in
             
             guard let self = self else { return }
-            
-            animator.animations(context)
+                        
+            animator.animate(ctx: context)
             
             self.setNeedsStatusBarAppearanceUpdate()
             
@@ -349,7 +314,7 @@ public class CardViewController: UIViewController {
         
         viewAnimtor.addCompletion { _ in
             
-            animator.completion?(context)
+            animator.cleanup(ctx: context)
             completion?()
             
         }
@@ -361,7 +326,7 @@ public class CardViewController: UIViewController {
     @objc private func didTapContentOverlay(_ recognizer: UITapGestureRecognizer) {
         
         _dismissCard(
-            reason: .interactive(.backgroundTap),
+            reason: .interactive(.background),
             velocity: nil,
             animated: true,
             completion: nil
@@ -509,132 +474,6 @@ public class CardViewController: UIViewController {
             
         default: break
         }
-        
-    }
-    
-    private func calculateCardInsets() -> UIEdgeInsets {
-        
-        var insets = self.card.insets
-        
-        switch self.card.safeAreaAvoidance {
-        case .card:
-            
-            switch self.card.anchor {
-            case .top:
-                
-                insets.top += self.safeAreaInsets.top
-                insets.left += self.safeAreaInsets.left
-                insets.right += self.safeAreaInsets.right
-                
-            case .left:
-                
-                insets.left += self.safeAreaInsets.left
-                insets.top += self.safeAreaInsets.top
-                insets.bottom += self.safeAreaInsets.bottom
-                
-            case .bottom:
-                
-                insets.bottom += self.safeAreaInsets.bottom
-                insets.left += self.safeAreaInsets.left
-                insets.right += self.safeAreaInsets.right
-                
-            case .right:
-                
-                insets.right += self.safeAreaInsets.right
-                insets.top += self.safeAreaInsets.top
-                insets.bottom += self.safeAreaInsets.bottom
-                
-            case .center(let axis):
-                
-                switch axis {
-                case .horizontal:
-                    
-                    insets.top += self.safeAreaInsets.top
-                    insets.bottom += self.safeAreaInsets.bottom
-                    
-                case .vertical:
-                    
-                    insets.left += self.safeAreaInsets.left
-                    insets.right += self.safeAreaInsets.right
-                    
-                }
-                
-            case .edges:
-                
-                insets.top += self.safeAreaInsets.top
-                insets.left += self.safeAreaInsets.left
-                insets.bottom += self.safeAreaInsets.bottom
-                insets.right += self.safeAreaInsets.right
-                
-            }
-            
-        default: break
-        }
-        
-        return insets
-        
-    }
-    
-    private func calculateContentInsets() -> UIEdgeInsets {
-        
-        var insets: UIEdgeInsets = .zero
-        
-        switch self.card.safeAreaAvoidance {
-        case .content:
-                        
-            switch self.card.anchor {
-            case .top:
-                
-                insets.top += self.safeAreaInsets.top
-                insets.left += self.safeAreaInsets.left
-                insets.right += self.safeAreaInsets.right
-                
-            case .left:
-                
-                insets.left += self.safeAreaInsets.left
-                insets.top += self.safeAreaInsets.top
-                insets.bottom += self.safeAreaInsets.bottom
-                
-            case .bottom:
-                
-                insets.bottom += self.safeAreaInsets.bottom
-                insets.left += self.safeAreaInsets.left
-                insets.right += self.safeAreaInsets.right
-                
-            case .right:
-                
-                insets.right += self.safeAreaInsets.right
-                insets.top += self.safeAreaInsets.top
-                insets.bottom += self.safeAreaInsets.bottom
-                
-            case .center(let axis):
-                
-                switch axis {
-                case .horizontal:
-                    
-                    insets.top += self.safeAreaInsets.top
-                    insets.bottom += self.safeAreaInsets.bottom
-                    
-                case .vertical:
-                    
-                    insets.left += self.safeAreaInsets.left
-                    insets.right += self.safeAreaInsets.right
-                    
-                }
-                
-            case .edges:
-                
-                insets.top += self.safeAreaInsets.top
-                insets.left += self.safeAreaInsets.left
-                insets.bottom += self.safeAreaInsets.bottom
-                insets.right += self.safeAreaInsets.right
-
-            }
-            
-        default: break
-        }
-        
-        return insets
         
     }
     

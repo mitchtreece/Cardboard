@@ -20,17 +20,17 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="S4q-8t-s36">
-                                <rect key="frame" x="20" y="243" width="335" height="424"/>
+                                <rect key="frame" x="20" y="291" width="335" height="376"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rv0-NA-YFW">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ize-78-MFf">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="U45-Ij-Kte"/>
+                                            <constraint firstAttribute="height" constant="40" id="kiG-4g-eEJ"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Notification"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Alert"/>
                                         <connections>
-                                            <action selector="didTapNotification:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="e8s-7b-cpa"/>
+                                            <action selector="didTapAlert:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="6h8-8j-FyE"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CMe-zv-3Jh">
@@ -44,26 +44,26 @@
                                             <action selector="didTapToast:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Pnq-OK-XY2"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ize-78-MFf">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rv0-NA-YFW">
                                         <rect key="frame" x="0.0" y="96" width="335" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="kiG-4g-eEJ"/>
+                                            <constraint firstAttribute="height" constant="40" id="U45-Ij-Kte"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Alert"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Notification"/>
                                         <connections>
-                                            <action selector="didTapAlert:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="6h8-8j-FyE"/>
+                                            <action selector="didTapNotification:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="e8s-7b-cpa"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1SU-XX-7JX">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a8l-Sx-JnT">
                                         <rect key="frame" x="0.0" y="144" width="335" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="2Ub-Jj-ItN"/>
+                                            <constraint firstAttribute="height" constant="40" id="56A-SJ-9A1"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Fullscreen"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="System"/>
                                         <connections>
-                                            <action selector="didTapFullscreen:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="NBY-Ho-ko7"/>
+                                            <action selector="didTapSystem:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="CHv-sM-HaM"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dh6-W9-Vtf">
@@ -108,17 +108,6 @@
                                         <buttonConfiguration key="configuration" style="filled" title="Default (Right)"/>
                                         <connections>
                                             <action selector="didTapDefaultRight:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="kvn-qQ-zmD"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a8l-Sx-JnT">
-                                        <rect key="frame" x="0.0" y="384" width="335" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="56A-SJ-9A1"/>
-                                        </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="System"/>
-                                        <connections>
-                                            <action selector="didTapSystem:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="CHv-sM-HaM"/>
                                         </connections>
                                     </button>
                                 </subviews>

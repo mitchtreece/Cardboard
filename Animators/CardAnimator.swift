@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class CardAnimator {
+open class CardAnimator {
     
     public typealias ContextBlock = (Context)->()
     
@@ -42,19 +42,9 @@ public class CardAnimator {
         }
     }
     
-    internal let setup: ContextBlock
-    internal let animations: ContextBlock
-    internal let completion: ContextBlock?
-    
     internal private(set) var animator: UIViewPropertyAnimator!
     
-    public init(setup: @escaping ContextBlock,
-                animations: @escaping ContextBlock,
-                completion: ContextBlock?) {
-        
-        self.setup = setup
-        self.animations = animations
-        self.completion = completion
+    public init() {
         
         // Material (standard) timing
         
@@ -66,6 +56,20 @@ public class CardAnimator {
         setupAnimator()
         
     }
+    
+    open func setup(ctx: Context) {
+        //
+    }
+    
+    open func animate(ctx: Context) {
+        fatalError("CardAnimtor subclasses must implement animate(ctx:)")
+    }
+    
+    open func cleanup(ctx: Context) {
+        //
+    }
+    
+    // MARK: Private
     
     private func setupAnimator() {
      

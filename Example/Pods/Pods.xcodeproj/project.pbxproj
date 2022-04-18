@@ -18,6 +18,11 @@
 		26290004280C99FC0053FB82 /* FadeCardAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26290003280C99FC0053FB82 /* FadeCardAnimator.swift */; };
 		26290006280C9F390053FB82 /* SlideCardAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26290005280C9F390053FB82 /* SlideCardAnimator.swift */; };
 		26290008280C9F650053FB82 /* AlertCardAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26290007280C9F650053FB82 /* AlertCardAnimator.swift */; };
+		2629000A280CDB490053FB82 /* CardShadowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26290009280CDB490053FB82 /* CardShadowStyle.swift */; };
+		2629000C280CDB5D0053FB82 /* CardCornerStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629000B280CDB5D0053FB82 /* CardCornerStyle.swift */; };
+		2629000E280CDD780053FB82 /* Card+Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629000D280CDD780053FB82 /* Card+Styles.swift */; };
+		26290010280CEB160053FB82 /* CardEdgeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629000F280CEB160053FB82 /* CardEdgeStyle.swift */; };
+		26290013280D29170053FB82 /* CardInsetsCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26290012280D29170053FB82 /* CardInsetsCalculator.swift */; };
 		2629FFFD2809FE9C0053FB82 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629FFFC2809FE9C0053FB82 /* CardView.swift */; };
 		2CB4F6A04CB262A03A08D283722081C9 /* ConstraintConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250E41DBB680A3A2ECDDD2210311B230 /* ConstraintConfig.swift */; };
 		2EA7E568C8B34478C2650E8023C1ED78 /* Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D038D2FAA2F6B073D1B64B8635F4E3E6 /* Debugging.swift */; };
@@ -108,6 +113,11 @@
 		26290003280C99FC0053FB82 /* FadeCardAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeCardAnimator.swift; sourceTree = "<group>"; };
 		26290005280C9F390053FB82 /* SlideCardAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideCardAnimator.swift; sourceTree = "<group>"; };
 		26290007280C9F650053FB82 /* AlertCardAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCardAnimator.swift; sourceTree = "<group>"; };
+		26290009280CDB490053FB82 /* CardShadowStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CardShadowStyle.swift; path = Cardboard/Classes/CardShadowStyle.swift; sourceTree = "<group>"; };
+		2629000B280CDB5D0053FB82 /* CardCornerStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCornerStyle.swift; sourceTree = "<group>"; };
+		2629000D280CDD780053FB82 /* Card+Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+Styles.swift"; sourceTree = "<group>"; };
+		2629000F280CEB160053FB82 /* CardEdgeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardEdgeStyle.swift; sourceTree = "<group>"; };
+		26290012280D29170053FB82 /* CardInsetsCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInsetsCalculator.swift; sourceTree = "<group>"; };
 		2629FFFC2809FE9C0053FB82 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CardView.swift; path = Cardboard/Classes/CardView.swift; sourceTree = "<group>"; };
 		2851C42D2CBF9BF705D14D2B700E3C6B /* Card.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Card.swift; path = Cardboard/Classes/Card.swift; sourceTree = "<group>"; };
 		296569525B6733CFA3571FC6FE113F9D /* Pods-Cardboard_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Cardboard_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -299,9 +309,14 @@
 			isa = PBXGroup;
 			children = (
 				2851C42D2CBF9BF705D14D2B700E3C6B /* Card.swift */,
+				2629000D280CDD780053FB82 /* Card+Styles.swift */,
+				2629000F280CEB160053FB82 /* CardEdgeStyle.swift */,
+				2629000B280CDB5D0053FB82 /* CardCornerStyle.swift */,
+				26290009280CDB490053FB82 /* CardShadowStyle.swift */,
 				2629FFFC2809FE9C0053FB82 /* CardView.swift */,
 				69A1CF3857595A067E3CF4547E59E8FF /* CardContentView.swift */,
 				298E8173365D6D7AE04928B41EF0E7BB /* CardViewController.swift */,
+				26290012280D29170053FB82 /* CardInsetsCalculator.swift */,
 				26290000280C97B90053FB82 /* Animators */,
 				14A511B6DDD721FF368E3D83C6738A62 /* Pod */,
 				18286081B7B35CE5B4B51AD15AB0A6C6 /* Support Files */,
@@ -664,13 +679,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2629000C280CDB5D0053FB82 /* CardCornerStyle.swift in Sources */,
 				26290006280C9F390053FB82 /* SlideCardAnimator.swift in Sources */,
 				EA451AD87AA32401CCA23990F0691B98 /* Card.swift in Sources */,
 				1EE2C005F0501D1FCE389EDA10B44F1F /* Cardboard-dummy.m in Sources */,
+				26290010280CEB160053FB82 /* CardEdgeStyle.swift in Sources */,
 				8C6C31E15888C972712EC348BF5727C0 /* CardContentView.swift in Sources */,
 				A45E94ECDC6871C9CA4083C31E2B16DA /* CardViewController.swift in Sources */,
+				2629000A280CDB490053FB82 /* CardShadowStyle.swift in Sources */,
 				26290008280C9F650053FB82 /* AlertCardAnimator.swift in Sources */,
+				26290013280D29170053FB82 /* CardInsetsCalculator.swift in Sources */,
 				2629FFFD2809FE9C0053FB82 /* CardView.swift in Sources */,
+				2629000E280CDD780053FB82 /* Card+Styles.swift in Sources */,
 				26290004280C99FC0053FB82 /* FadeCardAnimator.swift in Sources */,
 				26290002280C98560053FB82 /* CardAnimator.swift in Sources */,
 			);
