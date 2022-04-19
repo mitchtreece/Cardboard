@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="S4q-8t-s36">
-                                <rect key="frame" x="20" y="435" width="335" height="232"/>
+                                <rect key="frame" x="20" y="339" width="335" height="328"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ize-78-MFf">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="40"/>
@@ -28,13 +28,35 @@
                                             <constraint firstAttribute="height" constant="40" id="kiG-4g-eEJ"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Custom"/>
+                                        <connections>
+                                            <action selector="didTapCustom:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="A7o-8e-wxg"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wa2-0K-cUi">
+                                        <rect key="frame" x="0.0" y="48" width="335" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="2qQ-lv-526"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Sheet"/>
+                                        <connections>
+                                            <action selector="didTapSheet:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="yAt-vx-eE5"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PvK-T5-BWG">
+                                        <rect key="frame" x="0.0" y="96" width="335" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Ueo-ID-CIr"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Alert"/>
                                         <connections>
-                                            <action selector="didTapAlert:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="6h8-8j-FyE"/>
+                                            <action selector="didTapAlert:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="pEf-Vx-gkv"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CMe-zv-3Jh">
-                                        <rect key="frame" x="0.0" y="48" width="335" height="40"/>
+                                        <rect key="frame" x="0.0" y="144" width="335" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="iO1-SI-k9B"/>
                                         </constraints>
@@ -45,7 +67,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rv0-NA-YFW">
-                                        <rect key="frame" x="0.0" y="96" width="335" height="40"/>
+                                        <rect key="frame" x="0.0" y="192" width="335" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="U45-Ij-Kte"/>
                                         </constraints>
@@ -56,7 +78,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a8l-Sx-JnT">
-                                        <rect key="frame" x="0.0" y="144" width="335" height="40"/>
+                                        <rect key="frame" x="0.0" y="240" width="335" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="56A-SJ-9A1"/>
                                         </constraints>
@@ -67,7 +89,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tAx-XF-doU">
-                                        <rect key="frame" x="0.0" y="192" width="335" height="40"/>
+                                        <rect key="frame" x="0.0" y="288" width="335" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="ZcV-dM-3Gs"/>
                                         </constraints>
@@ -87,6 +109,9 @@
                             <constraint firstItem="S4q-8t-s36" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="Sd6-BI-py7"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="stackViewBottomConstraint" destination="382-YY-uCb" id="Q1p-hE-lnq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>

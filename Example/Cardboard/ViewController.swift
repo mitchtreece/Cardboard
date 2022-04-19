@@ -7,31 +7,37 @@
 //
 
 import UIKit
+import Espresso
 import Cardboard
 
 class ViewController: UIViewController {
     
+    @IBOutlet private weak var stackViewBottomConstraint: NSLayoutConstraint!
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        self.stackViewBottomConstraint.constant = UIDevice.current.isModern ? 0 : 20
+        
     }
     
     @IBAction private func didTapDefault(_ sender: UIButton) {
-        
-        var card: Card = .default(contentView: contentView(height: 500))
+
+        let card = Card.default(contentView(height: 500))
         card.present(from: self)
         
     }
     
     @IBAction private func didTapSystem(_ sender: UIButton) {
         
-        let card: Card = .system(contentView: contentView(height: 400))
+        let card = Card.system(contentView(height: 350))
         card.present(from: self)
         
     }
     
     @IBAction private func didTapNotification(_ sender: UIButton) {
         
-        var card: Card = .notification(contentView: contentView(height: 100))
+        let card = Card.notification(contentView(height: 100))
 
 //        card.action = {
 //            print("Notification Tap!")
@@ -43,7 +49,7 @@ class ViewController: UIViewController {
     
     @IBAction private func didTapToast(_ sender: UIButton) {
         
-        var card: Card = .toast(contentView: contentView(height: 50))
+        let card = Card.toast(contentView(height: 50))
 
 //        card.action = {
 //            print("Toast Tap!")
@@ -58,16 +64,49 @@ class ViewController: UIViewController {
         let width = (UIScreen.main.bounds.width - (12 * 2))
         let height = (width * 0.7)
         
-        let card: Card = .alert(contentView: contentView(width: width, height: height))
+        let card = Card.alert(contentView(
+            width: width,
+            height: height
+        ))
+        
         card.present(from: self)
         
     }
     
+    @IBAction private func didTapSheet(_ sender: UIButton) {
+        
+        // TODO
+        
+    }
+    
+    @IBAction private func didTapCustom(_ sender: UIButton) {
+                
+        var builder = Card
+            .default(contentView(
+                height: 300,
+                color: .clear
+            ))
+            .asBuilder()
+
+        builder.anchor = .bottom
+        builder.contentOverlay = .blurred(style: .systemThinMaterialDark)
+        builder.background = .blurred(style: .systemUltraThinMaterialLight)
+        builder.statusBar = .lightContent
+        builder.corners.roundedCornerRadius = 64
+        builder.edges.setInsets(18, for: [.left, .right])
+        builder.edges.setSafeAreaAvoidance(.card, for: [.top, .bottom])
+        
+        Card.build(builder)
+            .present(from: self)
+        
+    }
+    
     private func contentView(width: CGFloat? = nil,
-                             height: CGFloat? = nil) -> CardContentView {
+                             height: CGFloat? = nil,
+                             color: UIColor = .white) -> CardContentView {
         
         let view = CardContentView()
-        view.backgroundColor = .white
+        view.backgroundColor = color
         view.snp.makeConstraints { make in
             
             if let w = width {

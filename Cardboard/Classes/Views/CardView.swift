@@ -9,7 +9,7 @@ import UIKit
 
 internal class CardView: UIView {
     
-    private let card: Card
+    private let styleProvider: CardStyleProvider
     
     private(set) var contentView: UIView!
     private var effectView: UIVisualEffectView?
@@ -27,9 +27,9 @@ internal class CardView: UIView {
         }
     }
 
-    init(card: Card) {
+    init(styleProvider: CardStyleProvider) {
         
-        self.card = card
+        self.styleProvider = styleProvider
 
         super.init(frame: .zero)
         
@@ -62,14 +62,14 @@ internal class CardView: UIView {
         self.shadowLayer = CAShapeLayer()
         self.shadowLayer.masksToBounds = false
         self.shadowLayer.fillColor = UIColor.clear.cgColor
-        self.shadowLayer.shadowColor = self.card.shadow.color.cgColor
-        self.shadowLayer.shadowOffset = self.card.shadow.offset
-        self.shadowLayer.shadowRadius = self.card.shadow.radius
-        self.shadowLayer.shadowOpacity = Float(self.card.shadow.alpha)
+        self.shadowLayer.shadowColor = self.styleProvider.shadow.color.cgColor
+        self.shadowLayer.shadowOffset = self.styleProvider.shadow.offset
+        self.shadowLayer.shadowRadius = self.styleProvider.shadow.radius
+        self.shadowLayer.shadowOpacity = Float(self.styleProvider.shadow.alpha)
         self.shadowLayer.mask = self.shadowMask
         self.layer.addSublayer(shadowLayer)
         
-        switch self.card.background {
+        switch self.styleProvider.background {
         case .none: self.backgroundColor = .clear
         case .color(let color): self.backgroundColor = color
         case .blurred(let style):
@@ -88,8 +88,8 @@ internal class CardView: UIView {
         
         super.layoutSubviews()
         
-        let cornerStyle = self.card.corners
-        let shadowStyle = self.card.shadow
+        let cornerStyle = self.styleProvider.corners
+        let shadowStyle = self.styleProvider.shadow
         
         let cornerRadius = CGSize(
             width: cornerStyle.roundedCornerRadius,

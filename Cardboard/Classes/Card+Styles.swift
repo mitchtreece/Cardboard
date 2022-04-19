@@ -9,75 +9,83 @@ import Foundation
 
 public extension Card { /* Styles */
     
-    static func `default`(contentView: CardContentView) -> Card {
-        return Card(contentView: contentView)
-    }
-
-    static func system(contentView: CardContentView) -> Card {
+    static func `default`(_ contentView: CardContentView) -> CardProtocol {
         
-        var card = Card(contentView: contentView)
-        let anchor: Anchor = .bottom
-        
-        card.anchor = .bottom
-        card.hidesHomeIndicator = true
-        card.corners.roundedCornerRadius = 44
-        card.shadow = .default(for: anchor)
-
-        card.edges.setInsets(6)
-        card.edges.setSafeAreaAvoidance(.none)
-        
-        return card
+        // TODO: Actually make this a builder & migrate base builder values to 0-based stuff
+        return Card(builder: CardBuilder(contentView: contentView))
         
     }
 
-    static func notification(contentView: CardContentView) -> Card {
-
-        var card = Card(contentView: contentView)
-        let anchor: Anchor = .top
-
-        card.anchor = anchor
-        card.duration = .seconds(3)
-        card.corners.roundedCornerRadius = 24
-        card.shadow = .default(for: anchor)
+    static func system(_ contentView: CardContentView) -> CardProtocol {
         
-        card.edges.setInsets(12, for: [.left, .right])
-        card.edges.setSafeAreaAvoidance(.card, for: [.top, .bottom])
+        return Card.build(contentView) { make in
+            
+            make.anchor = .bottom
+            make.hidesHomeIndicator = true
+            make.corners.roundedCorners = .allCorners
+            make.corners.roundedCornerRadius = 44
+            make.shadow = .default(for: .bottom)
+            
+            // TODO: Make corner radius smaller for legacy devices
+            
+            make.edges.setInsets(6)
+            make.edges.setSafeAreaAvoidance(.none)
+            
+        }
         
-        return card
-
     }
-    
-    static func toast(contentView: CardContentView) -> Card {
-        
-        var card = Card(contentView: contentView)
-        let anchor: Anchor = .bottom
-        
-        card.anchor = anchor
-        card.duration = .seconds(3)
-        card.corners.roundedCornerRadius = 16
-        card.shadow = .default(for: anchor)
-        
-        card.edges.setInsets(12, for: [.left, .right])
-        card.edges.setSafeAreaAvoidance(.card, for: [.top, .bottom])
-        
-        return card
-        
+
+    static func notification(_ contentView: CardContentView) -> CardProtocol {
+
+        return Card.build(contentView) { make in
+            
+            make.anchor = .top
+            make.duration = .seconds(3)
+            make.corners.roundedCorners = .allCorners
+            make.corners.roundedCornerRadius = 24
+            make.shadow = .default(for: .top)
+            
+            // TODO: Add top inset for legacy devices
+            
+            make.edges.setInsets(12, for: [.left, .right])
+            make.edges.setSafeAreaAvoidance(.card, for: [.top, .bottom])
+            
+        }
+
     }
     
-    static func alert(contentView: CardContentView) -> Card {
+    static func toast(_ contentView: CardContentView) -> CardProtocol {
         
-        var card = Card(contentView: contentView)
-        let anchor: Anchor = .center
-                
-        card.animator = AlertCardAnimator()
+        return Card.build(contentView) { make in
+            
+            make.anchor = .bottom
+            make.duration = .seconds(3)
+            make.corners.roundedCorners = .allCorners
+            make.corners.roundedCornerRadius = 16
+            make.shadow = .default(for: .bottom)
+            
+            // TODO: Add bottom inset for legacy devices
+            
+            make.edges.setInsets(12, for: [.left, .right])
+            make.edges.setSafeAreaAvoidance(.card, for: [.top, .bottom])
+            
+        }
         
-        card.anchor = anchor
-        card.shadow = .default(for: anchor)
-
-        card.edges.setInsets(0)
-        card.edges.setSafeAreaAvoidance(.none)
-
-        return card
+    }
+    
+    static func alert(_ contentView: CardContentView) -> CardProtocol {
+        
+        return Card.build(contentView) { make in
+            
+            make.anchor = .center
+            make.animator = AlertCardAnimator()
+            make.corners.roundedCorners = .allCorners
+            make.shadow = .default(for: .center)
+            
+            make.edges.setInsets(0)
+            make.edges.setSafeAreaAvoidance(.none)
+            
+        }
         
     }
 

@@ -1,23 +1,34 @@
 PODS:
   - Cardboard (1.0.0):
     - SnapKit (~> 5.0)
+  - Espresso/Core (2.4.1):
+    - Swinject (~> 2.0)
+  - Espresso/UIKit (2.4.1):
+    - Espresso/Core
+    - SnapKit (~> 5.0)
   - SnapKit (5.0.1)
+  - Swinject (2.8.1)
 
 DEPENDENCIES:
   - Cardboard (from `../`)
+  - Espresso/UIKit (~> 2.0)
 
 SPEC REPOS:
   trunk:
+    - Espresso
     - SnapKit
+    - Swinject
 
 EXTERNAL SOURCES:
   Cardboard:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Cardboard: 9c4184f5e379966df7998302b0f54c112db87a0c
+  Cardboard: 87a1799fcda6369eee16ff6a1d80c0e61ff5c8ed
+  Espresso: 791442a1728c1cb7e3ddbd285fa8f2afd853520f
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  Swinject: 97112918bd7e0785dc2df7036213f3c8cbba6586
 
-PODFILE CHECKSUM: 72057430623f8e515ade0431ad46aa60cb9be9cb
+PODFILE CHECKSUM: c9d0a355efd85cd2f1f0519c723a4b48be5ddbd3
 
 COCOAPODS: 1.11.2

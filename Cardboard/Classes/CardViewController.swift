@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-public class CardViewController: UIViewController {
+internal class CardViewController: UIViewController {
     
     private var containerView: UIView!
     private var contentOverlayContentView: UIView!
@@ -25,28 +25,33 @@ public class CardViewController: UIViewController {
     
     private var isCardBeingDismissed: Bool = false
     
-    private let card: Card
+    private let contentView: CardContentView
+    private let styleProvider: CardStyleProvider
+    private let actionProvider: CardActionProvider
     
-    public override var preferredStatusBarStyle: UIStatusBarStyle {
-        return self.card.statusBar
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return self.styleProvider.statusBar
     }
     
-    public override var prefersHomeIndicatorAutoHidden: Bool {
-        return self.card.hidesHomeIndicator
+    override var prefersHomeIndicatorAutoHidden: Bool {
+        return self.styleProvider.hidesHomeIndicator
     }
         
-    public init(card: Card) {
+    init(contentView: CardContentView,
+         styleProvider: CardStyleProvider,
+         actionProvider: CardActionProvider) {
         
-        self.card = card
-        self.insetsCalculator = CardInsetsCalculator(card: card)
+        self.contentView = contentView
+        self.styleProvider = styleProvider
+        self.actionProvider = actionProvider
+        
+        self.insetsCalculator = CardInsetsCalculator(styleProvider: styleProvider)
         
         super.init(
             nibName: nil,
             bundle: nil
         )
-        
-        self.card.contentView.setup(in: self)
-        
+                
         self.view.isHidden = false // force viewDidLoad
         self.modalPresentationStyle = .overFullScreen
         self.modalPresentationCapturesStatusBarAppearance = true
@@ -57,13 +62,13 @@ public class CardViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func viewDidLoad() {
+    override func viewDidLoad() {
         
         super.viewDidLoad()
 
         setupSubviews()
 
-        if self.card.isContentOverlayTapToDismissEnabled {
+        if self.styleProvider.isContentOverlayTapToDismissEnabled {
 
             self.contentOverlayContentView.addGestureRecognizer(UITapGestureRecognizer(
                 target: self,
@@ -72,7 +77,7 @@ public class CardViewController: UIViewController {
 
         }
 
-        if self.card.isSwipeToDismissEnabled {
+        if self.styleProvider.isSwipeToDismissEnabled {
 
             self.swipeRecognizer = UIPanGestureRecognizer(
                 target: self,
@@ -84,7 +89,7 @@ public class CardViewController: UIViewController {
 
         }
         
-//        if let _ = self.card.action {
+//        if let _ = self.actionProvider.action {
 //
 //            self.actionRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(didTapCard(_:)))
 //            self.actionRecognizer!.minimumPressDuration = 0.01
@@ -95,7 +100,7 @@ public class CardViewController: UIViewController {
 
     }
     
-    public override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
         
@@ -125,7 +130,7 @@ public class CardViewController: UIViewController {
             make.edges.equalToSuperview()
         }
         
-        switch self.card.contentOverlay {
+        switch self.styleProvider.contentOverlay {
         case .color(let color):
             
             self.contentOverlayDimmingView = UIView()
@@ -151,11 +156,11 @@ public class CardViewController: UIViewController {
         let cardInsets = self.insetsCalculator.cardInsets()
         let contentInsets = self.insetsCalculator.contentInsets()
         
-        self.cardView = CardView(card: self.card)
+        self.cardView = CardView(styleProvider: self.styleProvider)
         self.view.addSubview(self.cardView)
         self.cardView.snp.makeConstraints { make in
             
-            switch self.card.anchor {
+            switch self.styleProvider.anchor {
             case .top:
                 
                 make.top.equalTo(cardInsets.top)
@@ -195,8 +200,8 @@ public class CardViewController: UIViewController {
             make.right.equalTo(-contentInsets.right)
         }
         
-        self.cardContentContainerView.addSubview(self.card.contentView)
-        self.card.contentView.snp.makeConstraints { make in
+        self.cardContentContainerView.addSubview(self.contentView)
+        self.contentView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
@@ -204,13 +209,13 @@ public class CardViewController: UIViewController {
     
     // MARK: Public
     
-    public func presentCard(from viewController: UIViewController) {
+    func presentCard(from viewController: UIViewController) {
         
         self.sourceViewController = viewController
         
         self.view.layoutIfNeeded()
 
-        self.card.animator
+        self.styleProvider.animator
             .setup(ctx: animationContext(animation: .presentation))
 
         viewController.present(
@@ -219,14 +224,14 @@ public class CardViewController: UIViewController {
             completion: nil
         )
         
-        self.card.willPresentAction?()
+        self.actionProvider.willPresentAction?()
 
         DispatchQueue.main.async { [weak self] in
             
             self?.animateCard(presentation: true) {
 
                 self?.startDismissTimerIfNeeded()
-                self?.card.didPresentAction?()
+                self?.actionProvider.didPresentAction?()
 
             }
 
@@ -234,13 +239,13 @@ public class CardViewController: UIViewController {
         
     }
 
-    public func dismissCard(completion: (()->())? = nil) {
+    func dismissCard() {
 
         _dismissCard(
             reason: .default,
             velocity: nil,
             animated: true,
-            completion: completion
+            completion: nil
         )
         
     }
@@ -254,7 +259,7 @@ public class CardViewController: UIViewController {
             containerView: self.containerView,
             contentOverlayView: self.contentOverlayContentView,
             cardView: self.cardView,
-            anchor: self.card.anchor,
+            anchor: self.styleProvider.anchor,
             insets: self.insetsCalculator.cardInsets(),
             animation: animation
         )
@@ -268,7 +273,8 @@ public class CardViewController: UIViewController {
         
         self.isCardBeingDismissed = true
         
-        self.card.willDismissAction?(reason)
+        self.actionProvider
+            .willDismissAction?(reason)
         
         animateCard(
             presentation: false,
@@ -280,7 +286,9 @@ public class CardViewController: UIViewController {
                     animated: false,
                     completion: {
                     
-                        self?.card.didDismissAction?(reason)
+                        self?.actionProvider
+                            .didDismissAction?(reason)
+                        
                         completion?()
                         
                     })
@@ -296,8 +304,8 @@ public class CardViewController: UIViewController {
         
         // TODO: Velocity handling
 
-        let animator = self.card.animator
-        let viewAnimtor = self.card.animator.animator!
+        let animator = self.styleProvider.animator
+        let viewAnimtor = self.styleProvider.animator.animator!
         let context = animationContext(animation: presentation ? .presentation : .dismissal)
         
         viewAnimtor.addAnimations { [weak self] in
@@ -352,10 +360,14 @@ public class CardViewController: UIViewController {
             print("ended, inside card?: \(isLocationInCard)")
 
             if isLocationInCard {
-                
-//                dismissCard { [weak self] in
-//                    self?.card.action?()
-//                }
+
+//                _dismissCard(
+//                    reason: .default,
+//                    velocity: nil,
+//                    animated: true,
+//                    completion: { [weak self] in
+//                        self?.actionProvider.action?()
+//                    })
                 
                 dismissCard()
                 
@@ -399,7 +411,7 @@ public class CardViewController: UIViewController {
             var cardTransform: CGAffineTransform = .identity
             var backgroundAlpha: CGFloat = 1
             
-            switch self.card.anchor {
+            switch self.styleProvider.anchor {
             case .top:
                 
                 if translation.y >= 0 {
@@ -557,7 +569,7 @@ public class CardViewController: UIViewController {
             let velocityThreshold: CGFloat = 1000
             var shouldDismissCard: Bool = false
             
-            switch self.card.anchor {
+            switch self.styleProvider.anchor {
             case .top:
                 
                 let translationThreshold = (cardSize.height / 2)
@@ -629,7 +641,7 @@ public class CardViewController: UIViewController {
     
     private func startDismissTimerIfNeeded() {
         
-        switch self.card.duration {
+        switch self.styleProvider.duration {
         case .seconds(let duration):
             
             self.dismissTimer = Timer.scheduledTimer(withTimeInterval: duration,

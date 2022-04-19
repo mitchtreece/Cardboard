@@ -27,7 +27,7 @@ public extension CardCornerStyle {
     static var `default`: CardCornerStyle {
         
         return CardCornerStyle(
-            roundedCorners: .allCorners,
+            roundedCorners: [.topLeft, .topRight],
             roundedCornerRadius: 32
         )
         

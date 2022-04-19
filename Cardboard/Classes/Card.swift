@@ -7,7 +7,7 @@
 
 import UIKit
 
-public struct Card {
+public class Card {
     
     public enum Anchor {
         
@@ -16,7 +16,7 @@ public struct Card {
         case bottom
         case right
         case center
-
+        
     }
     
     public enum Duration {
@@ -49,103 +49,57 @@ public struct Card {
 
     }
     
-    public let contentView: CardContentView
+    internal let builder: CardBuilder
+
+    private var viewController: CardViewController?
     
-    public var anchor: Anchor = .bottom
-    public var animator: CardAnimator = SlideCardAnimator()
-    public var duration: Duration = .none
-    public var statusBar: UIStatusBarStyle = .default
-    public var hidesHomeIndicator: Bool = false
-    public var isContentOverlayTapToDismissEnabled: Bool = true
-    public var isSwipeToDismissEnabled: Bool = true
-    
-    // Styles
-    
-    public var contentOverlay: BackgroundStyle = .color(.black.withAlphaComponent(0.5))
-    public var background: BackgroundStyle = .color(.white)
-    public var edges: CardEdgeStyle = .default
-    public var corners: CardCornerStyle = .default
-    public var shadow: CardShadowStyle = .default(for: .bottom)
-    
-    // Actions
-        
-//    public var action: (()->())?
-    public var willPresentAction: (()->())?
-    public var didPresentAction: (()->())?
-    public var willDismissAction: ((DismissalReason)->())?
-    public var didDismissAction: ((DismissalReason)->())?
-        
-    public var viewController: CardViewController? {
-        return self.contentView.cardViewController
-    }
-    
-    internal init(contentView: CardContentView) {
-        self.contentView = contentView
+    internal init(builder: CardBuilder) {
+        self.builder = builder
     }
     
     // MARK: Public
     
-    @discardableResult
-    public func present(from viewController: UIViewController) -> Self {
+    public static func build(_ contentView: CardContentView,
+                             build: (inout CardBuilder)->()) -> CardProtocol {
         
-        CardViewController(card: self)
+        var builder = CardBuilder(contentView: contentView)
+        build(&builder)
+        
+        return Card(builder: builder)
+        
+    }
+    
+    public static func build(_ builder: CardBuilder) -> CardProtocol {
+        return Card(builder: builder)
+    }
+        
+}
+
+extension Card: CardProtocol {
+    
+    public func asBuilder() -> CardBuilder {
+        return self.builder
+    }
+    
+    public func present(from viewController: UIViewController) {
+                
+        self.builder.contentView.setup(for: self)
+        
+        self.viewController = CardViewController(
+            contentView: self.builder.contentView,
+            styleProvider: self.builder,
+            actionProvider: self.builder
+        )
+        
+        self.viewController?
             .presentCard(from: viewController)
         
-        return self
-        
     }
     
-    public func dismiss(completion: (()->())? = nil) {
+    public func dismiss() {
         
-        self.contentView
-            .cardViewController?
-            .dismissCard(completion: completion)
-        
-    }
-    
-    // MARK: Internal
-    
-    internal func edges(for anchor: Anchor) -> [CardEdgeStyle.Edge] {
-        
-        var edges = [CardEdgeStyle.Edge]()
-        
-        switch anchor {
-        case .top:
-            
-            edges = [
-                self.edges.left,
-                self.edges.top,
-                self.edges.right
-            ]
-
-        case .left:
-            
-            edges = [
-                self.edges.top,
-                self.edges.left,
-                self.edges.bottom
-            ]
-            
-        case .bottom:
-            
-            edges = [
-                self.edges.left,
-                self.edges.bottom,
-                self.edges.right
-            ]
-            
-        case .right:
-            
-            edges = [
-                self.edges.top,
-                self.edges.right,
-                self.edges.bottom
-            ]
-            
-        default: break
-        }
-        
-        return edges
+        self.viewController?
+            .dismissCard()
         
     }
     

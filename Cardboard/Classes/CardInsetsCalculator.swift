@@ -9,7 +9,7 @@ import Foundation
 
 internal struct CardInsetsCalculator {
     
-    private let card: Card
+    private let styleProvider: CardStyleProvider
     
     private var safeAreaInsets: UIEdgeInsets {
         
@@ -26,20 +26,20 @@ internal struct CardInsetsCalculator {
             
     }
     
-    init(card: Card) {
-        self.card = card
+    init(styleProvider: CardStyleProvider) {
+        self.styleProvider = styleProvider
     }
     
     func cardInsets() -> UIEdgeInsets {
         
         var insets = UIEdgeInsets(
-            top: self.card.edges.top.inset,
-            left: self.card.edges.left.inset,
-            bottom: self.card.edges.bottom.inset,
-            right: self.card.edges.right.inset
+            top: self.styleProvider.edges.top.inset,
+            left: self.styleProvider.edges.left.inset,
+            bottom: self.styleProvider.edges.bottom.inset,
+            right: self.styleProvider.edges.right.inset
         )
                
-        for edge in self.card.edges(for: self.card.anchor) {
+        for edge in self.styleProvider.edgesForAnchor {
             
             switch edge.safeAreaAvoidance {
             case .card:
@@ -65,7 +65,7 @@ internal struct CardInsetsCalculator {
         
         var insets: UIEdgeInsets = .zero
         
-        for edge in self.card.edges(for: self.card.anchor) {
+        for edge in self.styleProvider.edgesForAnchor {
             
             switch edge.safeAreaAvoidance {
             case .content:
