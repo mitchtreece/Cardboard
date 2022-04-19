@@ -87,7 +87,6 @@ public struct Card {
     
     @discardableResult
     public func present(from viewController: UIViewController,
-                        animator: CardAnimator? = nil,
                         completion: (()->())? = nil) -> Self {
         
         CardViewController(card: self)

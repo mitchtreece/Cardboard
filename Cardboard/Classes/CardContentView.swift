@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class CardContentView: UIView {
+open class CardContentView: UIView {
     
     public private(set) weak var cardViewController: CardViewController?
     

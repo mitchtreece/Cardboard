@@ -204,8 +204,7 @@ public class CardViewController: UIViewController {
     
     // MARK: Public
     
-    func presentCard(from viewController: UIViewController,
-                     completion: (()->())? = nil) {
+    public func presentCard(from viewController: UIViewController) {
         
         self.sourceViewController = viewController
         
@@ -228,7 +227,6 @@ public class CardViewController: UIViewController {
 
                 self?.startDismissTimerIfNeeded()
                 self?.card.didPresentAction?()
-                completion?()
 
             }
 
@@ -236,7 +234,7 @@ public class CardViewController: UIViewController {
         
     }
 
-    func dismissCard(completion: (()->())? = nil) {
+    public func dismissCard(completion: (()->())? = nil) {
 
         _dismissCard(
             reason: .default,
