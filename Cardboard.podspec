@@ -2,10 +2,11 @@ Pod::Spec.new do |s|
 
   s.name             = 'Cardboard'
   s.version          = '1.0.0'
-  s.summary          = 'TODO'
+  s.summary          = 'Customizable modal-card library for iOS'
 
   s.description      = <<-DESC
-  TODO: Add long description of the pod here.
+  Cardboard is a customizable modal-card library that makes it incredibly
+  easy to build highly-stylized cards, notifications, toasts, or alerts.
   DESC
 
   s.homepage              = 'https://github.com/mitchtreece/Cardboard'
