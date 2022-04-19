@@ -7,13 +7,6 @@
 
 import Foundation
 
-// Supported Styles:
-// - default
-// - system
-// - notification
-// - toast
-// - alert
-
 public extension Card { /* Styles */
     
     static func `default`(contentView: CardContentView) -> Card {
@@ -61,7 +54,7 @@ public extension Card { /* Styles */
         
         card.anchor = anchor
         card.duration = .seconds(3)
-        card.corners.roundedCornerRadius = 18
+        card.corners.roundedCornerRadius = 16
         card.shadow = .default(for: anchor)
         
         card.edges.setInsets(12, for: [.left, .right])

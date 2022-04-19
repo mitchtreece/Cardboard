@@ -8,9 +8,7 @@
 import Foundation
 
 open class CardAnimator {
-    
-    public typealias ContextBlock = (Context)->()
-    
+        
     public struct Context {
         
         public let sourceView: UIView

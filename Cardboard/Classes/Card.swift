@@ -58,7 +58,6 @@ public struct Card {
     public var hidesHomeIndicator: Bool = false
     public var isContentOverlayTapToDismissEnabled: Bool = true
     public var isSwipeToDismissEnabled: Bool = true
-//    public var isBounceable: Bool = true // TODO: Implement this
     
     // Styles
     
@@ -70,7 +69,7 @@ public struct Card {
     
     // Actions
         
-    public var action: (()->())?
+//    public var action: (()->())?
     public var willPresentAction: (()->())?
     public var didPresentAction: (()->())?
     public var willDismissAction: ((DismissalReason)->())?
@@ -83,6 +82,8 @@ public struct Card {
     internal init(contentView: CardContentView) {
         self.contentView = contentView
     }
+    
+    // MARK: Public
     
     @discardableResult
     public func present(from viewController: UIViewController,
@@ -106,6 +107,8 @@ public struct Card {
             .dismissCard(completion: completion)
         
     }
+    
+    // MARK: Internal
     
     internal func edges(for anchor: Anchor) -> [CardEdgeStyle.Edge] {
         

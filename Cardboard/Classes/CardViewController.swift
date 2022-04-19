@@ -84,14 +84,14 @@ public class CardViewController: UIViewController {
 
         }
         
-        if let _ = self.card.action {
-            
-            self.actionRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(didTapCard(_:)))
-            self.actionRecognizer!.minimumPressDuration = 0.01
-            self.actionRecognizer!.delegate = self
-            self.cardView.addGestureRecognizer(self.actionRecognizer!)
-            
-        }
+//        if let _ = self.card.action {
+//
+//            self.actionRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(didTapCard(_:)))
+//            self.actionRecognizer!.minimumPressDuration = 0.01
+//            self.actionRecognizer!.delegate = self
+//            self.cardView.addGestureRecognizer(self.actionRecognizer!)
+//
+//        }
 
     }
     
@@ -355,9 +355,11 @@ public class CardViewController: UIViewController {
 
             if isLocationInCard {
                 
-                dismissCard { [weak self] in
-                    self?.card.action?()
-                }
+//                dismissCard { [weak self] in
+//                    self?.card.action?()
+//                }
+                
+                dismissCard()
                 
             }
             else {
@@ -383,79 +385,247 @@ public class CardViewController: UIViewController {
     
     @objc private func didPanCard(_ recognizer: UIPanGestureRecognizer) {
         
-//        // TODO handle top & bottom anchored cards
-//
-//        let yTranslation = recognizer.translation(in: self.view).y
-//        let velocity = recognizer.velocity(in: self.view)
-//        let cardHeight = self.cardView.bounds.height
-//        let progress = min(1, max(0, (yTranslation / cardHeight)))
-//
-//        switch recognizer.state {
-//        case .changed:
-//
-//            if yTranslation <= 0 {
-//
-//                // Locked to max-height
-//
-//                self.cardView.transform = .identity
-//                self.contentOverlayDimmingView?.alpha = 1
-//                self.contentOverlayEffectView?.alpha = 1
-//
-//            }
-//            else if yTranslation > 0 && yTranslation < cardHeight {
-//
-//                // Panning between max-height & min-height
-//
-//                self.cardView.transform = CGAffineTransform(
-//                    translationX: 0,
-//                    y: yTranslation
-//                )
-//
-//                self.contentOverlayDimmingView?.alpha = (1 - progress)
-//                self.contentOverlayEffectView?.alpha = (1 - progress)
-//
-//            }
-//            else {
-//
-//                // Locked to min-height
-//
-//                self.cardView.transform = CGAffineTransform(
-//                    translationX: 0,
-//                    y: cardHeight
-//                )
-//
-//                self.contentOverlayDimmingView?.alpha = 0
-//                self.contentOverlayEffectView?.alpha = 0
-//
-//            }
-//
-//        case .ended, .cancelled, .failed:
-//
-//            let translationThreshold = (cardHeight / 2)
-//            let velocityThreshold: CGFloat = 1000
-//
-//            if yTranslation >= translationThreshold || velocity.y >= velocityThreshold {
-//
-//                _dismissCard(
-//                    reason: .interactive(.swipe),
-//                    velocity: velocity.y,
-//                    animated: true,
-//                    completion: nil
-//                )
-//
-//            }
-//            else {
-//
-//                animateCard(
-//                    presentation: true,
-//                    velocity: velocity.y,
-//                    completion: nil
-//                )
-//
-//            }
-//
-//        default: break
-//        }
+        let translation = recognizer.translation(in: self.containerView)
+        let alertTranslation = CGPoint(x: translation.x * 0.1, y: translation.y * 0.1)
+        let velocity = recognizer.velocity(in: self.containerView)
+        let cardSize = self.cardView.bounds.size
+
+        let progress = CGPoint(
+            x: min(1, max(0, (abs(translation.x) / cardSize.width))),
+            y: min(1, max(0, (abs(translation.y) / cardSize.height)))
+        )
+                
+        switch recognizer.state {
+        case .changed:
+            
+            var cardTransform: CGAffineTransform = .identity
+            var backgroundAlpha: CGFloat = 1
+            
+            switch self.card.anchor {
+            case .top:
+                
+                if translation.y >= 0 {
+                    
+                    // open
+                    
+                    cardTransform = .identity
+                    backgroundAlpha = 1
+                    
+                }
+                else if translation.y < 0 && translation.y > -cardSize.height {
+                    
+                    // panning
+                    
+                    cardTransform = CGAffineTransform(
+                        translationX: 0,
+                        y: translation.y
+                    )
+
+                    backgroundAlpha = (1 - progress.y)
+                    
+                }
+                else {
+                    
+                    // closed
+                    
+                    cardTransform = CGAffineTransform(
+                        translationX: 0,
+                        y: cardSize.height
+                    )
+
+                    backgroundAlpha = 0
+                    
+                }
+                
+            case .left:
+                
+                if translation.x >= 0 {
+                    
+                    // open
+                    
+                    cardTransform = .identity
+                    backgroundAlpha = 1
+                    
+                }
+                else if translation.x < 0 && translation.x > -cardSize.width {
+                    
+                    // panning
+                    
+                    cardTransform = CGAffineTransform(
+                        translationX: translation.x,
+                        y: 0
+                    )
+
+                    backgroundAlpha = (1 - progress.x)
+                    
+                }
+                else {
+                    
+                    // closed
+                    
+                    cardTransform = CGAffineTransform(
+                        translationX: cardSize.width,
+                        y: 0
+                    )
+
+                    backgroundAlpha = 0
+                    
+                }
+                
+            case .bottom:
+                
+                if translation.y <= 0 {
+                    
+                    // open
+                    
+                    cardTransform = .identity
+                    backgroundAlpha = 1
+                    
+                }
+                else if translation.y > 0 && translation.y < cardSize.height {
+                    
+                    // panning
+                    
+                    cardTransform = CGAffineTransform(
+                        translationX: 0,
+                        y: translation.y
+                    )
+
+                    backgroundAlpha = (1 - progress.y)
+                    
+                }
+                else {
+                    
+                    // closed
+                    
+                    cardTransform = CGAffineTransform(
+                        translationX: 0,
+                        y: cardSize.height
+                    )
+
+                    backgroundAlpha = 0
+                    
+                }
+                
+            case .right:
+                
+                if translation.x <= 0 {
+                    
+                    // open
+                    
+                    cardTransform = .identity
+                    backgroundAlpha = 1
+                    
+                }
+                else if translation.x > 0 && translation.x < cardSize.width {
+                    
+                    // panning
+                    
+                    cardTransform = CGAffineTransform(
+                        translationX: translation.x,
+                        y: 0
+                    )
+
+                    backgroundAlpha = (1 - progress.x)
+                    
+                }
+                else {
+                
+                    // closed
+                    
+                    cardTransform = CGAffineTransform(
+                        translationX: cardSize.width,
+                        y: 0
+                    )
+
+                    backgroundAlpha = 0
+                    
+                }
+                
+            case .center:
+                
+                cardTransform = CGAffineTransform(
+                    translationX: alertTranslation.x,
+                    y: alertTranslation.y
+                )
+                                
+            }
+            
+            self.cardView.transform = cardTransform
+            self.contentOverlayContentView.alpha = backgroundAlpha
+            
+        case .ended, .cancelled, .failed:
+            
+            let velocityThreshold: CGFloat = 1000
+            var shouldDismissCard: Bool = false
+            
+            switch self.card.anchor {
+            case .top:
+                
+                let translationThreshold = (cardSize.height / 2)
+                
+                if translation.y <= -translationThreshold || velocity.y <= -velocityThreshold {
+                    shouldDismissCard = true
+                }
+                
+            case .bottom:
+                
+                let translationThreshold = (cardSize.height / 2)
+                
+                if translation.y >= translationThreshold || velocity.y >= velocityThreshold {
+                    shouldDismissCard = true
+                }
+                
+            case .left:
+                
+                let translationThreshold = (cardSize.width / 2)
+                
+                if translation.x <= -translationThreshold || velocity.x <= -velocityThreshold {
+                    shouldDismissCard = true
+                }
+                
+            case .right:
+                
+                let translationThreshold = (cardSize.width / 2)
+                
+                if translation.x >= translationThreshold || velocity.x >= velocityThreshold {
+                    shouldDismissCard = true
+                }
+                
+            case .center:
+                
+                let translationThreshold: CGFloat = 20
+                let maxTranslation = max(abs(alertTranslation.x), abs(alertTranslation.y))
+                let maxVelocity = max(abs(velocity.x), abs(velocity.y))
+                
+                if maxTranslation >= translationThreshold || maxVelocity >= velocityThreshold {
+                    shouldDismissCard = true
+                }
+                
+            }
+            
+            if shouldDismissCard {
+
+                _dismissCard(
+                    reason: .interactive(.swipe),
+                    velocity: velocity.y,
+                    animated: true,
+                    completion: nil
+                )
+
+            }
+            else {
+
+                animateCard(
+                    presentation: true,
+                    velocity: velocity.y,
+                    completion: nil
+                )
+
+            }
+            
+        default: break
+        }
         
     }
     

@@ -11,57 +11,44 @@ import Cardboard
 
 class ViewController: UIViewController {
     
-    private var cardBackgroundStyle: Card.BackgroundStyle {
-        return .color(.systemRed)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
+    @IBAction private func didTapDefault(_ sender: UIButton) {
+        
+        var card: Card = .default(contentView: contentView(height: 500))
+        card.present(from: self)
+        
+    }
+    
     @IBAction private func didTapSystem(_ sender: UIButton) {
         
-        var card: Card = .system(contentView: contentView(height: 400))
-        card.background = self.cardBackgroundStyle
+        let card: Card = .system(contentView: contentView(height: 400))
         card.present(from: self)
         
     }
     
-    @IBAction private func didTapDefaultTop(_ sender: UIButton) {
+    @IBAction private func didTapNotification(_ sender: UIButton) {
+        
+        var card: Card = .notification(contentView: contentView(height: 100))
 
-        var card: Card = .default(contentView: contentView(height: 500))
-        card.anchor = .top
-        card.background = self.cardBackgroundStyle
-        card.present(from: self)
+//        card.action = {
+//            print("Notification Tap!")
+//        }
         
-    }
+        card.present(from: self)
 
-    @IBAction private func didTapDefaultBottom(_ sender: UIButton) {
-        
-        var card: Card = .default(contentView: contentView(height: 500))
-        card.background = self.cardBackgroundStyle
-        card.present(from: self)
-        
     }
     
-    @IBAction private func didTapDefaultLeft(_ sender: UIButton) {
+    @IBAction private func didTapToast(_ sender: UIButton) {
+        
+        var card: Card = .toast(contentView: contentView(height: 50))
 
-        let width = (UIScreen.main.bounds.width / 1.3)
-        
-        var card: Card = .default(contentView: contentView(width: width))
-        card.anchor = .left
-        card.background = self.cardBackgroundStyle
-        card.present(from: self)
-        
-    }
-    
-    @IBAction private func didTapDefaultRight(_ sender: UIButton) {
+//        card.action = {
+//            print("Toast Tap!")
+//        }
 
-        let width = (UIScreen.main.bounds.width / 1.3)
-        
-        var card: Card = .default(contentView: contentView(width: width))
-        card.anchor = .right
-        card.background = self.cardBackgroundStyle
         card.present(from: self)
         
     }
@@ -71,37 +58,7 @@ class ViewController: UIViewController {
         let width = (UIScreen.main.bounds.width - (12 * 2))
         let height = (width * 0.7)
         
-        var card: Card = .alert(contentView: contentView(width: width, height: height))
-        card.background = self.cardBackgroundStyle
-        card.present(from: self)
-        
-    }
-
-    @IBAction private func didTapNotification(_ sender: UIButton) {
-        
-        var card: Card = .notification(contentView: contentView(height: 100))
-        card.background = self.cardBackgroundStyle
-        card.duration = .none
-        
-        card.action = {
-            print("Notification Tap!")
-        }
-        
-        card.present(from: self)
-
-    }
-    
-    @IBAction private func didTapToast(_ sender: UIButton) {
-        
-        var card: Card = .toast(contentView: contentView(height: 50))
-        card.background = self.cardBackgroundStyle
-        card.corners.roundedCornerRadius = 14
-        card.duration = .none
-
-        card.action = {
-            print("Toast Tap!")
-        }
-
+        let card: Card = .alert(contentView: contentView(width: width, height: height))
         card.present(from: self)
         
     }
