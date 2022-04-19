@@ -86,14 +86,10 @@ public struct Card {
     // MARK: Public
     
     @discardableResult
-    public func present(from viewController: UIViewController,
-                        completion: (()->())? = nil) -> Self {
+    public func present(from viewController: UIViewController) -> Self {
         
         CardViewController(card: self)
-            .presentCard(
-                from: viewController,
-                completion: completion
-            )
+            .presentCard(from: viewController)
         
         return self
         
