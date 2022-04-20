@@ -21,33 +21,10 @@ class ViewController: UIViewController {
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        <#code#>
-    }
-    
     @IBAction private func didTapDefault(_ sender: UIButton) {
 
         Card.default(contentView(height: 500))
             .present(from: self)
-
-//        let c = Card(view) { make in
-//            // "Empty" (default) card
-//        }
-//
-//        // Default card (no mods)
-//        let c = Card.default(view)
-//
-//        let c = Card.default(view) { make in
-//            // Default card w/ mods
-//        }
-//
-//        let c = Card.system(view) { make in
-//            // System card w/ mods
-//        }
-//
-//        let x = Card.notification(view) { make in
-//            // Notification card w/ mods
-//        }
         
     }
     
