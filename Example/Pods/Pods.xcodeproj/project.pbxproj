@@ -589,8 +589,7 @@
 				B1E6349EE703A11CB80440976064FCA5 /* CardEdgeStyle.swift */,
 				C6924B3179E1F57B48383488905BE793 /* CardShadowStyle.swift */,
 			);
-			name = Styles;
-			path = Cardboard/Classes/Styles;
+			path = Styles;
 			sourceTree = "<group>";
 		};
 		163D6B5FC4C1E1AE1BF501645493E62C /* Swinject */ = {
@@ -723,10 +722,10 @@
 		484AC0F1B113D645FC06DDB440041640 /* Animators */ = {
 			isa = PBXGroup;
 			children = (
-				A94364262F899B075741A56B927B192A /* AlertCardAnimator.swift */,
 				B615863B4237DAC8C28E39AE0D785175 /* CardAnimator.swift */,
 				B5BA27F8BA21FB929A83679097DCCB5C /* FadeCardAnimator.swift */,
 				FFAEC238C4A96A58758B69DFD4F9EEF5 /* SlideCardAnimator.swift */,
+				A94364262F899B075741A56B927B192A /* AlertCardAnimator.swift */,
 			);
 			name = Animators;
 			path = Cardboard/Classes/Animators;
@@ -886,12 +885,12 @@
 				266807D5280F7B2B00758DB5 /* CardBuilder.swift */,
 				C6E290EC0FD8F07AF02C169B183FDB43 /* CardInsetsCalculator.swift */,
 				1BACEB82D5DBAAD98E5DAFC88237CB89 /* CardViewController.swift */,
-				266807D7280F7D5C00758DB5 /* Protocols */,
 				484AC0F1B113D645FC06DDB440041640 /* Animators */,
-				00A90F7409039237C4371BF8F5C6CEDE /* Pod */,
+				266807D7280F7D5C00758DB5 /* Protocols */,
 				0ED289FEFCE17ED11BD72333537E3CBA /* Styles */,
-				16EA8C7882D13FF3B5F3BD343CA14997 /* Support Files */,
 				DFC8A297D8EED5D0A69DEDD6DF0F416E /* Views */,
+				00A90F7409039237C4371BF8F5C6CEDE /* Pod */,
+				16EA8C7882D13FF3B5F3BD343CA14997 /* Support Files */,
 			);
 			name = Cardboard;
 			path = ../..;
@@ -969,8 +968,8 @@
 		DFC8A297D8EED5D0A69DEDD6DF0F416E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3D9ADB65B44B4DC9A8740A782471997C /* CardContentView.swift */,
 				7C50351DF627EEABF948F920152D1A0A /* CardView.swift */,
+				3D9ADB65B44B4DC9A8740A782471997C /* CardContentView.swift */,
 			);
 			name = Views;
 			path = Cardboard/Classes/Views;

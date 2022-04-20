@@ -7,49 +7,83 @@
 
 import UIKit
 
+/// Class that contains various properties, attributes, & functions
+/// that makeup a card-based presentation.
 public class Card: CardBuildable, CardStyleProvider, CardActionProvider {
     
+    /// A card-builder type.
     public typealias BuilderBlock = (inout CardBuilder)->()
     
+    /// Representation of the various card anchor types.
     public enum Anchor {
         
+        /// A top anchor.
         case top
+        
+        /// A left anchor.
         case left
+        
+        /// A bottom anchor.
         case bottom
+        
+        /// A right anchor.
         case right
+        
+        /// A center anchor.
         case center
         
     }
     
+    /// Representation of the various card duration types.
     public enum Duration {
         
+        /// No duration.
         case none
+        
+        /// Duration in seconds.
         case seconds(TimeInterval)
         
     }
     
+    /// Representation of the various card background style types.
     public enum BackgroundStyle {
         
+        /// No style.
         case none
+        
+        /// A color style.
         case color(_ color: UIColor)
+        
+        /// A blurred style.
         case blurred(style: UIBlurEffect.Style)
         
     }
     
+    /// Representation of the various card dismissal types.
     public enum DismissalReason {
 
+        /// Representation of the various interactive dismissal types.
         public enum Interaction {
 
+            /// A swipe interaction.
             case swipe
+            
             // case action
+            
+            /// A background-tap interaction.
             case background
 
         }
 
+        /// A default dismissal reason.
         case `default`
+        
+        /// An interactive dismissal reason.
         case interactive(Interaction)
 
     }
+    
+    // These are documented via `CardBuildable`.
         
     public var anchor: Card.Anchor = .bottom
     public var animator: CardAnimator = SlideCardAnimator()
@@ -89,19 +123,7 @@ public class Card: CardBuildable, CardStyleProvider, CardActionProvider {
     internal init(_ view: CardContentView) {
         self.view = view
     }
-    
-    // MARK: Public
 
-//    public static func build(_ buildable: CardBuildable) -> CardProtocol {
-//        
-//        guard let card = buildable as? CardProtocol else {
-//            fatalError("This shouldn't happen. CardBuildable always conforms to CardProtocol.")
-//        }
-//        
-//        return card
-//        
-//    }
-    
     // MARK: Private
     
     @discardableResult

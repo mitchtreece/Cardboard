@@ -5,7 +5,7 @@
 //  Created by Mitch Treece on 4/17/22.
 //
 
-import Foundation
+import UIKit
 
 public extension Card { /* Styles */
     
@@ -24,6 +24,10 @@ public extension Card { /* Styles */
     
     // MARK: Public
     
+    /// A default card style.
+    /// - parameter view: The card's content view.
+    /// - parameter build: An optional builder block used to customize the behavior & style of a card.
+    /// - returns: A card interface.
     static func `default`(_ view: CardContentView,
                           _ build: BuilderBlock? = nil) -> CardProtocol {
                 
@@ -34,6 +38,10 @@ public extension Card { /* Styles */
         
     }
 
+    /// A system card style.
+    /// - parameter view: The card's content view.
+    /// - parameter build: An optional builder block used to customize the behavior & style of a card.
+    /// - returns: A card interface.
     static func system(_ view: CardContentView,
                        _ build: BuilderBlock? = nil) -> CardProtocol {
         
@@ -54,6 +62,10 @@ public extension Card { /* Styles */
                 
     }
 
+    /// A notification card style.
+    /// - parameter view: The card's content view.
+    /// - parameter build: An optional builder block used to customize the behavior & style of a card.
+    /// - returns: A card interface.
     static func notification(_ view: CardContentView,
                              _ build: BuilderBlock? = nil) -> CardProtocol {
 
@@ -74,6 +86,10 @@ public extension Card { /* Styles */
         
     }
     
+    /// A toast card style.
+    /// - parameter view: The card's content view.
+    /// - parameter build: An optional builder block used to customize the behavior & style of a card.
+    /// - returns: A card interface.
     static func toast(_ view: CardContentView,
                       _ build: BuilderBlock? = nil) -> CardProtocol {
         
@@ -94,6 +110,10 @@ public extension Card { /* Styles */
                 
     }
     
+    /// An alert card style.
+    /// - parameter view: The card's content view.
+    /// - parameter build: An optional builder block used to customize the behavior & style of a card.
+    /// - returns: A card interface.
     static func alert(_ view: CardContentView,
                       _ build: BuilderBlock? = nil) -> CardProtocol {
         

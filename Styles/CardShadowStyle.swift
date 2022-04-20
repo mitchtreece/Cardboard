@@ -5,19 +5,28 @@
 //  Created by Mitch Treece on 4/17/22.
 //
 
-import Foundation
+import UIKit
 
+/// A style object that provides various
+/// card shadow properties & attributes.
 public struct CardShadowStyle {
     
+    /// The shadow color.
     public var color: UIColor
+    
+    /// The shadow radius.
     public var radius: CGFloat
+    
+    /// The shadow offset.
     public var offset: CGSize
+    
+    /// The shadow alpha.
     public var alpha: CGFloat
     
-    public init(color: UIColor,
-                radius: CGFloat,
-                offset: CGSize,
-                alpha: CGFloat) {
+    internal init(color: UIColor,
+                  radius: CGFloat,
+                  offset: CGSize,
+                  alpha: CGFloat) {
         
         self.color = color
         self.radius = radius
@@ -30,6 +39,16 @@ public struct CardShadowStyle {
 
 public extension CardShadowStyle {
     
+    /// A default shadow style for a given anchor.
+    /// - parameter anchor: The anchor to use when calculating the style.
+    ///
+    /// Color: black
+    ///
+    /// radius: 8
+    ///
+    /// offset: 2 (based on anchor)
+    ///
+    /// alpha: 0.1
     static func `default`(for anchor: Card.Anchor) -> CardShadowStyle {
         
         var offset: CGSize = .zero
@@ -51,6 +70,15 @@ public extension CardShadowStyle {
 
     }
     
+    /// An "empty" shadow style.
+    ///
+    /// Color: clear
+    ///
+    /// radius: 0
+    ///
+    /// offset: 0
+    ///
+    /// alpha: 0
     static var none: CardShadowStyle {
         
         return CardShadowStyle(

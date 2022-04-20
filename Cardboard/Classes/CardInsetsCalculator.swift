@@ -5,7 +5,7 @@
 //  Created by Mitch Treece on 4/17/22.
 //
 
-import Foundation
+import UIKit
 
 internal struct CardInsetsCalculator {
     
