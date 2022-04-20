@@ -5,12 +5,10 @@
 //  Created by Mitch Treece on 4/19/22.
 //
 
-import UIKit
+import Foundation
 
-public struct CardBuilder: CardStyleProvider, CardActionProvider {
-    
-    internal var contentView: CardContentView
-    
+public struct CardBuilder: CardBuildable {
+        
     public var anchor: Card.Anchor = .bottom
     public var animator: CardAnimator = SlideCardAnimator()
     public var duration: Card.Duration = .none
@@ -30,9 +28,5 @@ public struct CardBuilder: CardStyleProvider, CardActionProvider {
     public var didPresentAction: (()->())?
     public var willDismissAction: ((Card.DismissalReason)->())?
     public var didDismissAction: ((Card.DismissalReason)->())?
-    
-    internal init(contentView: CardContentView) {
-        self.contentView = contentView
-    }
-    
+
 }

@@ -9,7 +9,7 @@ import UIKit
 
 open class CardContentView: UIView {
     
-    public private(set) weak var card: CardProtocol?
+    public private(set) weak var card: CardProtocol!
     
     internal func setup(for card: CardProtocol) {
         self.card = card

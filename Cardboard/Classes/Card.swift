@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class Card {
+public class Card: CardBuildable, CardStyleProvider, CardActionProvider {
     
     public enum Anchor {
         
@@ -38,9 +38,9 @@ public class Card {
 
         public enum Interaction {
 
-            case swipe // swipe-to-dismiss
-            case content // action
-            case background // background tap
+            case swipe
+            // case action
+            case background
 
         }
 
@@ -48,47 +48,103 @@ public class Card {
         case interactive(Interaction)
 
     }
+        
+    public var anchor: Card.Anchor = .bottom
+    public var animator: CardAnimator = SlideCardAnimator()
+    public var duration: Card.Duration = .none
+    public var statusBar: UIStatusBarStyle = .default
+    public var hidesHomeIndicator: Bool = false
+    public var isContentOverlayTapToDismissEnabled: Bool = true
+    public var isSwipeToDismissEnabled: Bool = true
     
-    internal let builder: CardBuilder
-
-    private var viewController: CardViewController?
+    public var contentOverlay: Card.BackgroundStyle = .color(.black.withAlphaComponent(0.5))
+    public var background: Card.BackgroundStyle = .color(.white)
+    public var edges: CardEdgeStyle = .default
+    public var corners: CardCornerStyle = .default
+    public var shadow: CardShadowStyle = .default(for: .bottom)
     
-    internal init(builder: CardBuilder) {
-        self.builder = builder
+    // public var action: (()->())?
+    public var willPresentAction: (()->())?
+    public var didPresentAction: (()->())?
+    public var willDismissAction: ((Card.DismissalReason)->())?
+    public var didDismissAction: ((Card.DismissalReason)->())?
+        
+    internal let view: CardContentView
+    private weak var viewController: CardViewController?
+    
+    internal init(view: CardContentView) {
+        self.view = view
     }
     
     // MARK: Public
     
-    public static func build(_ contentView: CardContentView,
+    public static func build(_ view: CardContentView,
                              build: (inout CardBuilder)->()) -> CardProtocol {
         
-        var builder = CardBuilder(contentView: contentView)
+        var builder = CardBuilder()
         build(&builder)
         
-        return Card(builder: builder)
+        let card = Card(view: view)
+        
+        card.anchor = builder.anchor
+        card.animator = builder.animator
+        card.duration = builder.duration
+        card.statusBar = builder.statusBar
+        card.hidesHomeIndicator = builder.hidesHomeIndicator
+        card.isContentOverlayTapToDismissEnabled = builder.isContentOverlayTapToDismissEnabled
+        card.isSwipeToDismissEnabled = builder.isSwipeToDismissEnabled
+        
+        card.contentOverlay = builder.contentOverlay
+        card.background = builder.background
+        card.edges = builder.edges
+        card.corners = builder.corners
+        card.shadow = builder.shadow
+        
+        // card.action = builder.action
+        card.willPresentAction = builder.willPresentAction
+        card.didPresentAction = builder.didPresentAction
+        card.willDismissAction = builder.willDismissAction
+        card.didDismissAction = builder.didDismissAction
+        
+        return card
         
     }
     
-    public static func build(_ builder: CardBuilder) -> CardProtocol {
-        return Card(builder: builder)
-    }
+    public static func build(_ buildable: CardBuildable) -> CardProtocol {
         
+        guard let card = buildable as? CardProtocol else {
+            fatalError("This shouldn't happen. CardBuildable always conforms to CardProtocol.")
+        }
+        
+        return card
+        
+    }
+    
 }
 
 extension Card: CardProtocol {
     
-    public func asBuilder() -> CardBuilder {
-        return self.builder
+    public func asBuilder() -> CardBuildable {
+        return self
     }
     
     public func present(from viewController: UIViewController) {
                 
-        self.builder.contentView.setup(for: self)
+        self.view.setup(for: self)
+        
+        // NOTE: The warning below is misleading.
+        // The reference to `viewController` is not
+        // deallocated after assignment because it is
+        // retained elsewhere. Making this a strong
+        // reference leads to a retain cycle.
+        //
+        // Currently there is no way to silence
+        // this warning.
         
         self.viewController = CardViewController(
-            contentView: self.builder.contentView,
-            styleProvider: self.builder,
-            actionProvider: self.builder
+            contentView: self.view,
+            styleProvider: self,
+            actionProvider: self
         )
         
         self.viewController?

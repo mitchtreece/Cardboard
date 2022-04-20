@@ -9,7 +9,7 @@ import UIKit
 
 public protocol CardProtocol: AnyObject {
     
-    func asBuilder() -> CardBuilder
+    func asBuilder() -> CardBuildable
     func present(from viewController: UIViewController)
     func dismiss()
     

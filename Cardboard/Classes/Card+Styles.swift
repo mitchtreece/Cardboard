@@ -9,16 +9,17 @@ import Foundation
 
 public extension Card { /* Styles */
     
-    static func `default`(_ contentView: CardContentView) -> CardProtocol {
+    static func `default`(_ view: CardContentView) -> CardProtocol {
         
         // TODO: Actually make this a builder & migrate base builder values to 0-based stuff
-        return Card(builder: CardBuilder(contentView: contentView))
+        
+        return Card(view: view)
         
     }
 
-    static func system(_ contentView: CardContentView) -> CardProtocol {
+    static func system(_ view: CardContentView) -> CardProtocol {
         
-        return Card.build(contentView) { make in
+        return Card.build(view) { make in
             
             make.anchor = .bottom
             make.hidesHomeIndicator = true
@@ -35,9 +36,9 @@ public extension Card { /* Styles */
         
     }
 
-    static func notification(_ contentView: CardContentView) -> CardProtocol {
+    static func notification(_ view: CardContentView) -> CardProtocol {
 
-        return Card.build(contentView) { make in
+        return Card.build(view) { make in
             
             make.anchor = .top
             make.duration = .seconds(3)
@@ -54,9 +55,9 @@ public extension Card { /* Styles */
 
     }
     
-    static func toast(_ contentView: CardContentView) -> CardProtocol {
+    static func toast(_ view: CardContentView) -> CardProtocol {
         
-        return Card.build(contentView) { make in
+        return Card.build(view) { make in
             
             make.anchor = .bottom
             make.duration = .seconds(3)
@@ -73,9 +74,9 @@ public extension Card { /* Styles */
         
     }
     
-    static func alert(_ contentView: CardContentView) -> CardProtocol {
+    static func alert(_ view: CardContentView) -> CardProtocol {
         
-        return Card.build(contentView) { make in
+        return Card.build(view) { make in
             
             make.anchor = .center
             make.animator = AlertCardAnimator()

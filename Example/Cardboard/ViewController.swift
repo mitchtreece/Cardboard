@@ -80,12 +80,14 @@ class ViewController: UIViewController {
     }
     
     @IBAction private func didTapCustom(_ sender: UIButton) {
-                
+              
+        let view = CustomCardView()
+        view.snp.makeConstraints { make in
+            make.height.equalTo(300)
+        }
+        
         var builder = Card
-            .default(contentView(
-                height: 300,
-                color: .clear
-            ))
+            .default(view)
             .asBuilder()
 
         builder.anchor = .bottom
@@ -93,6 +95,7 @@ class ViewController: UIViewController {
         builder.background = .blurred(style: .systemUltraThinMaterialLight)
         builder.statusBar = .lightContent
         builder.corners.roundedCornerRadius = 64
+        builder.corners.roundedCorners = .allCorners
         builder.edges.setInsets(18, for: [.left, .right])
         builder.edges.setSafeAreaAvoidance(.card, for: [.top, .bottom])
         
