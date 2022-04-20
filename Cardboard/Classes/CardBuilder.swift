@@ -28,5 +28,33 @@ public struct CardBuilder: CardBuildable {
     public var didPresentAction: (()->())?
     public var willDismissAction: ((Card.DismissalReason)->())?
     public var didDismissAction: ((Card.DismissalReason)->())?
+    
+    internal init() {
+        //
+    }
+    
+    internal init(buildable: CardBuildable) {
+        
+        self.anchor = buildable.anchor
+        self.animator = buildable.animator
+        self.duration = buildable.duration
+        self.statusBar = buildable.statusBar
+        self.hidesHomeIndicator = buildable.hidesHomeIndicator
+        self.isContentOverlayTapToDismissEnabled = buildable.isContentOverlayTapToDismissEnabled
+        self.isSwipeToDismissEnabled = buildable.isSwipeToDismissEnabled
+        
+        self.contentOverlay = buildable.contentOverlay
+        self.background = buildable.background
+        self.edges = buildable.edges
+        self.corners = buildable.corners
+        self.shadow = buildable.shadow
+        
+        // self.action = buildable.action
+        self.willPresentAction = buildable.willPresentAction
+        self.didPresentAction = buildable.didPresentAction
+        self.willDismissAction = buildable.willDismissAction
+        self.didDismissAction = buildable.didDismissAction
+        
+    }
 
 }

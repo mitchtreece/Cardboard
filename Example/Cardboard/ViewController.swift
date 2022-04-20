@@ -23,15 +23,34 @@ class ViewController: UIViewController {
     
     @IBAction private func didTapDefault(_ sender: UIButton) {
 
-        let card = Card.default(contentView(height: 500))
-        card.present(from: self)
+        Card.default(contentView(height: 500))
+            .present(from: self)
+
+//        let c = Card(view) { make in
+//            // "Empty" (default) card
+//        }
+//
+//        // Default card (no mods)
+//        let c = Card.default(view)
+//
+//        let c = Card.default(view) { make in
+//            // Default card w/ mods
+//        }
+//
+//        let c = Card.system(view) { make in
+//            // System card w/ mods
+//        }
+//
+//        let x = Card.notification(view) { make in
+//            // Notification card w/ mods
+//        }
         
     }
     
     @IBAction private func didTapSystem(_ sender: UIButton) {
         
-        let card = Card.system(contentView(height: 350))
-        card.present(from: self)
+        Card.system(contentView(height: 350))
+            .present(from: self)
         
     }
     
@@ -64,13 +83,12 @@ class ViewController: UIViewController {
         let width = (UIScreen.main.bounds.width - (12 * 2))
         let height = (width * 0.7)
         
-        let card = Card.alert(contentView(
+        Card.alert(contentView(
             width: width,
             height: height
         ))
-        
-        card.present(from: self)
-        
+        .present(from: self)
+                
     }
     
     @IBAction private func didTapSheet(_ sender: UIButton) {
@@ -86,22 +104,20 @@ class ViewController: UIViewController {
             make.height.equalTo(300)
         }
         
-        var builder = Card
-            .default(view)
-            .asBuilder()
-
-        builder.anchor = .bottom
-        builder.contentOverlay = .blurred(style: .systemThinMaterialDark)
-        builder.background = .blurred(style: .systemUltraThinMaterialLight)
-        builder.statusBar = .lightContent
-        builder.corners.roundedCornerRadius = 64
-        builder.corners.roundedCorners = .allCorners
-        builder.edges.setInsets(18, for: [.left, .right])
-        builder.edges.setSafeAreaAvoidance(.card, for: [.top, .bottom])
-        
-        Card.build(builder)
-            .present(from: self)
-        
+        Card.default(view) { make in
+            
+            make.anchor = .bottom
+            make.contentOverlay = .blurred(style: .systemThinMaterialDark)
+            make.background = .blurred(style: .systemUltraThinMaterialLight)
+            make.statusBar = .lightContent
+            make.corners.roundedCornerRadius = 44
+            make.corners.roundedCorners = .allCorners
+            make.edges.setInsets(18, for: [.left, .right])
+            make.edges.setSafeAreaAvoidance(.card, for: [.top, .bottom])
+            
+        }
+        .present(from: self)
+                
     }
     
     private func contentView(width: CGFloat? = nil,

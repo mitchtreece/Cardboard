@@ -9,6 +9,8 @@ import UIKit
 
 public class Card: CardBuildable, CardStyleProvider, CardActionProvider {
     
+    public typealias BuilderBlock = (inout CardBuilder)->()
+    
     public enum Anchor {
         
         case top
@@ -72,61 +74,66 @@ public class Card: CardBuildable, CardStyleProvider, CardActionProvider {
     internal let view: CardContentView
     private weak var viewController: CardViewController?
     
-    internal init(view: CardContentView) {
+    required public init(_ view: CardContentView,
+                         _ build: BuilderBlock) {
+        
         self.view = view
-    }
-    
-    // MARK: Public
-    
-    public static func build(_ view: CardContentView,
-                             build: (inout CardBuilder)->()) -> CardProtocol {
         
         var builder = CardBuilder()
         build(&builder)
         
-        let card = Card(view: view)
-        
-        card.anchor = builder.anchor
-        card.animator = builder.animator
-        card.duration = builder.duration
-        card.statusBar = builder.statusBar
-        card.hidesHomeIndicator = builder.hidesHomeIndicator
-        card.isContentOverlayTapToDismissEnabled = builder.isContentOverlayTapToDismissEnabled
-        card.isSwipeToDismissEnabled = builder.isSwipeToDismissEnabled
-        
-        card.contentOverlay = builder.contentOverlay
-        card.background = builder.background
-        card.edges = builder.edges
-        card.corners = builder.corners
-        card.shadow = builder.shadow
-        
-        // card.action = builder.action
-        card.willPresentAction = builder.willPresentAction
-        card.didPresentAction = builder.didPresentAction
-        card.willDismissAction = builder.willDismissAction
-        card.didDismissAction = builder.didDismissAction
-        
-        return card
+        setup(builder: builder)
         
     }
     
-    public static func build(_ buildable: CardBuildable) -> CardProtocol {
+    internal init(_ view: CardContentView) {
+        self.view = view
+    }
+    
+    // MARK: Public
+
+//    public static func build(_ buildable: CardBuildable) -> CardProtocol {
+//        
+//        guard let card = buildable as? CardProtocol else {
+//            fatalError("This shouldn't happen. CardBuildable always conforms to CardProtocol.")
+//        }
+//        
+//        return card
+//        
+//    }
+    
+    // MARK: Private
+    
+    @discardableResult
+    internal func setup(builder: CardBuilder) -> Self {
         
-        guard let card = buildable as? CardProtocol else {
-            fatalError("This shouldn't happen. CardBuildable always conforms to CardProtocol.")
-        }
+        self.anchor = builder.anchor
+        self.animator = builder.animator
+        self.duration = builder.duration
+        self.statusBar = builder.statusBar
+        self.hidesHomeIndicator = builder.hidesHomeIndicator
+        self.isContentOverlayTapToDismissEnabled = builder.isContentOverlayTapToDismissEnabled
+        self.isSwipeToDismissEnabled = builder.isSwipeToDismissEnabled
         
-        return card
+        self.contentOverlay = builder.contentOverlay
+        self.background = builder.background
+        self.edges = builder.edges
+        self.corners = builder.corners
+        self.shadow = builder.shadow
+        
+        // self.action = builder.action
+        self.willPresentAction = builder.willPresentAction
+        self.didPresentAction = builder.didPresentAction
+        self.willDismissAction = builder.willDismissAction
+        self.didDismissAction = builder.didDismissAction
+        
+        return self
         
     }
     
 }
 
 extension Card: CardProtocol {
-    
-    public func asBuilder() -> CardBuildable {
-        return self
-    }
     
     public func present(from viewController: UIViewController) {
                 

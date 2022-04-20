@@ -9,17 +9,35 @@ import Foundation
 
 public extension Card { /* Styles */
     
-    static func `default`(_ view: CardContentView) -> CardProtocol {
+    private static func buildCard(_ card: Card,
+                                  _ build: BuilderBlock?) -> CardProtocol {
         
-        // TODO: Actually make this a builder & migrate base builder values to 0-based stuff
+        guard let build = build else { return card }
         
-        return Card(view: view)
+        var builder = CardBuilder(buildable: card)
+        build(&builder)
+
+        return card
+            .setup(builder: builder)
+        
+    }
+    
+    // MARK: Public
+    
+    static func `default`(_ view: CardContentView,
+                          _ build: BuilderBlock? = nil) -> CardProtocol {
+                
+        return buildCard(
+            Card(view),
+            build
+        )
         
     }
 
-    static func system(_ view: CardContentView) -> CardProtocol {
+    static func system(_ view: CardContentView,
+                       _ build: BuilderBlock? = nil) -> CardProtocol {
         
-        return Card.build(view) { make in
+        return buildCard(Card(view) { make in
             
             make.anchor = .bottom
             make.hidesHomeIndicator = true
@@ -32,13 +50,14 @@ public extension Card { /* Styles */
             make.edges.setInsets(6)
             make.edges.setSafeAreaAvoidance(.none)
             
-        }
-        
+        }, build)
+                
     }
 
-    static func notification(_ view: CardContentView) -> CardProtocol {
+    static func notification(_ view: CardContentView,
+                             _ build: BuilderBlock? = nil) -> CardProtocol {
 
-        return Card.build(view) { make in
+        return buildCard(Card(view) { make in
             
             make.anchor = .top
             make.duration = .seconds(3)
@@ -51,13 +70,14 @@ public extension Card { /* Styles */
             make.edges.setInsets(12, for: [.left, .right])
             make.edges.setSafeAreaAvoidance(.card, for: [.top, .bottom])
             
-        }
-
+        }, build)
+        
     }
     
-    static func toast(_ view: CardContentView) -> CardProtocol {
+    static func toast(_ view: CardContentView,
+                      _ build: BuilderBlock? = nil) -> CardProtocol {
         
-        return Card.build(view) { make in
+        return buildCard(Card(view) { make in
             
             make.anchor = .bottom
             make.duration = .seconds(3)
@@ -70,13 +90,14 @@ public extension Card { /* Styles */
             make.edges.setInsets(12, for: [.left, .right])
             make.edges.setSafeAreaAvoidance(.card, for: [.top, .bottom])
             
-        }
-        
+        }, build)
+                
     }
     
-    static func alert(_ view: CardContentView) -> CardProtocol {
+    static func alert(_ view: CardContentView,
+                      _ build: BuilderBlock? = nil) -> CardProtocol {
         
-        return Card.build(view) { make in
+        return buildCard(Card(view) { make in
             
             make.anchor = .center
             make.animator = AlertCardAnimator()
@@ -86,7 +107,7 @@ public extension Card { /* Styles */
             make.edges.setInsets(0)
             make.edges.setSafeAreaAvoidance(.none)
             
-        }
+        }, build)
         
     }
 
