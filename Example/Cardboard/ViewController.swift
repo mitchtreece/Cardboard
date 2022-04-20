@@ -21,6 +21,10 @@ class ViewController: UIViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        <#code#>
+    }
+    
     @IBAction private func didTapDefault(_ sender: UIButton) {
 
         Card.default(contentView(height: 500))
