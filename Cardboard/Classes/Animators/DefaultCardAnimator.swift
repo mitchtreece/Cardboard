@@ -7,9 +7,9 @@
 
 import UIKit
 
-public class DefaultCardAnimator: CardAnimator {
+internal class DefaultCardAnimator: CardAnimator {
     
-    override public func setup(ctx: CardAnimator.Context) {
+    override func setup(ctx: CardAnimator.Context) {
         
         ctx.contentOverlayView.alpha = (ctx.animation == .presentation) ? 0 : 1
 
@@ -19,7 +19,7 @@ public class DefaultCardAnimator: CardAnimator {
         
     }
     
-    override public func animate(ctx: CardAnimator.Context) {
+    override func animate(ctx: CardAnimator.Context) {
         
         ctx.contentOverlayView.alpha = (ctx.animation == .presentation) ? 1 : 0
         

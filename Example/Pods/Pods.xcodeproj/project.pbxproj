@@ -158,7 +158,7 @@
 		B56F693C32A772A2748DCC48977D26DC /* UIViewController+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD15147BC991460C03284C3F8142730 /* UIViewController+Events.swift */; };
 		B63FD5F3DC1EDFD00FAB1B708BE53C0F /* Clampable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAEE88F1C2505E8C22BAFF4EE4EB4E0 /* Clampable.swift */; };
 		B89DE791FF81AFBCFC8C6ED7B7C5A3D9 /* UISlideTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2603A4578BD731754258A4BCD008D18 /* UISlideTransition.swift */; };
-		B94F9E51EE10BE806108BEFB9AE6BFAB /* CardProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE8285AE5BAB6022748EDFF77395685 /* CardProtocol.swift */; };
+		B94F9E51EE10BE806108BEFB9AE6BFAB /* CardInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE8285AE5BAB6022748EDFF77395685 /* CardInterface.swift */; };
 		B9E517573AB8765D0C5731E8AB5C834F /* Bool+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7891D9914D6EEEAB7FFEC7FBEFB5DE12 /* Bool+Espresso.swift */; };
 		BA1BF52D2C710B08AB5AAAE7E4E8AD49 /* Card+Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016AADB4D5214D625A0738EE5278F72C /* Card+Styles.swift */; };
 		BBEA9A632AE04CD9BB09C1C5F7A4E217 /* String+Digest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C153E922145A85021907F6C9B88F9D1B /* String+Digest.swift */; };
@@ -327,7 +327,7 @@
 		4AE299AF22CC8E254A5E94DE6C3E1FCF /* CardEdgeStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CardEdgeStyle.swift; sourceTree = "<group>"; };
 		4B2809CAAA3E819727B4A94BBD71D66D /* UIViewModelTableViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIViewModelTableViewCell.swift; path = Espresso/Classes/UIKit/Mvvm/UIViewModelTableViewCell.swift; sourceTree = "<group>"; };
 		4C90646094282F558A3569F587228AAA /* ConstraintAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintAttributes.swift; path = Source/ConstraintAttributes.swift; sourceTree = "<group>"; };
-		4DE8285AE5BAB6022748EDFF77395685 /* CardProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CardProtocol.swift; sourceTree = "<group>"; };
+		4DE8285AE5BAB6022748EDFF77395685 /* CardInterface.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CardInterface.swift; sourceTree = "<group>"; };
 		5039AA5F765279BE9855EE0968F5D40B /* Cardboard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Cardboard.debug.xcconfig; sourceTree = "<group>"; };
 		50C9EA31BF7D2754CDCB7D177F4FE88F /* Espresso-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Espresso-dummy.m"; sourceTree = "<group>"; };
 		531C65911E98017E4B6889D86BDDA9B5 /* UIImage+Espresso.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImage+Espresso.swift"; path = "Espresso/Classes/UIKit/Extensions/UIImage+Espresso.swift"; sourceTree = "<group>"; };
@@ -926,7 +926,7 @@
 			isa = PBXGroup;
 			children = (
 				43AF7E6D446457FBD0D37937353ACD8E /* CardBuildable.swift */,
-				4DE8285AE5BAB6022748EDFF77395685 /* CardProtocol.swift */,
+				4DE8285AE5BAB6022748EDFF77395685 /* CardInterface.swift */,
 				11D1940AB6621FADF39BDBA494EF0529 /* CardStyleProvider.swift */,
 				67BC4875AEECC1E547FA2AF6F8A20084 /* CardActionProvider.swift */,
 			);
@@ -1453,7 +1453,7 @@
 				FE78CB686591DBFCF246DDA7DAFE5091 /* CardCornerStyle.swift in Sources */,
 				A1450CA63E5D3FDF06DDF06438F56C5E /* CardEdgeStyle.swift in Sources */,
 				9279076B3FCA2BF7D8C27D8EE4B5C0C6 /* CardInsetsCalculator.swift in Sources */,
-				B94F9E51EE10BE806108BEFB9AE6BFAB /* CardProtocol.swift in Sources */,
+				B94F9E51EE10BE806108BEFB9AE6BFAB /* CardInterface.swift in Sources */,
 				98EEB40F2034C37714E2B86932191A7C /* CardShadowStyle.swift in Sources */,
 				A36BBA68716DB164DA78C89EB549A893 /* CardStyleProvider.swift in Sources */,
 				F2A8AB6A32ACB97BE435B5585C5FE585 /* CardView.swift in Sources */,

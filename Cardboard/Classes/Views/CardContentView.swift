@@ -11,9 +11,9 @@ import UIKit
 open class CardContentView: UIView {
     
     /// The view's card interface.
-    public private(set) weak var card: CardProtocol!
+    public private(set) weak var card: CardInterface!
     
-    internal func setup(for card: CardProtocol) {
+    internal func setup(for card: CardInterface) {
         self.card = card
     }
     

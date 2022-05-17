@@ -12,7 +12,7 @@ public extension Card { /* Styles */
     // MARK: Private
     
     private static func buildCard(_ card: Card,
-                                  _ build: BuilderBlock?) -> CardProtocol {
+                                  _ build: BuilderBlock?) -> CardInterface {
         
         guard let build = build else { return card }
         
@@ -31,7 +31,7 @@ public extension Card { /* Styles */
     /// - parameter build: An optional builder block used to customize the behavior & style of a card.
     /// - returns: A card interface.
     static func defaultModal(_ view: CardContentView,
-                             _ build: BuilderBlock? = nil) -> CardProtocol {
+                             _ build: BuilderBlock? = nil) -> CardInterface {
                 
         return buildCard(Card(view) { make in
             
@@ -66,7 +66,7 @@ public extension Card { /* Styles */
     /// - parameter build: An optional builder block used to customize the behavior & style of a card.
     /// - returns: A card interface.
     static func system(_ view: CardContentView,
-                       _ build: BuilderBlock? = nil) -> CardProtocol {
+                       _ build: BuilderBlock? = nil) -> CardInterface {
         
         let card = Card.defaultModal(view) { make in
             
@@ -93,7 +93,7 @@ public extension Card { /* Styles */
     /// - parameter build: An optional builder block used to customize the behavior & style of a card.
     /// - returns: A card interface.
     static func notification(_ view: CardContentView,
-                             _ build: BuilderBlock? = nil) -> CardProtocol {
+                             _ build: BuilderBlock? = nil) -> CardInterface {
 
         let card = Card.defaultModal(view) { make in
             
@@ -122,7 +122,7 @@ public extension Card { /* Styles */
     /// - parameter build: An optional builder block used to customize the behavior & style of a card.
     /// - returns: A card interface.
     static func toast(_ view: CardContentView,
-                      _ build: BuilderBlock? = nil) -> CardProtocol {
+                      _ build: BuilderBlock? = nil) -> CardInterface {
         
         let card = Card.defaultModal(view) { make in
             
@@ -149,7 +149,7 @@ public extension Card { /* Styles */
     /// - parameter build: An optional builder block used to customize the behavior & style of a card.
     /// - returns: A card interface.
     static func alert(_ view: CardContentView,
-                      _ build: BuilderBlock? = nil) -> CardProtocol {
+                      _ build: BuilderBlock? = nil) -> CardInterface {
         
         let card = Card.defaultModal(view) { make in
             

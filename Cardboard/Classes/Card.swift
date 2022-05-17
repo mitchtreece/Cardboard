@@ -7,8 +7,7 @@
 
 import UIKit
 
-/// Class that contains various properties, attributes, & functions
-/// that makeup a card-based presentation.
+/// Class that contains various properties, attributes, & functions that makeup a card-based presentation.
 public class Card: CardBuildable, CardStyleProvider, CardActionProvider {
     
     /// A card-builder type.
@@ -142,7 +141,6 @@ public class Card: CardBuildable, CardStyleProvider, CardActionProvider {
         self.corners = builder.corners
         self.shadow = builder.shadow
         
-        // self.action = builder.action
         self.willPresentAction = builder.willPresentAction
         self.didPresentAction = builder.didPresentAction
         self.willDismissAction = builder.willDismissAction
@@ -154,7 +152,7 @@ public class Card: CardBuildable, CardStyleProvider, CardActionProvider {
     
 }
 
-extension Card: CardProtocol {
+extension Card: CardInterface {
     
     @discardableResult
     public func present(from viewController: UIViewController) -> Self {

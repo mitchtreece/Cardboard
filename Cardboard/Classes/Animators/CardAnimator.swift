@@ -7,7 +7,7 @@
 
 import UIKit
 
-/// Class that controls the animations of card presentation & dismissals.
+/// Card animator class that controls the display of card presentation & dismissals.
 open class CardAnimator {
         
     /// An animation context that provides various properties & attributes used during card presentation & dismissals.

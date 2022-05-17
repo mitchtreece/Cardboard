@@ -1,5 +1,5 @@
 //
-//  CardProtocol.swift
+//  CardInterface.swift
 //  Cardboard
 //
 //  Created by Mitch Treece on 4/19/22.
@@ -8,7 +8,7 @@
 import UIKit
 
 /// A protocol describing the ways a card can be created & interacted with.
-public protocol CardProtocol: AnyObject {
+public protocol CardInterface: AnyObject {
     
     /// Initializes a card with a content view & builder block.
     /// - parameter view: The card's content view.
