@@ -32,7 +32,9 @@ You can also manually add the source files to your project
 
 ## Cardboard
 
-Cardboard is a modal-card presentation & customization system built with speed and simplicity in mind
+Cardboard is a modal-card presentation & customization system built with speed and simplicity in mind.
+
+It's also the spiritual-successor of [Bulletin](https://github.com/mitchtreece/Bulletin)
 
 ### Basic Usage
 
