@@ -9,7 +9,6 @@ import Foundation
 
 internal protocol CardActionProvider {
     
-    // var action: (()->())? { get }
     var willPresentAction: (()->())? { get }
     var didPresentAction: (()->())? { get }
     var willDismissAction: ((Card.DismissalReason)->())? { get }

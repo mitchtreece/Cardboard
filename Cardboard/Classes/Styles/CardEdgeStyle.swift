@@ -7,13 +7,10 @@
 
 import UIKit
 
-/// A style object that provides various
-/// card edge properties & attributes.
+/// A style object that provides various card edge properties & attributes.
 public struct CardEdgeStyle {
     
-    /// An edge object that provides various
-    /// properties & attributes related to
-    /// edge styling.
+    /// An edge object that provides various properties & attributes related to an edge.
     public struct Edge {
         
         /// Representation of the various edge types.
@@ -120,17 +117,13 @@ public struct CardEdgeStyle {
 
 public extension CardEdgeStyle {
     
-    /// A default edge style.
+    /// An "empty" edge style.
     ///
     /// Insets: 0
     ///
-    /// Safe Area Avoidance: content
-    static var `default`: CardEdgeStyle {
-        
-        var style = CardEdgeStyle()
-        style.setSafeAreaAvoidance(.content)
-        return style
-        
+    /// Safe Area Avoidance: none
+    static var none: CardEdgeStyle {
+        return CardEdgeStyle()
     }
     
 }

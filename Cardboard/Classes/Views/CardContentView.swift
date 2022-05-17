@@ -7,9 +7,7 @@
 
 import UIKit
 
-/// A card content-view base class that provides
-/// an interface for interacting with the underlying
-/// card system.
+/// A card content-view base class that provides an interface for interacting with the underlying card system.
 open class CardContentView: UIView {
     
     /// The view's card interface.

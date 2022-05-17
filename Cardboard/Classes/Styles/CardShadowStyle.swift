@@ -7,8 +7,7 @@
 
 import UIKit
 
-/// A style object that provides various
-/// card shadow properties & attributes.
+/// A style object that provides various card shadow properties & attributes.
 public struct CardShadowStyle {
     
     /// The shadow color.
@@ -39,35 +38,21 @@ public struct CardShadowStyle {
 
 public extension CardShadowStyle {
     
-    /// A default shadow style for a given anchor.
-    /// - parameter anchor: The anchor to use when calculating the style.
-    ///
-    /// Color: black
-    ///
-    /// radius: 8
-    ///
-    /// offset: 2 (based on anchor)
-    ///
-    /// alpha: 0.1
-    static func `default`(for anchor: Card.Anchor) -> CardShadowStyle {
-        
-        var offset: CGSize = .zero
+    /// Gets a anchor-normalized shadow offset value.
+    /// - parameter value: The offset value.
+    /// - parameter anchor: The card anchor.
+    /// - returns: An anchor-normalized shadow offset value.
+    static func offset(_ value: CGFloat,
+                       for anchor: Card.Anchor) -> CGSize {
         
         switch anchor {
-        case .top: offset = CGSize(width: 0, height: 2)
-        case .left: offset = CGSize(width: 2, height: 0)
-        case .bottom: offset = CGSize(width: 0, height: -2)
-        case .right: offset = CGSize(width: -2, height: 0)
-        case .center: break
+        case .top: return CGSize(width: 0, height: value)
+        case .left: return CGSize(width: value, height: 0)
+        case .bottom: return CGSize(width: 0, height: -value)
+        case .right: return CGSize(width: -value, height: 0)
+        case .center: return .zero
         }
         
-        return CardShadowStyle(
-            color: .black,
-            radius: 8,
-            offset: offset,
-            alpha: 0.1
-        )
-
     }
     
     /// An "empty" shadow style.

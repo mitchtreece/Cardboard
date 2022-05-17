@@ -7,13 +7,10 @@
 
 import UIKit
 
-/// Class that controls the animations
-/// of card presentation & dismissals.
+/// Class that controls the animations of card presentation & dismissals.
 open class CardAnimator {
         
-    /// An animation context that provides various
-    /// properties & attributes used during card
-    /// presentation & dismissals.
+    /// An animation context that provides various properties & attributes used during card presentation & dismissals.
     public struct Context {
         
         /// The presenting view controller's view.

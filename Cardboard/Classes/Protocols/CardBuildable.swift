@@ -12,7 +12,7 @@ internal protocol CardBuildable {
     /// The card's anchor; _defaults to bottom_.
     var anchor: Card.Anchor { get set }
     
-    /// The card's animator; _defaults to slide_.
+    /// The card's animator; _defaults to default (slide)_.
     var animator: CardAnimator { get set }
     
     /// The card's duration; _defaults to none_.
@@ -24,29 +24,27 @@ internal protocol CardBuildable {
     /// Flag indicating if the card should hide the home indicator upon presentation; _defaults to false_.
     var hidesHomeIndicator: Bool { get set }
     
-    /// Flag indicating if tapping the content overlay should dismiss the card; _defaults to true_.
+    /// Flag indicating if tapping the content overlay should dismiss the card; _defaults to false_.
     var isContentOverlayTapToDismissEnabled: Bool { get set }
     
-    /// Flag indicating if the card is dismissable by swiping it away; _defaults to true_.
+    /// Flag indicating if the card is dismissable by swiping it away; _defaults to false_.
     var isSwipeToDismissEnabled: Bool { get set }
     
-    /// The card's content overlay style; _defaults to color(black, alpha: 0.5)_.
+    /// The card's content overlay style; _defaults to none_.
     var contentOverlay: Card.BackgroundStyle { get set }
     
-    /// The card's background style; _defaults to color(white)_.
+    /// The card's background style; _defaults to none_.
     var background: Card.BackgroundStyle { get set }
     
-    /// The card's edge styling; _defaults to default_.
+    /// The card's edge styling; _defaults to none_.
     var edges: CardEdgeStyle { get set }
     
-    /// The card's corner styling; _defaults to default_.
+    /// The card's corner styling; _defaults to none_.
     var corners: CardCornerStyle { get set }
     
-    /// The card's shadow styling; _defaults to default(bottom)_.
+    /// The card's shadow styling; _defaults to none_.
     var shadow: CardShadowStyle { get set }
-    
-    // var action: (()->())? { get set }
-    
+        
     /// The action to call when a card is about to be presented.
     var willPresentAction: (()->())? { get set }
     

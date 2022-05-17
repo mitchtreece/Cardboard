@@ -9,6 +9,8 @@ import UIKit
 
 public extension Card { /* Styles */
     
+    // MARK: Private
+    
     private static func buildCard(_ card: Card,
                                   _ build: BuilderBlock?) -> CardProtocol {
         
@@ -24,17 +26,38 @@ public extension Card { /* Styles */
     
     // MARK: Public
     
-    /// A default card style.
+    /// A default-modal card style.
     /// - parameter view: The card's content view.
     /// - parameter build: An optional builder block used to customize the behavior & style of a card.
     /// - returns: A card interface.
-    static func `default`(_ view: CardContentView,
-                          _ build: BuilderBlock? = nil) -> CardProtocol {
+    static func defaultModal(_ view: CardContentView,
+                             _ build: BuilderBlock? = nil) -> CardProtocol {
                 
-        return buildCard(
-            Card(view),
-            build
-        )
+        return buildCard(Card(view) { make in
+            
+            make.contentOverlay = .color(.black.withAlphaComponent(0.5))
+            make.background = .color(.white)
+            
+            var edgeStyle = CardEdgeStyle()
+            edgeStyle.setSafeAreaAvoidance(.content)
+            make.edges = edgeStyle
+            
+            make.corners = CardCornerStyle(
+                roundedCorners: [.topLeft, .topRight],
+                roundedCornerRadius: 32
+            )
+            
+            make.shadow = CardShadowStyle(
+                color: .black,
+                radius: 8,
+                offset: CardShadowStyle.offset(2, for: .bottom),
+                alpha: 0.1
+            )
+            
+            make.isContentOverlayTapToDismissEnabled = true
+            make.isSwipeToDismissEnabled = true
+            
+        }, build)
         
     }
 
@@ -45,20 +68,23 @@ public extension Card { /* Styles */
     static func system(_ view: CardContentView,
                        _ build: BuilderBlock? = nil) -> CardProtocol {
         
-        return buildCard(Card(view) { make in
+        let card = Card.defaultModal(view) { make in
             
-            make.anchor = .bottom
             make.hidesHomeIndicator = true
             make.corners.roundedCorners = .allCorners
             make.corners.roundedCornerRadius = 44
-            make.shadow = .default(for: .bottom)
             
             // TODO: Make corner radius smaller for legacy devices
             
             make.edges.setInsets(6)
             make.edges.setSafeAreaAvoidance(.none)
             
-        }, build)
+        }
+        
+        return buildCard(
+            card as! Card,
+            build
+        )
                 
     }
 
@@ -69,20 +95,25 @@ public extension Card { /* Styles */
     static func notification(_ view: CardContentView,
                              _ build: BuilderBlock? = nil) -> CardProtocol {
 
-        return buildCard(Card(view) { make in
+        let card = Card.defaultModal(view) { make in
             
             make.anchor = .top
             make.duration = .seconds(3)
             make.corners.roundedCorners = .allCorners
             make.corners.roundedCornerRadius = 24
-            make.shadow = .default(for: .top)
+            make.shadow.offset = CardShadowStyle.offset(2, for: .top)
             
             // TODO: Add top inset for legacy devices
             
             make.edges.setInsets(12, for: [.left, .right])
             make.edges.setSafeAreaAvoidance(.card, for: [.top, .bottom])
             
-        }, build)
+        }
+        
+        return buildCard(
+            card as! Card,
+            build
+        )
         
     }
     
@@ -93,20 +124,23 @@ public extension Card { /* Styles */
     static func toast(_ view: CardContentView,
                       _ build: BuilderBlock? = nil) -> CardProtocol {
         
-        return buildCard(Card(view) { make in
+        let card = Card.defaultModal(view) { make in
             
-            make.anchor = .bottom
             make.duration = .seconds(3)
             make.corners.roundedCorners = .allCorners
             make.corners.roundedCornerRadius = 16
-            make.shadow = .default(for: .bottom)
             
             // TODO: Add bottom inset for legacy devices
             
             make.edges.setInsets(12, for: [.left, .right])
             make.edges.setSafeAreaAvoidance(.card, for: [.top, .bottom])
             
-        }, build)
+        }
+        
+        return buildCard(
+            card as! Card,
+            build
+        )
                 
     }
     
@@ -117,17 +151,20 @@ public extension Card { /* Styles */
     static func alert(_ view: CardContentView,
                       _ build: BuilderBlock? = nil) -> CardProtocol {
         
-        return buildCard(Card(view) { make in
+        let card = Card.defaultModal(view) { make in
             
             make.anchor = .center
             make.animator = AlertCardAnimator()
             make.corners.roundedCorners = .allCorners
-            make.shadow = .default(for: .center)
+            make.shadow.offset = CardShadowStyle.offset(2, for: .center)
+            make.edges = .none
             
-            make.edges.setInsets(0)
-            make.edges.setSafeAreaAvoidance(.none)
-            
-        }, build)
+        }
+        
+        return buildCard(
+            card as! Card,
+            build
+        )
         
     }
 

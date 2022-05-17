@@ -7,29 +7,25 @@
 
 import UIKit
 
-/// A builder object that provides various
-/// style & action attributes used to
-/// create a card.
+/// A builder object that provides various style & action attributes used to create a card.
 public struct CardBuilder: CardBuildable {
     
-    // These are documented via `CardBuildable`.
+    // These are documented via `CardBuildable`
         
     public var anchor: Card.Anchor = .bottom
-    public var animator: CardAnimator = SlideCardAnimator()
+    public var animator: CardAnimator = DefaultCardAnimator()
     public var duration: Card.Duration = .none
     public var statusBar: UIStatusBarStyle = .default
     public var hidesHomeIndicator: Bool = false
-    public var isContentOverlayTapToDismissEnabled: Bool = true
-    public var isSwipeToDismissEnabled: Bool = true
+    public var isContentOverlayTapToDismissEnabled: Bool = false
+    public var isSwipeToDismissEnabled: Bool = false
 
-    public var contentOverlay: Card.BackgroundStyle = .color(.black.withAlphaComponent(0.5))
-    public var background: Card.BackgroundStyle = .color(.white)
-    public var edges: CardEdgeStyle = .default
-    public var corners: CardCornerStyle = .default
-    public var shadow: CardShadowStyle = .default(for: .bottom)
-    
-    // public var action: (()->())?
-    
+    public var contentOverlay: Card.BackgroundStyle = .none
+    public var background: Card.BackgroundStyle = .none
+    public var edges: CardEdgeStyle = .none
+    public var corners: CardCornerStyle = .none
+    public var shadow: CardShadowStyle = .none
+        
     public var willPresentAction: (()->())?
     public var didPresentAction: (()->())?
     public var willDismissAction: ((Card.DismissalReason)->())?
@@ -55,7 +51,6 @@ public struct CardBuilder: CardBuildable {
         self.corners = buildable.corners
         self.shadow = buildable.shadow
         
-        // self.action = buildable.action
         self.willPresentAction = buildable.willPresentAction
         self.didPresentAction = buildable.didPresentAction
         self.willDismissAction = buildable.willDismissAction

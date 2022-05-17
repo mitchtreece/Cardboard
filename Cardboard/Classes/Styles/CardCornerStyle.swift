@@ -7,8 +7,7 @@
 
 import UIKit
 
-/// A style object that provides various
-/// card corner properties & attributes.
+/// A style object that provides various card corner properties & attributes.
 public struct CardCornerStyle {
     
     /// The corners to be rounded.
@@ -28,20 +27,6 @@ public struct CardCornerStyle {
 }
 
 public extension CardCornerStyle {
-    
-    /// A default corner style.
-    ///
-    /// Corners: top-left, top-right
-    ///
-    /// Radius: 32
-    static var `default`: CardCornerStyle {
-        
-        return CardCornerStyle(
-            roundedCorners: [.topLeft, .topRight],
-            roundedCornerRadius: 32
-        )
-        
-    }
     
     /// An "empty" corner style.
     ///

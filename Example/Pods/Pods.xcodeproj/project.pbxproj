@@ -65,7 +65,6 @@
 		39E3DF62F4DF1043CC907D4C6501FBC0 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EA96FED7DC13E5CFF79D11EBF91011 /* DataSource.swift */; };
 		3AF180C4020240829D6B03CCFB26D7DD /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB09C66FB17FE2F9BF3D489310C3C882 /* AsyncOperation.swift */; };
 		3B1F63F79655E99BF96CF90E6E5F0A3A /* UICoverTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F05B472713237415EDDD1025C76A25 /* UICoverTransition.swift */; };
-		3BDDC5824339B5DA88A79659B0E7793F /* FadeCardAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ABE0A51FCE2FD1EAE2EA24C8A67524E /* FadeCardAnimator.swift */; };
 		3F8A7FD3961FED4BBD6AD2EAA18F795F /* UIHorizontalEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA4737F90742BD14D737683A3CCFE92 /* UIHorizontalEdgeInsets.swift */; };
 		404CA05D3FF7F826E5768505D924D793 /* ObjectScope.Standard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C792D7C71DA3CD95C5C489699B284FA6 /* ObjectScope.Standard.swift */; };
 		44104E83415276996EFA014E53F96BAE /* LayoutConstraintItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D199EBD0E061F96C0E2F449B2918F20 /* LayoutConstraintItem.swift */; };
@@ -78,7 +77,7 @@
 		533652321CB8773CDBEBE43C013CF6AF /* UIScreen+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CF1DD45F9AB80BFF0FBA89F6B43DA9 /* UIScreen+Espresso.swift */; };
 		55A64DB9D7F06E7BD66E3690D71CD0E6 /* UIScreenFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC702CC2B9E5C2F11D6BF91F578521F /* UIScreenFeature.swift */; };
 		55B5D7C83315B71277913017282E97F3 /* UIViewModelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2809CAAA3E819727B4A94BBD71D66D /* UIViewModelTableViewCell.swift */; };
-		574ABB364B09FB9D1EA65B53B45EBCD7 /* SlideCardAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0D3E70E88FB1A81A09B1D5601154AA /* SlideCardAnimator.swift */; };
+		574ABB364B09FB9D1EA65B53B45EBCD7 /* DefaultCardAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0D3E70E88FB1A81A09B1D5601154AA /* DefaultCardAnimator.swift */; };
 		582125CD18805B3EA7BDAFA29F537D61 /* ServiceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28CA1CE97CC42D71D24DEAB49783BA1 /* ServiceKey.swift */; };
 		588A71F4B37CE31E84BA5D25CE4D7F81 /* UITableViewCell+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E92933592907AE76B4C17ABAC177F35 /* UITableViewCell+Espresso.swift */; };
 		58C88E2C34EB4FDD4E8231AC4742099B /* ConstraintConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B393CCDF359263D75879705779BD5B /* ConstraintConfig.swift */; };
@@ -273,7 +272,7 @@
 		07BF3BCB1C3F2B2EA4CEC2E7DA9BEA89 /* CardInsetsCalculator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CardInsetsCalculator.swift; path = Cardboard/Classes/CardInsetsCalculator.swift; sourceTree = "<group>"; };
 		07CF1DD45F9AB80BFF0FBA89F6B43DA9 /* UIScreen+Espresso.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIScreen+Espresso.swift"; path = "Espresso/Classes/UIKit/Extensions/UIScreen+Espresso.swift"; sourceTree = "<group>"; };
 		090A11C38F125E45506DB004E7F4F1B8 /* Date+Espresso.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Date+Espresso.swift"; path = "Espresso/Classes/Core/Extensions/Date+Espresso.swift"; sourceTree = "<group>"; };
-		0B07D1FE68478650D08391B805AA85D4 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		0B07D1FE68478650D08391B805AA85D4 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		0B64EACFE7608ABFF487F7009EDB0F07 /* UINibView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UINibView.swift; path = Espresso/Classes/UIKit/UINibView.swift; sourceTree = "<group>"; };
 		0C60394F8E9EAEA85DA5BCC8BE6916EB /* UIModalStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIModalStyle.swift; path = Espresso/Classes/UIKit/UIModalStyle.swift; sourceTree = "<group>"; };
 		0D0B81EF315EFF9BA3462BB38ADC2284 /* UIContainerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIContainerView.swift; path = Espresso/Classes/UIKit/UIContainerView.swift; sourceTree = "<group>"; };
@@ -349,10 +348,10 @@
 		5ED4AC0671FF85616AD3577A687B66CA /* UIAnimationGroupController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIAnimationGroupController.swift; path = Espresso/Classes/UIKit/UIAnimation/UIAnimationGroup/UIAnimationGroupController.swift; sourceTree = "<group>"; };
 		5F11A5B30F9C2F233074E26886D40738 /* SynchronizedResolver.Arguments.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SynchronizedResolver.Arguments.swift; path = Sources/SynchronizedResolver.Arguments.swift; sourceTree = "<group>"; };
 		5FAE58A9124C38ED801D24B4519A9787 /* Edge.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Edge.swift; path = Espresso/Classes/Core/Edge.swift; sourceTree = "<group>"; };
-		63DEA60AF7853F8F1C73A5128370C5A2 /* Cardboard.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = Cardboard.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		63DEA60AF7853F8F1C73A5128370C5A2 /* Cardboard.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = Cardboard.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		64424F98D2284315FF5F460894E93414 /* Array+UIAnimationGroupable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Array+UIAnimationGroupable.swift"; path = "Espresso/Classes/UIKit/UIAnimation/UIAnimationGroup/Array+UIAnimationGroupable.swift"; sourceTree = "<group>"; };
 		64AA83C9BE4699E078E5DAF1D4250FF6 /* Nonce.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Nonce.swift; path = Espresso/Classes/Core/Crypto/Nonce.swift; sourceTree = "<group>"; };
-		65C7EA5E617EDEAD2CA2B2B51170B386 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		65C7EA5E617EDEAD2CA2B2B51170B386 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		66032C7FAEF616A2BD739EAA0264BFDE /* OptionalType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OptionalType.swift; path = Espresso/Classes/Core/Protocols/OptionalType.swift; sourceTree = "<group>"; };
 		663088D26A15418717A2B09405B7CA78 /* String+Espresso.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+Espresso.swift"; path = "Espresso/Classes/Core/Extensions/String+Espresso.swift"; sourceTree = "<group>"; };
 		664069BC0A88B0BB5198F0C1E3637DAD /* Debugging.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Debugging.swift; path = Source/Debugging.swift; sourceTree = "<group>"; };
@@ -375,7 +374,6 @@
 		77F37846F32210E76A4DD551FECE3C23 /* Array+Espresso.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Array+Espresso.swift"; path = "Espresso/Classes/Core/Extensions/Array+Espresso.swift"; sourceTree = "<group>"; };
 		7891D9914D6EEEAB7FFEC7FBEFB5DE12 /* Bool+Espresso.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Bool+Espresso.swift"; path = "Espresso/Classes/Core/Extensions/Bool+Espresso.swift"; sourceTree = "<group>"; };
 		78C616A6786235039EE25091A63D913E /* ConstraintLayoutGuide.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutGuide.swift; path = Source/ConstraintLayoutGuide.swift; sourceTree = "<group>"; };
-		7ABE0A51FCE2FD1EAE2EA24C8A67524E /* FadeCardAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FadeCardAnimator.swift; sourceTree = "<group>"; };
 		7BAEE88F1C2505E8C22BAFF4EE4EB4E0 /* Clampable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Clampable.swift; path = Espresso/Classes/Core/Protocols/Clampable.swift; sourceTree = "<group>"; };
 		7BC702CC2B9E5C2F11D6BF91F578521F /* UIScreenFeature.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIScreenFeature.swift; path = Espresso/Classes/UIKit/ScreenFeatures/UIScreenFeature.swift; sourceTree = "<group>"; };
 		7CD15147BC991460C03284C3F8142730 /* UIViewController+Events.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewController+Events.swift"; path = "Espresso/Classes/UIKit/Extensions/Events/UIViewController+Events.swift"; sourceTree = "<group>"; };
@@ -402,10 +400,10 @@
 		96AE14629BB56389579DBD797F5EF1A1 /* Pods-Cardboard_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Cardboard_Example.modulemap"; sourceTree = "<group>"; };
 		9747EF7C162F5ED1F26C2EB829535059 /* SnapKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SnapKit-dummy.m"; sourceTree = "<group>"; };
 		979486118B3E90C08386079D57962701 /* SnapKit */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SnapKit; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A0D3E70E88FB1A81A09B1D5601154AA /* SlideCardAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SlideCardAnimator.swift; sourceTree = "<group>"; };
+		9A0D3E70E88FB1A81A09B1D5601154AA /* DefaultCardAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DefaultCardAnimator.swift; sourceTree = "<group>"; };
 		9B174BBAF207FB2E5E817149BC85C380 /* Espresso */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Espresso; path = Espresso.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C051277AAE08E4DA302E55C7F126E66 /* UIContextMenuActionItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIContextMenuActionItem.swift; path = Espresso/Classes/UIKit/Menus/UIContextMenuActionItem.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9E3A4BFBDFE2D17986F55A33A8BCB137 /* Pods-Cardboard_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Cardboard_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		9E653B1CFF7F362A68258A51D234C17E /* UIRevealTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIRevealTransition.swift; path = Espresso/Classes/UIKit/UIViewControllerTransition/Transitions/UIRevealTransition.swift; sourceTree = "<group>"; };
 		A02E5EC731BBCDA20ED867230F03C090 /* Card.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Card.swift; path = Cardboard/Classes/Card.swift; sourceTree = "<group>"; };
@@ -616,15 +614,14 @@
 				6D6932FCC181234507E9B636F63B4451 /* UnavailableItems.swift */,
 				EE7BE49834CE0AA4AA189C39DFD6853C /* Support Files */,
 			);
-			name = Swinject;
 			path = Swinject;
 			sourceTree = "<group>";
 		};
 		1A77BDB8B14D2E503F1D7384331C2D54 /* Styles */ = {
 			isa = PBXGroup;
 			children = (
-				B09DA9C64BD7E1957B3AC780B7A5E22F /* CardCornerStyle.swift */,
 				4AE299AF22CC8E254A5E94DE6C3E1FCF /* CardEdgeStyle.swift */,
+				B09DA9C64BD7E1957B3AC780B7A5E22F /* CardCornerStyle.swift */,
 				3ABBE89229226AA79537788635E63EC2 /* CardShadowStyle.swift */,
 			);
 			name = Styles;
@@ -696,7 +693,6 @@
 				E0B83D0F3858AAF388DDC061C9275F7B /* UILayoutSupport+Extensions.swift */,
 				3B2F2CBFF6289CA6C56CAE82BDC716BD /* Support Files */,
 			);
-			name = SnapKit;
 			path = SnapKit;
 			sourceTree = "<group>";
 		};
@@ -719,10 +715,9 @@
 		5F4FE6C570DD1E60F54BF06CC7C13158 /* Animators */ = {
 			isa = PBXGroup;
 			children = (
-				2DF90F37EAFB28759F68D528A975A331 /* AlertCardAnimator.swift */,
 				8E4F4D49444DCE28CFBE7DEE38049E5A /* CardAnimator.swift */,
-				7ABE0A51FCE2FD1EAE2EA24C8A67524E /* FadeCardAnimator.swift */,
-				9A0D3E70E88FB1A81A09B1D5601154AA /* SlideCardAnimator.swift */,
+				9A0D3E70E88FB1A81A09B1D5601154AA /* DefaultCardAnimator.swift */,
+				2DF90F37EAFB28759F68D528A975A331 /* AlertCardAnimator.swift */,
 			);
 			name = Animators;
 			path = Cardboard/Classes/Animators;
@@ -875,7 +870,6 @@
 				6A058C6F40749300CD86C876D6FF6484 /* Support Files */,
 				69DD7B782EDEA667FA13AA185B44AF35 /* UIKit */,
 			);
-			name = Espresso;
 			path = Espresso;
 			sourceTree = "<group>";
 		};
@@ -921,8 +915,8 @@
 		C8248775F3A8EF55BEAFD4233F349039 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				582FAD561CF5E1D97B38AB74CECAFA54 /* CardContentView.swift */,
 				BB5AB67F4E027C1644B579BAE4BD7821 /* CardView.swift */,
+				582FAD561CF5E1D97B38AB74CECAFA54 /* CardContentView.swift */,
 			);
 			name = Views;
 			path = Cardboard/Classes/Views;
@@ -931,10 +925,10 @@
 		C8AAC1547F4621F8FABB59AFD1E89635 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				67BC4875AEECC1E547FA2AF6F8A20084 /* CardActionProvider.swift */,
 				43AF7E6D446457FBD0D37937353ACD8E /* CardBuildable.swift */,
 				4DE8285AE5BAB6022748EDFF77395685 /* CardProtocol.swift */,
 				11D1940AB6621FADF39BDBA494EF0529 /* CardStyleProvider.swift */,
+				67BC4875AEECC1E547FA2AF6F8A20084 /* CardActionProvider.swift */,
 			);
 			name = Protocols;
 			path = Cardboard/Classes/Protocols;
@@ -1464,8 +1458,7 @@
 				A36BBA68716DB164DA78C89EB549A893 /* CardStyleProvider.swift in Sources */,
 				F2A8AB6A32ACB97BE435B5585C5FE585 /* CardView.swift in Sources */,
 				27C13FB17AF00F26D2703922A57A3503 /* CardViewController.swift in Sources */,
-				3BDDC5824339B5DA88A79659B0E7793F /* FadeCardAnimator.swift in Sources */,
-				574ABB364B09FB9D1EA65B53B45EBCD7 /* SlideCardAnimator.swift in Sources */,
+				574ABB364B09FB9D1EA65B53B45EBCD7 /* DefaultCardAnimator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1906,8 +1899,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};

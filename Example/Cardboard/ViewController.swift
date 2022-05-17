@@ -23,39 +23,33 @@ class ViewController: UIViewController {
     
     @IBAction private func didTapDefault(_ sender: UIButton) {
 
-        Card.default(contentView(height: 500))
+        Card
+            .defaultModal(contentView(height: 500))
             .present(from: self)
         
     }
     
     @IBAction private func didTapSystem(_ sender: UIButton) {
         
-        Card.system(contentView(height: 350))
+        Card
+            .system(contentView(height: 350))
             .present(from: self)
         
     }
     
     @IBAction private func didTapNotification(_ sender: UIButton) {
         
-        let card = Card.notification(contentView(height: 100))
-
-//        card.action = {
-//            print("Notification Tap!")
-//        }
-        
-        card.present(from: self)
+        Card
+            .notification(contentView(height: 100))
+            .present(from: self)
 
     }
     
     @IBAction private func didTapToast(_ sender: UIButton) {
         
-        let card = Card.toast(contentView(height: 50))
-
-//        card.action = {
-//            print("Toast Tap!")
-//        }
-
-        card.present(from: self)
+        Card
+            .toast(contentView(height: 50))
+            .present(from: self)
         
     }
     
@@ -64,17 +58,28 @@ class ViewController: UIViewController {
         let width = (UIScreen.main.bounds.width - (12 * 2))
         let height = (width * 0.7)
         
-        Card.alert(contentView(
-            width: width,
-            height: height
-        ))
-        .present(from: self)
+        Card
+            .alert(contentView(
+                width: width,
+                height: height
+            ))
+            .present(from: self)
                 
     }
     
     @IBAction private func didTapSheet(_ sender: UIButton) {
         
-        // TODO
+        let sheetView = SheetView.loadFromNib()
+        
+        Card(sheetView) { make in
+            
+            make.contentOverlay = .color(.black.withAlphaComponent(0.4))
+            make.edges.setInsets(12, for: [.left, .right])
+            make.isContentOverlayTapToDismissEnabled = false
+            make.isSwipeToDismissEnabled = false
+            
+        }
+        .present(from: self)
         
     }
     
@@ -85,7 +90,7 @@ class ViewController: UIViewController {
             make.height.equalTo(300)
         }
         
-        Card.default(view) { make in
+        Card.defaultModal(view) { make in
             
             make.anchor = .bottom
             make.contentOverlay = .blurred(style: .systemThinMaterialDark)

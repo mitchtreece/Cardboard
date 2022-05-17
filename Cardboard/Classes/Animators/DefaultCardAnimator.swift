@@ -1,5 +1,5 @@
 //
-//  SlideCardAnimator.swift
+//  DefaultCardAnimator.swift
 //  Cardboard
 //
 //  Created by Mitch Treece on 4/17/22.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-internal class SlideCardAnimator: CardAnimator {
+public class DefaultCardAnimator: CardAnimator {
     
-    override func setup(ctx: CardAnimator.Context) {
+    override public func setup(ctx: CardAnimator.Context) {
         
         ctx.contentOverlayView.alpha = (ctx.animation == .presentation) ? 0 : 1
 
@@ -19,7 +19,7 @@ internal class SlideCardAnimator: CardAnimator {
         
     }
     
-    override func animate(ctx: CardAnimator.Context) {
+    override public func animate(ctx: CardAnimator.Context) {
         
         ctx.contentOverlayView.alpha = (ctx.animation == .presentation) ? 1 : 0
         
