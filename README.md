@@ -36,7 +36,7 @@ Cardboard is a modal-card presentation & customization system built with speed a
 
 ### Basic Usage
 
-Getting started with Cardboard is dead simple:
+Getting started with Cardboard is dead simple! All you need to do is make a custom card content view, and present it:
 
 *CustomCardView.swift*
 ```swift
@@ -59,7 +59,8 @@ class CustomViewController: UIViewController {
 
         super.viewDidAppear(animated)
 
-        Card.default(CustomCardView())
+        Card
+            .defaultModal(CustomCardView())
             .present(from: self)
 
     }
@@ -67,17 +68,15 @@ class CustomViewController: UIViewController {
 }
 ```
 
-You just make a custom content view, and present it!
-
 ### Customization
 
 Cardboard comes with some built-in style options:
 
-- **default**: a standard bottom slide-up card
-- **system**: a card styled like the iOS 13 pop-up cards (i.e. AirPods nearby card)
+- **defaultModal**: a standard bottom slide-up card
+- **system**: a card styled like the iOS 13 system "chip" cards (i.e. AirPods)
 - **notification**: a top slide-down notification card
 - **toast**: a bottom slide-up toast card
-- **alert**: a centered alert-style card.
+- **alert**: a centered alert-style card
 
 But of course, the styling doesn't stop there! Cardboard has a robust customization system that you can abuse to your heart's content 🤪
 
@@ -95,7 +94,7 @@ Card(view) { make in
 .present(from: self)
 ```
 
-You like one of the builin styles but want to slightly tweak it? Cardboard has you covered:
+You like one of the built-in styles, but want to slightly tweak it? Cardboard has you covered:
 
 ```swift
 let view = CustomCardView()
@@ -110,6 +109,11 @@ Card.notification(view) { make in
 ```
 
 You can adjust almost every aspect of a card, right down to what kinds of interactions you want it to support 🎉
+
+## TODO
+- **Card Presentation Levels**: As of now, all cards are presented from a *source* view controller. However, there are some situations where it would be more useful to present on something more "global" (i.e. at a window-level). This could be for something like presenting notification cards over an entire application - instead of just over a single view controller.
+
+- **Card Queuing**: Right now, all cards are presented immediately without any context as to other cards / presentations. Instead of always presenting immediately, being able to "enqueue" a card for presentation would be helpful in several scenarios. For example, imagine presenting notification cards. You might only want one notification to be active at a time (this is how the iOS notification system works). Having a queuing system would allow us to achieve this.
 
 ## Contributing
 Pull-requests are more than welcome. Bug fix? Feature? Open a PR and we'll get it merged in!

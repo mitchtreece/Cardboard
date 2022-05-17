@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
 
   s.description      = <<-DESC
   Cardboard is a customizable modal-card library that makes it incredibly
-  easy to build highly-stylized cards, notifications, toasts, or alerts.
+  easy to build highly-stylized cards, sheets, notifications, toasts, or alerts.
   DESC
 
   s.homepage              = 'https://github.com/mitchtreece/Cardboard'
