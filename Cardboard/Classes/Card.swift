@@ -90,6 +90,7 @@ public class Card: CardBuildable, CardStyleProvider, CardActionProvider {
     public var statusBar: UIStatusBarStyle = .default
     public var hidesHomeIndicator: Bool = false
     public var isContentOverlayTapToDismissEnabled: Bool = false
+    public var isContentOverlayTouchThroughEnabled: Bool = false
     public var isSwipeToDismissEnabled: Bool = false
 
     public var contentOverlay: Card.BackgroundStyle = .none
@@ -133,6 +134,7 @@ public class Card: CardBuildable, CardStyleProvider, CardActionProvider {
         self.statusBar = builder.statusBar
         self.hidesHomeIndicator = builder.hidesHomeIndicator
         self.isContentOverlayTapToDismissEnabled = builder.isContentOverlayTapToDismissEnabled
+        self.isContentOverlayTouchThroughEnabled = builder.isContentOverlayTouchThroughEnabled
         self.isSwipeToDismissEnabled = builder.isSwipeToDismissEnabled
         
         self.contentOverlay = builder.contentOverlay

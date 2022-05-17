@@ -40,7 +40,27 @@ class ViewController: UIViewController {
     @IBAction private func didTapNotification(_ sender: UIButton) {
         
         Card
-            .notification(contentView(height: 100))
+            .notification(contentView(
+                height: 100,
+                color: .systemPink
+            ))
+            .present(from: self)
+
+    }
+    
+    @IBAction private func didTapBanner(_ sender: UIButton) {
+        
+        Card
+            .banner(contentView(
+                
+                height: 100,
+                color: .clear
+                
+            )) { make in
+                
+                make.background = .color(.systemPink)
+                
+            }
             .present(from: self)
 
     }
@@ -48,7 +68,7 @@ class ViewController: UIViewController {
     @IBAction private func didTapToast(_ sender: UIButton) {
         
         Card
-            .toast(contentView(height: 50))
+            .toast(contentView(height: 64, color: .systemPink))
             .present(from: self)
         
     }

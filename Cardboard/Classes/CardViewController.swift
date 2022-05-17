@@ -23,12 +23,13 @@ internal class CardViewController: UIViewController {
     private var dismissTimer: Timer?
     private var insetsCalculator: CardInsetsCalculator!
     
+    private var didSetupInteractions: Bool = false
     private var isCardBeingDismissed: Bool = false
     
     private let contentView: CardContentView
     private let styleProvider: CardStyleProvider
     private let actionProvider: CardActionProvider
-    
+        
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return self.styleProvider.statusBar
     }
@@ -61,52 +62,32 @@ internal class CardViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    override func loadView() {
+        self.view = TouchThroughView()
+    }
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-
         setupSubviews()
-
-        if self.styleProvider.isContentOverlayTapToDismissEnabled {
-
-            self.contentOverlayContentView.addGestureRecognizer(UITapGestureRecognizer(
-                target: self,
-                action: #selector(didTapContentOverlay(_:))
-            ))
-
-        }
-
-        if self.styleProvider.isSwipeToDismissEnabled {
-
-            self.swipeRecognizer = UIPanGestureRecognizer(
-                target: self,
-                action: #selector(didPanCard(_:))
-            )
-            
-            self.swipeRecognizer!.delegate = self
-            self.cardView.addGestureRecognizer(self.swipeRecognizer!)
-
-        }
-        
-//        if let _ = self.actionProvider.action {
-//
-//            self.actionRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(didTapCard(_:)))
-//            self.actionRecognizer!.minimumPressDuration = 0.01
-//            self.actionRecognizer!.delegate = self
-//            self.cardView.addGestureRecognizer(self.actionRecognizer!)
-//
-//        }
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
-        
+                
         UIView.animate(withDuration: 0.3) {
             self.setNeedsStatusBarAppearanceUpdate()
         }
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        super.viewDidAppear(animated)
+        setupInteractionsIfNeeded()
         
     }
     
@@ -114,7 +95,7 @@ internal class CardViewController: UIViewController {
         
         // Container
         
-        self.containerView = UIView()
+        self.containerView = TouchThroughView()
         self.containerView.backgroundColor = .clear
         self.view.addSubview(self.containerView)
         self.containerView.snp.makeConstraints { make in
@@ -157,7 +138,7 @@ internal class CardViewController: UIViewController {
         let contentInsets = self.insetsCalculator.contentInsets()
         
         self.cardView = CardView(styleProvider: self.styleProvider)
-        self.view.addSubview(self.cardView)
+        self.containerView.addSubview(self.cardView)
         self.cardView.snp.makeConstraints { make in
             
             switch self.styleProvider.anchor {
@@ -204,6 +185,40 @@ internal class CardViewController: UIViewController {
         self.contentView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        
+    }
+    
+    private func setupInteractionsIfNeeded() {
+        
+        guard !self.didSetupInteractions else { return }
+        
+        if self.styleProvider.isContentOverlayTapToDismissEnabled {
+
+            self.contentOverlayContentView.addGestureRecognizer(UITapGestureRecognizer(
+                target: self,
+                action: #selector(didTapContentOverlay(_:))
+            ))
+
+        }
+        else if self.styleProvider.isContentOverlayTouchThroughEnabled {
+            
+            self.contentOverlayContentView.isUserInteractionEnabled = false
+                               
+        }
+
+        if self.styleProvider.isSwipeToDismissEnabled {
+
+            self.swipeRecognizer = UIPanGestureRecognizer(
+                target: self,
+                action: #selector(didPanCard(_:))
+            )
+            
+            self.swipeRecognizer!.delegate = self
+            self.cardView.addGestureRecognizer(self.swipeRecognizer!)
+
+        }
+        
+        self.didSetupInteractions = true
         
     }
     
@@ -337,59 +352,6 @@ internal class CardViewController: UIViewController {
             animated: true,
             completion: nil
         )
-        
-    }
-    
-    @objc private func didTapCard(_ recognizer: UILongPressGestureRecognizer) {
-        
-        switch recognizer.state {
-        case .began:
-            
-            print("began")
-            
-            UIView.animate(withDuration: 0.1, delay: 0, options: [], animations: {
-                self.cardView.transform = .init(scaleX: 0.96, y: 0.96)
-            }, completion: nil)
-
-        case .ended:
-            
-            
-            let location = recognizer.location(in: self.cardView)
-            let isLocationInCard = self.cardView.bounds.contains(location)
-            
-            print("ended, inside card?: \(isLocationInCard)")
-
-            if isLocationInCard {
-
-//                _dismissCard(
-//                    reason: .default,
-//                    velocity: nil,
-//                    animated: true,
-//                    completion: { [weak self] in
-//                        self?.actionProvider.action?()
-//                    })
-                
-                dismissCard()
-                
-            }
-            else {
-                
-                UIView.animate(withDuration: 0.1, delay: 0, options: [], animations: {
-                    self.cardView.transform = .identity
-                }, completion: nil)
-                
-            }
-            
-        case .cancelled, .failed:
-            
-            print("cancel fail")
-            
-            UIView.animate(withDuration: 0.1, delay: 0, options: [], animations: {
-                self.cardView.transform = .identity
-            }, completion: nil)
-            
-        default: break
-        }
         
     }
     

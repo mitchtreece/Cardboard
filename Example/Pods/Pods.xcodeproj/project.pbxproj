@@ -45,6 +45,7 @@
 		228507AF7F8408FC6C1C0D3378D4DB70 /* UIViewControllerDirectionalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288FA92D15E8A27647BD5694682B890D /* UIViewControllerDirectionalTransition.swift */; };
 		248F9933AEABF9D0F2793793AB494068 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1572B54DC7DB66C777EE2AA92B674D2C /* Resolver.swift */; };
 		25C9B118FAAD90D577716B54FCDA95E3 /* OptionalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66032C7FAEF616A2BD739EAA0264BFDE /* OptionalType.swift */; };
+		2697C41D28345380008B9285 /* TouchThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697C41C28345380008B9285 /* TouchThroughView.swift */; };
 		26C17F61BE43BF78592FBDAD8578D87F /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5478ADA1E6659EC3B60F5E197FAB8A /* Key.swift */; };
 		270CFBB9E21EE5299504D0C18003A74B /* ConstraintPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D317D49F09C24C66A35FCDF78741BF2 /* ConstraintPriority.swift */; };
 		27C13FB17AF00F26D2703922A57A3503 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E067E49D5DB4AE190FFA5588B1C1A57C /* CardViewController.swift */; };
@@ -295,6 +296,7 @@
 		201CC0BACA3886DD8985E0BE5D33CF64 /* UIContextMenuGroupItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIContextMenuGroupItem.swift; path = Espresso/Classes/UIKit/Menus/UIContextMenuGroupItem.swift; sourceTree = "<group>"; };
 		21F68163B1F1DB5DC427F998376555F9 /* StaticIdentifiable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StaticIdentifiable.swift; path = Espresso/Classes/Core/Protocols/StaticIdentifiable.swift; sourceTree = "<group>"; };
 		24549A4CAB02453C81861E3240E2EB24 /* UINavigationController+UIViewControllerTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UINavigationController+UIViewControllerTransition.swift"; path = "Espresso/Classes/UIKit/UIViewControllerTransition/Extensions/UINavigationController+UIViewControllerTransition.swift"; sourceTree = "<group>"; };
+		2697C41C28345380008B9285 /* TouchThroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchThroughView.swift; sourceTree = "<group>"; };
 		274B4D31B3A3532056BCD41DE44735BF /* Espresso-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Espresso-umbrella.h"; sourceTree = "<group>"; };
 		288FA92D15E8A27647BD5694682B890D /* UIViewControllerDirectionalTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIViewControllerDirectionalTransition.swift; path = Espresso/Classes/UIKit/UIViewControllerTransition/UIViewControllerDirectionalTransition.swift; sourceTree = "<group>"; };
 		296569525B6733CFA3571FC6FE113F9D /* Pods-Cardboard_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Cardboard_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -917,6 +919,7 @@
 			children = (
 				BB5AB67F4E027C1644B579BAE4BD7821 /* CardView.swift */,
 				582FAD561CF5E1D97B38AB74CECAFA54 /* CardContentView.swift */,
+				2697C41C28345380008B9285 /* TouchThroughView.swift */,
 			);
 			name = Views;
 			path = Cardboard/Classes/Views;
@@ -1451,6 +1454,7 @@
 				0D29B810DC915763F9C6FAA16E8D637F /* CardBuilder.swift in Sources */,
 				B03A92C267B1DC07670B168598032A32 /* CardContentView.swift in Sources */,
 				FE78CB686591DBFCF246DDA7DAFE5091 /* CardCornerStyle.swift in Sources */,
+				2697C41D28345380008B9285 /* TouchThroughView.swift in Sources */,
 				A1450CA63E5D3FDF06DDF06438F56C5E /* CardEdgeStyle.swift in Sources */,
 				9279076B3FCA2BF7D8C27D8EE4B5C0C6 /* CardInsetsCalculator.swift in Sources */,
 				B94F9E51EE10BE806108BEFB9AE6BFAB /* CardInterface.swift in Sources */,

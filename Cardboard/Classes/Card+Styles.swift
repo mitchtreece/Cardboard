@@ -98,15 +98,43 @@ public extension Card { /* Styles */
         let card = Card.defaultModal(view) { make in
             
             make.anchor = .top
+            make.contentOverlay = .none
             make.duration = .seconds(3)
             make.corners.roundedCorners = .allCorners
             make.corners.roundedCornerRadius = 24
             make.shadow.offset = CardShadowStyle.offset(2, for: .top)
+            make.isContentOverlayTapToDismissEnabled = false
+            make.isContentOverlayTouchThroughEnabled = true
             
             // TODO: Add top inset for legacy devices
             
             make.edges.setInsets(12, for: [.left, .right])
             make.edges.setSafeAreaAvoidance(.card, for: [.top, .bottom])
+            
+        }
+        
+        return buildCard(
+            card as! Card,
+            build
+        )
+        
+    }
+    
+    /// A banner card style.
+    /// - parameter view: The card's content view.
+    /// - parameter build: An optional builder block used to customize the behavior & style of a card.
+    /// - returns: A card interface.
+    static func banner(_ view: CardContentView,
+                       _ build: BuilderBlock? = nil) -> CardInterface {
+        
+        let card = Card.notification(view) { make in
+            
+            make.corners.roundedCorners = [.bottomLeft, .bottomRight]
+            
+            // TODO: Add top inset for legacy devices
+            
+            make.edges.setInsets(0)
+            make.edges.setSafeAreaAvoidance(.content, for: [.top, .bottom])
             
         }
         
@@ -124,16 +152,12 @@ public extension Card { /* Styles */
     static func toast(_ view: CardContentView,
                       _ build: BuilderBlock? = nil) -> CardInterface {
         
-        let card = Card.defaultModal(view) { make in
+        let card = Card.notification(view) { make in
             
-            make.duration = .seconds(3)
-            make.corners.roundedCorners = .allCorners
+            make.anchor = .bottom
             make.corners.roundedCornerRadius = 16
             
             // TODO: Add bottom inset for legacy devices
-            
-            make.edges.setInsets(12, for: [.left, .right])
-            make.edges.setSafeAreaAvoidance(.card, for: [.top, .bottom])
             
         }
         

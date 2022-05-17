@@ -27,6 +27,11 @@ internal protocol CardBuildable {
     /// Flag indicating if tapping the content overlay should dismiss the card; _defaults to false_.
     var isContentOverlayTapToDismissEnabled: Bool { get set }
     
+    /// Flag indicating if touches should be passed through the content overlay view; _defaults to false_.
+    ///
+    /// This property will be ignored if `isContentOverlayTapToDismissEnabled` is `true`.
+    var isContentOverlayTouchThroughEnabled: Bool { get set }
+    
     /// Flag indicating if the card is dismissable by swiping it away; _defaults to false_.
     var isSwipeToDismissEnabled: Bool { get set }
     

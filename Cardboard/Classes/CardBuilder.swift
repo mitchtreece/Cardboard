@@ -18,6 +18,7 @@ public struct CardBuilder: CardBuildable {
     public var statusBar: UIStatusBarStyle = .default
     public var hidesHomeIndicator: Bool = false
     public var isContentOverlayTapToDismissEnabled: Bool = false
+    public var isContentOverlayTouchThroughEnabled: Bool = false
     public var isSwipeToDismissEnabled: Bool = false
 
     public var contentOverlay: Card.BackgroundStyle = .none
@@ -43,6 +44,7 @@ public struct CardBuilder: CardBuildable {
         self.statusBar = buildable.statusBar
         self.hidesHomeIndicator = buildable.hidesHomeIndicator
         self.isContentOverlayTapToDismissEnabled = buildable.isContentOverlayTapToDismissEnabled
+        self.isContentOverlayTouchThroughEnabled = buildable.isContentOverlayTouchThroughEnabled
         self.isSwipeToDismissEnabled = buildable.isSwipeToDismissEnabled
         
         self.contentOverlay = buildable.contentOverlay

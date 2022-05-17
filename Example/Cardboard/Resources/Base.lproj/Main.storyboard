@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="S4q-8t-s36">
-                                <rect key="frame" x="20" y="339" width="335" height="328"/>
+                                <rect key="frame" x="20" y="291" width="335" height="376"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ize-78-MFf">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="40"/>
@@ -72,13 +72,24 @@
                                             <constraint firstAttribute="height" constant="40" id="U45-Ij-Kte"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Banner"/>
+                                        <connections>
+                                            <action selector="didTapBanner:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="WAT-4O-O2y"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="11C-yZ-6MM">
+                                        <rect key="frame" x="0.0" y="240" width="335" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="rKU-dA-iZn"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Notification"/>
                                         <connections>
-                                            <action selector="didTapNotification:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="e8s-7b-cpa"/>
+                                            <action selector="didTapNotification:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="WFY-zw-tIB"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a8l-Sx-JnT">
-                                        <rect key="frame" x="0.0" y="240" width="335" height="40"/>
+                                        <rect key="frame" x="0.0" y="288" width="335" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="56A-SJ-9A1"/>
                                         </constraints>
@@ -89,7 +100,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tAx-XF-doU">
-                                        <rect key="frame" x="0.0" y="288" width="335" height="40"/>
+                                        <rect key="frame" x="0.0" y="336" width="335" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="ZcV-dM-3Gs"/>
                                         </constraints>

@@ -15,6 +15,7 @@ internal protocol CardStyleProvider {
     var statusBar: UIStatusBarStyle { get }
     var hidesHomeIndicator: Bool { get }
     var isContentOverlayTapToDismissEnabled: Bool { get }
+    var isContentOverlayTouchThroughEnabled: Bool { get }
     var isSwipeToDismissEnabled: Bool { get }
     
     var contentOverlay: Card.BackgroundStyle { get }

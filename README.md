@@ -1,4 +1,4 @@
-<!-- ![Cardboard](Resources/banner.png) -->
+![Cardboard](Assets/banner.png)
 
 [![Version](https://img.shields.io/cocoapods/v/Cardboard.svg?style=for-the-badge)](http://cocoapods.org/pods/Cardboard)
 ![Swift](https://img.shields.io/badge/Swift-5-orange.svg?style=for-the-badge)
@@ -77,6 +77,7 @@ Cardboard comes with some built-in style options:
 - **defaultModal**: a standard bottom slide-up card
 - **system**: a card styled like the iOS 13 system "chip" cards (i.e. AirPods)
 - **notification**: a top slide-down notification card
+- **banner**: a top slide-down banner card
 - **toast**: a bottom slide-up toast card
 - **alert**: a centered alert-style card
 
