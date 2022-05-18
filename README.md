@@ -1,4 +1,4 @@
-![Cardboard](Assets/banner.png)
+![Cardboard](Assets/Banner.png)
 
 [![Version](https://img.shields.io/cocoapods/v/Cardboard.svg?style=for-the-badge)](http://cocoapods.org/pods/Cardboard)
 ![Swift](https://img.shields.io/badge/Swift-5-orange.svg?style=for-the-badge)
