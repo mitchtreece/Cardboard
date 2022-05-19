@@ -2,7 +2,7 @@
   "name": "Cardboard",
   "version": "1.0.0",
   "summary": "Customizable modal-card library for iOS",
-  "description": "Cardboard is a customizable modal-card library that makes it incredibly\neasy to build highly-stylized cards, notifications, toasts, or alerts.",
+  "description": "Cardboard is a customizable modal-card library that makes it incredibly\neasy to build highly-stylized cards, sheets, notifications, toasts, or alerts.",
   "homepage": "https://github.com/mitchtreece/Cardboard",
   "license": {
     "type": "MIT",

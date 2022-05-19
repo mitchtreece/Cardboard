@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		266807DD280F834F00758DB5 /* CustomCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266807DC280F834F00758DB5 /* CustomCardView.swift */; };
+		2692B9782836F11900CB593A /* CustomCardAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2692B9772836F11900CB593A /* CustomCardAnimator.swift */; };
 		2697C41928343676008B9285 /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697C41828343676008B9285 /* SheetView.swift */; };
 		2697C41B283436C0008B9285 /* SheetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2697C41A283436C0008B9285 /* SheetView.xib */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		243124206C6B1FBFB8D544B1 /* Pods_Cardboard_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cardboard_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		266807DC280F834F00758DB5 /* CustomCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCardView.swift; sourceTree = "<group>"; };
+		2692B9772836F11900CB593A /* CustomCardAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCardAnimator.swift; sourceTree = "<group>"; };
 		2697C41828343676008B9285 /* SheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetView.swift; sourceTree = "<group>"; };
 		2697C41A283436C0008B9285 /* SheetView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SheetView.xib; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* Cardboard_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cardboard_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +126,7 @@
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				266807DC280F834F00758DB5 /* CustomCardView.swift */,
+				2692B9772836F11900CB593A /* CustomCardAnimator.swift */,
 				2697C41828343676008B9285 /* SheetView.swift */,
 				2697C41A283436C0008B9285 /* SheetView.xib */,
 				2629FFC728063B390053FB82 /* Resources */,
@@ -283,6 +286,7 @@
 				"${BUILT_PRODUCTS_DIR}/Espresso/Espresso.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/Reveal-SDK/RevealServer.framework/RevealServer",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -290,6 +294,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Espresso.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RevealServer.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -349,6 +354,7 @@
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				2692B9782836F11900CB593A /* CustomCardAnimator.swift in Sources */,
 				2697C41928343676008B9285 /* SheetView.swift in Sources */,
 				266807DD280F834F00758DB5 /* CustomCardView.swift in Sources */,
 			);

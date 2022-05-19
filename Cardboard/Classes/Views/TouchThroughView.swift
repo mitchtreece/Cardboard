@@ -2,13 +2,15 @@
 //  TouchThroughView.swift
 //  Cardboard
 //
-//  Created by Mitch Treece on 5/17/22.
+//  Created by Mitch Treece on 5/19/22.
 //
 
 import UIKit
 
 internal class TouchThroughView: UIView {
-        
+    
+    var isTouchThroughEnabled: Bool = true
+    
     override func hitTest(_ point: CGPoint,
                           with event: UIEvent?) -> UIView? {
         
@@ -16,6 +18,8 @@ internal class TouchThroughView: UIView {
             point,
             with: event
         )
+        
+        guard self.isTouchThroughEnabled else { return view }
         
         return (view == self) ? nil : view
         

@@ -7,6 +7,8 @@ target 'Cardboard_Example' do
   pod 'Cardboard',      :path => '../'
   pod 'Espresso/UIKit', '~> 2.0'
 
+  pod 'Reveal-SDK',     :configurations => ['Debug']
+
   target 'Cardboard_Tests' do
     inherit! :search_paths  
   end

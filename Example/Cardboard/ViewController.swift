@@ -14,16 +14,18 @@ class ViewController: UIViewController {
     
     @IBOutlet private weak var stackViewBottomConstraint: NSLayoutConstraint!
     
+    weak var currentCard: Card?
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         self.stackViewBottomConstraint.constant = UIDevice.current.isModern ? 0 : 20
-        
+
     }
     
     @IBAction private func didTapDefault(_ sender: UIButton) {
 
-        Card
+        self.currentCard = Card
             .defaultModal(contentView(height: 500))
             .present(from: self)
         
@@ -31,7 +33,7 @@ class ViewController: UIViewController {
     
     @IBAction private func didTapSystem(_ sender: UIButton) {
         
-        Card
+        self.currentCard = Card
             .system(contentView(height: 350))
             .present(from: self)
         
@@ -39,7 +41,7 @@ class ViewController: UIViewController {
     
     @IBAction private func didTapNotification(_ sender: UIButton) {
         
-        Card
+        self.currentCard = Card
             .notification(contentView(
                 height: 100,
                 color: .systemPink
@@ -50,7 +52,7 @@ class ViewController: UIViewController {
     
     @IBAction private func didTapBanner(_ sender: UIButton) {
         
-        Card
+        self.currentCard = Card
             .banner(contentView(
                 
                 height: 100,
@@ -67,7 +69,7 @@ class ViewController: UIViewController {
     
     @IBAction private func didTapToast(_ sender: UIButton) {
         
-        Card
+        self.currentCard = Card
             .toast(contentView(height: 64, color: .systemPink))
             .present(from: self)
         
@@ -78,7 +80,7 @@ class ViewController: UIViewController {
         let width = (UIScreen.main.bounds.width - (12 * 2))
         let height = (width * 0.7)
         
-        Card
+        self.currentCard = Card
             .alert(contentView(
                 width: width,
                 height: height
@@ -91,7 +93,7 @@ class ViewController: UIViewController {
         
         let sheetView = SheetView.loadFromNib()
         
-        Card(sheetView) { make in
+        self.currentCard = Card(sheetView) { make in
             
             make.contentOverlay = .color(.black.withAlphaComponent(0.4))
             make.edges.setInsets(12, for: [.left, .right])
@@ -110,20 +112,27 @@ class ViewController: UIViewController {
             make.height.equalTo(300)
         }
         
-        Card.defaultModal(view) { make in
+        self.currentCard = Card.defaultModal(view) { make in
             
-            make.anchor = .bottom
-            make.contentOverlay = .blurred(style: .systemThinMaterialDark)
-            make.background = .blurred(style: .systemUltraThinMaterialLight)
+            make.animator = CustomCardAnimator()
             make.statusBar = .lightContent
-            make.corners.roundedCornerRadius = 44
+            make.background = .blurred(style: .systemUltraThinMaterial)
+            make.corners.roundedCornerRadius = UIDevice.current.isModern ? UIScreen.main.cornerRadius : 24
             make.corners.roundedCorners = .allCorners
-            make.edges.setInsets(18, for: [.left, .right])
+            make.edges.setInsets(12, for: [.left, .right])
             make.edges.setSafeAreaAvoidance(.card, for: [.top, .bottom])
+            make.isSwipeToDismissEnabled = false
+            make.isContentOverlayTapToDismissEnabled = false
             
         }
         .present(from: self)
                 
+    }
+    
+    @IBAction private func didTapDismiss(_ sender: UIButton) {
+        
+        self.currentCard?.dismiss()
+        
     }
     
     private func contentView(width: CGFloat? = nil,

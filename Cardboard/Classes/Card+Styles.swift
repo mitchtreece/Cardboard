@@ -12,7 +12,7 @@ public extension Card { /* Styles */
     // MARK: Private
     
     private static func buildCard(_ card: Card,
-                                  _ build: BuilderBlock?) -> CardInterface {
+                                  _ build: BuilderBlock?) -> Card {
         
         guard let build = build else { return card }
         
@@ -29,9 +29,9 @@ public extension Card { /* Styles */
     /// A default-modal card style.
     /// - parameter view: The card's content view.
     /// - parameter build: An optional builder block used to customize the behavior & style of a card.
-    /// - returns: A card interface.
+    /// - returns: A card instance.
     static func defaultModal(_ view: CardContentView,
-                             _ build: BuilderBlock? = nil) -> CardInterface {
+                             _ build: BuilderBlock? = nil) -> Card {
                 
         return buildCard(Card(view) { make in
             
@@ -56,6 +56,7 @@ public extension Card { /* Styles */
             
             make.isContentOverlayTapToDismissEnabled = true
             make.isSwipeToDismissEnabled = true
+            make.dismissesCurrentCardsInContext = true
             
         }, build)
         
@@ -64,9 +65,9 @@ public extension Card { /* Styles */
     /// A system card style.
     /// - parameter view: The card's content view.
     /// - parameter build: An optional builder block used to customize the behavior & style of a card.
-    /// - returns: A card interface.
+    /// - returns: A card instance.
     static func system(_ view: CardContentView,
-                       _ build: BuilderBlock? = nil) -> CardInterface {
+                       _ build: BuilderBlock? = nil) -> Card {
         
         let card = Card.defaultModal(view) { make in
             
@@ -82,7 +83,7 @@ public extension Card { /* Styles */
         }
         
         return buildCard(
-            card as! Card,
+            card,
             build
         )
                 
@@ -91,9 +92,9 @@ public extension Card { /* Styles */
     /// A notification card style.
     /// - parameter view: The card's content view.
     /// - parameter build: An optional builder block used to customize the behavior & style of a card.
-    /// - returns: A card interface.
+    /// - returns: A card instance.
     static func notification(_ view: CardContentView,
-                             _ build: BuilderBlock? = nil) -> CardInterface {
+                             _ build: BuilderBlock? = nil) -> Card {
 
         let card = Card.defaultModal(view) { make in
             
@@ -114,7 +115,7 @@ public extension Card { /* Styles */
         }
         
         return buildCard(
-            card as! Card,
+            card,
             build
         )
         
@@ -123,9 +124,9 @@ public extension Card { /* Styles */
     /// A banner card style.
     /// - parameter view: The card's content view.
     /// - parameter build: An optional builder block used to customize the behavior & style of a card.
-    /// - returns: A card interface.
+    /// - returns: A card instance.
     static func banner(_ view: CardContentView,
-                       _ build: BuilderBlock? = nil) -> CardInterface {
+                       _ build: BuilderBlock? = nil) -> Card {
         
         let card = Card.notification(view) { make in
             
@@ -139,7 +140,7 @@ public extension Card { /* Styles */
         }
         
         return buildCard(
-            card as! Card,
+            card,
             build
         )
         
@@ -148,9 +149,9 @@ public extension Card { /* Styles */
     /// A toast card style.
     /// - parameter view: The card's content view.
     /// - parameter build: An optional builder block used to customize the behavior & style of a card.
-    /// - returns: A card interface.
+    /// - returns: A card instance.
     static func toast(_ view: CardContentView,
-                      _ build: BuilderBlock? = nil) -> CardInterface {
+                      _ build: BuilderBlock? = nil) -> Card {
         
         let card = Card.notification(view) { make in
             
@@ -162,7 +163,7 @@ public extension Card { /* Styles */
         }
         
         return buildCard(
-            card as! Card,
+            card,
             build
         )
                 
@@ -171,9 +172,9 @@ public extension Card { /* Styles */
     /// An alert card style.
     /// - parameter view: The card's content view.
     /// - parameter build: An optional builder block used to customize the behavior & style of a card.
-    /// - returns: A card interface.
+    /// - returns: A card instance.
     static func alert(_ view: CardContentView,
-                      _ build: BuilderBlock? = nil) -> CardInterface {
+                      _ build: BuilderBlock? = nil) -> Card {
         
         let card = Card.defaultModal(view) { make in
             
@@ -186,7 +187,7 @@ public extension Card { /* Styles */
         }
         
         return buildCard(
-            card as! Card,
+            card,
             build
         )
         

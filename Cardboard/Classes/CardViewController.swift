@@ -10,8 +10,8 @@ import SnapKit
 
 internal class CardViewController: UIViewController {
     
-    private var containerView: UIView!
-    private var contentOverlayContentView: UIView!
+    private var containerView: TouchThroughView!
+    private var contentOverlayContentView: TouchThroughView!
     private var contentOverlayDimmingView: UIView?
     private var contentOverlayEffectView: UIVisualEffectView?
     private var cardView: CardView!
@@ -23,12 +23,14 @@ internal class CardViewController: UIViewController {
     private var dismissTimer: Timer?
     private var insetsCalculator: CardInsetsCalculator!
     
-    private var didSetupInteractions: Bool = false
+    private var isCardBeingPanned: Bool = false
     private var isCardBeingDismissed: Bool = false
     
     private let contentView: CardContentView
     private let styleProvider: CardStyleProvider
     private let actionProvider: CardActionProvider
+    
+    private let cardConstraintPriority: Int = 999
         
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return self.styleProvider.statusBar
@@ -64,13 +66,14 @@ internal class CardViewController: UIViewController {
     }
 
     override func loadView() {
-        self.view = TouchThroughView()
+        self.view = TouchForwardingView()
     }
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         setupSubviews()
+        setupInteractions()
 
     }
     
@@ -87,8 +90,11 @@ internal class CardViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         
         super.viewDidAppear(animated)
-        setupInteractionsIfNeeded()
         
+        if let touchForwardindView = self.view as? TouchForwardingView {
+            touchForwardindView.touchForwardedView = self.presentingViewController?.view
+        }
+                
     }
     
     private func setupSubviews() {
@@ -104,8 +110,9 @@ internal class CardViewController: UIViewController {
         
         // Content Overlay
         
-        self.contentOverlayContentView = UIView()
+        self.contentOverlayContentView = TouchThroughView()
         self.contentOverlayContentView.backgroundColor = .clear
+        self.contentOverlayContentView.isTouchThroughEnabled = false
         self.containerView.addSubview(self.contentOverlayContentView)
         self.contentOverlayContentView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -144,29 +151,65 @@ internal class CardViewController: UIViewController {
             switch self.styleProvider.anchor {
             case .top:
                 
-                make.top.equalTo(cardInsets.top)
-                make.left.equalTo(cardInsets.left)
-                make.right.equalTo(-cardInsets.right)
+                make.top
+                    .equalTo(cardInsets.top)
+                    .priority(self.cardConstraintPriority)
+                
+                make.left
+                    .equalTo(cardInsets.left)
+                    .priority(self.cardConstraintPriority)
+                
+                make.right
+                    .equalTo(-cardInsets.right)
+                    .priority(self.cardConstraintPriority)
                 
             case .left:
                 
-                make.left.equalTo(cardInsets.left)
-                make.top.equalTo(cardInsets.top)
-                make.bottom.equalTo(-cardInsets.bottom)
+                make.left
+                    .equalTo(cardInsets.left)
+                    .priority(self.cardConstraintPriority)
+                
+                make.top
+                    .equalTo(cardInsets.top)
+                    .priority(self.cardConstraintPriority)
+                
+                make.bottom
+                    .equalTo(-cardInsets.bottom)
+                    .priority(self.cardConstraintPriority)
                 
             case .bottom:
                 
-                make.bottom.equalTo(-cardInsets.bottom)
-                make.left.equalTo(cardInsets.left)
-                make.right.equalTo(-cardInsets.right)
+                make.bottom
+                    .equalTo(-cardInsets.bottom)
+                    .priority(self.cardConstraintPriority)
+                
+                make.left
+                    .equalTo(cardInsets.left)
+                    .priority(self.cardConstraintPriority)
+                
+                make.right
+                    .equalTo(-cardInsets.right)
+                    .priority(self.cardConstraintPriority)
                 
             case .right:
                 
-                make.right.equalTo(-cardInsets.right)
-                make.top.equalTo(cardInsets.top)
-                make.bottom.equalTo(-cardInsets.bottom)
+                make.right
+                    .equalTo(-cardInsets.right)
+                    .priority(self.cardConstraintPriority)
+                
+                make.top
+                    .equalTo(cardInsets.top)
+                    .priority(self.cardConstraintPriority)
+                
+                make.bottom
+                    .equalTo(-cardInsets.bottom)
+                    .priority(self.cardConstraintPriority)
 
-            case .center: make.center.equalToSuperview()
+            case .center:
+                
+                make.center
+                    .equalToSuperview()
+                
             }
 
         }
@@ -188,10 +231,8 @@ internal class CardViewController: UIViewController {
         
     }
     
-    private func setupInteractionsIfNeeded() {
-        
-        guard !self.didSetupInteractions else { return }
-        
+    private func setupInteractions() {
+                
         if self.styleProvider.isContentOverlayTapToDismissEnabled {
 
             self.contentOverlayContentView.addGestureRecognizer(UITapGestureRecognizer(
@@ -202,8 +243,10 @@ internal class CardViewController: UIViewController {
         }
         else if self.styleProvider.isContentOverlayTouchThroughEnabled {
             
-            self.contentOverlayContentView.isUserInteractionEnabled = false
-                               
+            self.contentOverlayContentView.isTouchThroughEnabled = true
+            self.contentOverlayDimmingView?.isUserInteractionEnabled = false
+            self.contentOverlayEffectView?.isUserInteractionEnabled = false
+            
         }
 
         if self.styleProvider.isSwipeToDismissEnabled {
@@ -217,40 +260,59 @@ internal class CardViewController: UIViewController {
             self.cardView.addGestureRecognizer(self.swipeRecognizer!)
 
         }
-        
-        self.didSetupInteractions = true
-        
+                
     }
     
     // MARK: Public
     
     func presentCard(from viewController: UIViewController) {
         
-        self.sourceViewController = viewController
-        
-        self.view.layoutIfNeeded()
-
-        self.styleProvider.animator
-            .setup(ctx: animationContext(animation: .presentation))
-
-        viewController.present(
-            self,
-            animated: false,
-            completion: nil
-        )
-        
-        self.actionProvider.willPresentAction?()
-
-        DispatchQueue.main.async { [weak self] in
+        let present = {
             
-            self?.animateCard(presentation: true) {
+            self.sourceViewController = viewController
+            
+            self.view.layoutIfNeeded()
 
-                self?.startDismissTimerIfNeeded()
-                self?.actionProvider.didPresentAction?()
+            self.styleProvider.animator
+                .setup(ctx: self.animationContext(animation: .presentation))
+
+            viewController.present(
+                self,
+                animated: false,
+                completion: nil
+            )
+            
+            self.actionProvider.willPresentAction?()
+
+            DispatchQueue.main.async { [weak self] in
+                
+                self?.animateCard(presentation: true) {
+
+                    self?.startDismissTimerIfNeeded()
+                    self?.actionProvider.didPresentAction?()
+
+                }
 
             }
-
+            
         }
+        
+        if let currentCardViewController = viewController.presentedViewController as? CardViewController,
+           self.styleProvider.dismissesCurrentCardsInContext {
+            
+            currentCardViewController._dismissCard(
+                reason: .default,
+                velocity: nil,
+                animated: true,
+                completion: {
+                    present()
+                })
+            
+            return
+            
+        }
+
+        present()
         
     }
 
@@ -368,6 +430,7 @@ internal class CardViewController: UIViewController {
         )
                 
         switch recognizer.state {
+        case .began: self.isCardBeingPanned = true
         case .changed:
             
             var cardTransform: CGAffineTransform = .identity
@@ -596,6 +659,8 @@ internal class CardViewController: UIViewController {
 
             }
             
+            self.isCardBeingPanned = false
+            
         default: break
         }
         
@@ -607,10 +672,16 @@ internal class CardViewController: UIViewController {
         case .seconds(let duration):
             
             self.dismissTimer = Timer.scheduledTimer(withTimeInterval: duration,
-                                                     repeats: false,
+                                                     repeats: true,
                                                      block: { [weak self] _ in
                 
-                self?.dismissCard()
+                guard let self = self else { return }
+                guard !self.isCardBeingPanned else { return }
+                
+                self.dismissTimer?.invalidate()
+                self.dismissTimer = nil
+                
+                self.dismissCard()
                 
             })
             

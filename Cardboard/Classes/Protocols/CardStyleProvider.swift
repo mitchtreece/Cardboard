@@ -13,16 +13,16 @@ internal protocol CardStyleProvider {
     var animator: CardAnimator { get }
     var duration: Card.Duration { get }
     var statusBar: UIStatusBarStyle { get }
-    var hidesHomeIndicator: Bool { get }
-    var isContentOverlayTapToDismissEnabled: Bool { get }
-    var isContentOverlayTouchThroughEnabled: Bool { get }
-    var isSwipeToDismissEnabled: Bool { get }
-    
     var contentOverlay: Card.BackgroundStyle { get }
     var background: Card.BackgroundStyle { get }
     var edges: CardEdgeStyle { get }
     var corners: CardCornerStyle { get }
     var shadow: CardShadowStyle { get }
+    var hidesHomeIndicator: Bool { get }
+    var isSwipeToDismissEnabled: Bool { get }
+    var isContentOverlayTapToDismissEnabled: Bool { get }
+    var isContentOverlayTouchThroughEnabled: Bool { get }
+    var dismissesCurrentCardsInContext: Bool { get }
     
 }
 

@@ -84,30 +84,35 @@ public class Card: CardBuildable, CardStyleProvider, CardActionProvider {
     
     // These are documented via `CardBuildable`
     
-    public var anchor: Card.Anchor = .bottom
-    public var animator: CardAnimator = DefaultCardAnimator()
-    public var duration: Card.Duration = .none
-    public var statusBar: UIStatusBarStyle = .default
-    public var hidesHomeIndicator: Bool = false
-    public var isContentOverlayTapToDismissEnabled: Bool = false
-    public var isContentOverlayTouchThroughEnabled: Bool = false
-    public var isSwipeToDismissEnabled: Bool = false
+    internal var anchor: Card.Anchor = .bottom
+    internal var animator: CardAnimator = DefaultCardAnimator()
+    internal var duration: Card.Duration = .none
+    internal var statusBar: UIStatusBarStyle = .default
+    internal var contentOverlay: Card.BackgroundStyle = .none
+    internal var background: Card.BackgroundStyle = .none
+    internal var edges: CardEdgeStyle = .none
+    internal var corners: CardCornerStyle = .none
+    internal var shadow: CardShadowStyle = .none
+    internal var hidesHomeIndicator: Bool = false
+    internal var isSwipeToDismissEnabled: Bool = false
+    internal var isContentOverlayTapToDismissEnabled: Bool = false
+    internal var isContentOverlayTouchThroughEnabled: Bool = false
+    internal var dismissesCurrentCardsInContext: Bool = false
 
-    public var contentOverlay: Card.BackgroundStyle = .none
-    public var background: Card.BackgroundStyle = .none
-    public var edges: CardEdgeStyle = .none
-    public var corners: CardCornerStyle = .none
-    public var shadow: CardShadowStyle = .none
-    
-    public var willPresentAction: (()->())?
-    public var didPresentAction: (()->())?
-    public var willDismissAction: ((Card.DismissalReason)->())?
-    public var didDismissAction: ((Card.DismissalReason)->())?
+    internal var willPresentAction: (()->())?
+    internal var didPresentAction: (()->())?
+    internal var willDismissAction: ((Card.DismissalReason)->())?
+    internal var didDismissAction: ((Card.DismissalReason)->())?
         
     internal let view: CardContentView
     private weak var viewController: CardViewController?
     
-    required public init(_ view: CardContentView,
+    // MARK: Public
+    
+    /// Initializes a card with a content view & builder block.
+    /// - parameter view: The card's content view.
+    /// - parameter build: A builder block used to customize the behavior & style of a card.
+    public init(_ view: CardContentView,
                          _ build: BuilderBlock) {
         
         self.view = view
@@ -118,44 +123,10 @@ public class Card: CardBuildable, CardStyleProvider, CardActionProvider {
         setup(builder: builder)
         
     }
-    
-    internal init(_ view: CardContentView) {
-        self.view = view
-    }
-
-    // MARK: Private
-    
-    @discardableResult
-    internal func setup(builder: CardBuilder) -> Self {
         
-        self.anchor = builder.anchor
-        self.animator = builder.animator
-        self.duration = builder.duration
-        self.statusBar = builder.statusBar
-        self.hidesHomeIndicator = builder.hidesHomeIndicator
-        self.isContentOverlayTapToDismissEnabled = builder.isContentOverlayTapToDismissEnabled
-        self.isContentOverlayTouchThroughEnabled = builder.isContentOverlayTouchThroughEnabled
-        self.isSwipeToDismissEnabled = builder.isSwipeToDismissEnabled
-        
-        self.contentOverlay = builder.contentOverlay
-        self.background = builder.background
-        self.edges = builder.edges
-        self.corners = builder.corners
-        self.shadow = builder.shadow
-        
-        self.willPresentAction = builder.willPresentAction
-        self.didPresentAction = builder.didPresentAction
-        self.willDismissAction = builder.willDismissAction
-        self.didDismissAction = builder.didDismissAction
-        
-        return self
-        
-    }
-    
-}
-
-extension Card: CardInterface {
-    
+    /// Presents the card from a given view controller.
+    /// - parameter viewController: The view controller to present the card from.
+    /// - returns: The card instance.
     @discardableResult
     public func present(from viewController: UIViewController) -> Self {
                 
@@ -183,10 +154,44 @@ extension Card: CardInterface {
         
     }
     
+    /// Dismisses the card.
     public func dismiss() {
         
         self.viewController?
             .dismissCard()
+        
+    }
+
+    // MARK: Private
+    
+    internal init(_ view: CardContentView) {
+        self.view = view
+    }
+    
+    @discardableResult
+    internal func setup(builder: CardBuilder) -> Self {
+        
+        self.anchor = builder.anchor
+        self.animator = builder.animator
+        self.duration = builder.duration
+        self.statusBar = builder.statusBar
+        self.contentOverlay = builder.contentOverlay
+        self.background = builder.background
+        self.edges = builder.edges
+        self.corners = builder.corners
+        self.shadow = builder.shadow
+        self.hidesHomeIndicator = builder.hidesHomeIndicator
+        self.isContentOverlayTapToDismissEnabled = builder.isContentOverlayTapToDismissEnabled
+        self.isContentOverlayTouchThroughEnabled = builder.isContentOverlayTouchThroughEnabled
+        self.dismissesCurrentCardsInContext = builder.dismissesCurrentCardsInContext
+        self.isSwipeToDismissEnabled = builder.isSwipeToDismissEnabled
+        
+        self.willPresentAction = builder.willPresentAction
+        self.didPresentAction = builder.didPresentAction
+        self.willDismissAction = builder.willDismissAction
+        self.didDismissAction = builder.didDismissAction
+        
+        return self
         
     }
     

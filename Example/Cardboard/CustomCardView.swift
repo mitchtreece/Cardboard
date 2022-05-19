@@ -31,7 +31,7 @@ class CustomCardView: CardContentView {
         
         let button = UIButton()
         button.backgroundColor = .systemBlue
-        button.layer.cornerRadius = 12
+        button.roundCorners(.allCorners, radius: 12, curve: .continuous)
         button.setTitle("Done", for: .normal)
         addSubview(button)
         button.snp.makeConstraints { make in
@@ -50,7 +50,10 @@ class CustomCardView: CardContentView {
     }
     
     @objc private func didTapButton(_ sender: UIButton) {
+        
+        print("Done")
         self.card.dismiss()
+        
     }
     
 }

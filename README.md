@@ -9,6 +9,25 @@
 
 Cardboard is a customizable modal-card library for iOS
 
+<table>
+  <tr>
+    <td style="border-color:transparent"><img src="Resources/notification-x.png"/></td>
+    <td style="border-color:transparent"><img src="Resources/banner-x.png"/></td>
+    <td style="border-color:transparent"><img src="Resources/toast-x.png"/></td>
+    <td style="border-color:transparent"><img src="Resources/sheet-x.png"/></td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td style="border-color:transparent"><img src="Resources/notification.gif"/></td>
+    <td style="border-color:transparent"><img src="Resources/banner.gif"/></td>
+    <td style="border-color:transparent"><img src="Resources/toast.gif"/></td>
+    <td style="border-color:transparent"><img src="Resources/alert.gif"/></td>
+    <td style="border-color:transparent"><img src="Resources/hud.gif"/></td>
+    <td style="border-color:transparent"><img src="Resources/sheet.gif"/></td>
+  </tr>
+</table>
+
 ## Installation
 
 ### CocoaPods

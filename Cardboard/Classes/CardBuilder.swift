@@ -16,16 +16,16 @@ public struct CardBuilder: CardBuildable {
     public var animator: CardAnimator = DefaultCardAnimator()
     public var duration: Card.Duration = .none
     public var statusBar: UIStatusBarStyle = .default
-    public var hidesHomeIndicator: Bool = false
-    public var isContentOverlayTapToDismissEnabled: Bool = false
-    public var isContentOverlayTouchThroughEnabled: Bool = false
-    public var isSwipeToDismissEnabled: Bool = false
-
     public var contentOverlay: Card.BackgroundStyle = .none
     public var background: Card.BackgroundStyle = .none
     public var edges: CardEdgeStyle = .none
     public var corners: CardCornerStyle = .none
     public var shadow: CardShadowStyle = .none
+    public var hidesHomeIndicator: Bool = false
+    public var isSwipeToDismissEnabled: Bool = false
+    public var isContentOverlayTapToDismissEnabled: Bool = false
+    public var isContentOverlayTouchThroughEnabled: Bool = false
+    public var dismissesCurrentCardsInContext: Bool = true
         
     public var willPresentAction: (()->())?
     public var didPresentAction: (()->())?
@@ -42,16 +42,16 @@ public struct CardBuilder: CardBuildable {
         self.animator = buildable.animator
         self.duration = buildable.duration
         self.statusBar = buildable.statusBar
-        self.hidesHomeIndicator = buildable.hidesHomeIndicator
-        self.isContentOverlayTapToDismissEnabled = buildable.isContentOverlayTapToDismissEnabled
-        self.isContentOverlayTouchThroughEnabled = buildable.isContentOverlayTouchThroughEnabled
-        self.isSwipeToDismissEnabled = buildable.isSwipeToDismissEnabled
-        
         self.contentOverlay = buildable.contentOverlay
         self.background = buildable.background
         self.edges = buildable.edges
         self.corners = buildable.corners
         self.shadow = buildable.shadow
+        self.hidesHomeIndicator = buildable.hidesHomeIndicator
+        self.isSwipeToDismissEnabled = buildable.isSwipeToDismissEnabled
+        self.isContentOverlayTapToDismissEnabled = buildable.isContentOverlayTapToDismissEnabled
+        self.isContentOverlayTouchThroughEnabled = buildable.isContentOverlayTouchThroughEnabled
+        self.dismissesCurrentCardsInContext = buildable.dismissesCurrentCardsInContext
         
         self.willPresentAction = buildable.willPresentAction
         self.didPresentAction = buildable.didPresentAction
