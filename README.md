@@ -11,20 +11,17 @@ Cardboard is a customizable modal-card library for iOS
 
 <table>
   <tr>
-    <td style="border-color:transparent"><img src="Resources/notification-x.png"/></td>
-    <td style="border-color:transparent"><img src="Resources/banner-x.png"/></td>
-    <td style="border-color:transparent"><img src="Resources/toast-x.png"/></td>
-    <td style="border-color:transparent"><img src="Resources/sheet-x.png"/></td>
+    <td style="border-color:transparent"><img src="Assets/Default.gif"/></td>
+    <td style="border-color:transparent"><img src="Assets/Notification.gif"/></td>
+    <td style="border-color:transparent"><img src="Assets/System.gif"/></td>
   </tr>
 </table>
 <table>
   <tr>
-    <td style="border-color:transparent"><img src="Resources/notification.gif"/></td>
-    <td style="border-color:transparent"><img src="Resources/banner.gif"/></td>
-    <td style="border-color:transparent"><img src="Resources/toast.gif"/></td>
-    <td style="border-color:transparent"><img src="Resources/alert.gif"/></td>
-    <td style="border-color:transparent"><img src="Resources/hud.gif"/></td>
-    <td style="border-color:transparent"><img src="Resources/sheet.gif"/></td>
+    <td style="border-color:transparent"><img src="Assets/Toast.gif"/></td>
+    <td style="border-color:transparent"><img src="Assets/Alert.gif"/></td>
+    <td style="border-color:transparent"><img src="Assets/Banner.gif"/></td>
+    <td style="border-color:transparent"><img src="Assets/Custom.gif"/></td>
   </tr>
 </table>
 
