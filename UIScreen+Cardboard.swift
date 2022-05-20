@@ -27,8 +27,14 @@ internal extension UIScreen {
         
     }()
 
-    var cornerRadius: CGFloat {
-        return (value(forKey: Self.cornerRadiusKey) as? CGFloat) ?? 0
+    var cornerRadius: CGFloat? {
+        
+        let radius = value(forKey: Self.cornerRadiusKey) as? CGFloat
+        
+        guard radius != 0 else { return nil }
+        
+        return radius
+        
     }
     
 }
