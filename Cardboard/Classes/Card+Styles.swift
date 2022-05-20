@@ -36,7 +36,7 @@ public extension Card { /* Styles */
         return buildCard(Card(view) { make in
             
             make.contentOverlay = .color(.black.withAlphaComponent(0.5))
-            make.background = .color(.white)
+            make.background = .blurred(style: .systemMaterial)
             
             var edgeStyle = CardEdgeStyle()
             edgeStyle.setSafeAreaAvoidance(.content)
@@ -98,7 +98,7 @@ public extension Card { /* Styles */
             
             make.anchor = .top
             make.contentOverlay = .none
-            make.duration = .seconds(3)
+            make.duration = .seconds(4)
             make.corners.roundedCorners = .allCorners
             make.corners.roundedCornerRadius = 24
             make.shadow.offset = CardShadowStyle.offset(2, for: .top)

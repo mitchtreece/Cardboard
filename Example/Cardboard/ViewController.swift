@@ -41,36 +41,83 @@ class ViewController: UIViewController {
     
     @IBAction private func didTapNotification(_ sender: UIButton) {
         
+        let view = contentView()
+        
+        let titleLabel = UILabel()
+        titleLabel.text = "Notification"
+        titleLabel.font = .preferredFont(forTextStyle: .headline)
+        view.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { make in
+            make.top.left.equalTo(16)
+            make.right.equalTo(-16)
+        }
+        
+        let messageLabel = UILabel()
+        messageLabel.text = "Hello! This is an awesome notification brought to you by Cardboard! Looks kinda nice doesn't it? 😎"
+        messageLabel.font = .preferredFont(forTextStyle: .body).withSize(14)
+        messageLabel.numberOfLines = 0
+        view.addSubview(messageLabel)
+        messageLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(4)
+            make.left.equalTo(16)
+            make.right.equalTo(-16)
+            make.bottom.equalTo(-16)
+        }
+        
         self.currentCard = Card
-            .notification(contentView(
-                height: 100,
-                color: .systemPink
-            ))
+            .notification(view)
             .present(from: self)
 
     }
     
     @IBAction private func didTapBanner(_ sender: UIButton) {
         
+        let view = contentView()
+        
+        let titleLabel = UILabel()
+        titleLabel.text = "Banner"
+        titleLabel.font = .preferredFont(forTextStyle: .headline)
+        view.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { make in
+            make.top.left.equalTo(16)
+            make.right.equalTo(-16)
+        }
+        
+        let messageLabel = UILabel()
+        messageLabel.text = "Hello! This is an awesome banner brought to you by Cardboard! Looks kinda nice doesn't it? 😎"
+        messageLabel.font = .preferredFont(forTextStyle: .body).withSize(14)
+        messageLabel.numberOfLines = 0
+        view.addSubview(messageLabel)
+        messageLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(4)
+            make.left.equalTo(16)
+            make.right.equalTo(-16)
+            make.bottom.equalTo(-16)
+        }
+        
         self.currentCard = Card
-            .banner(contentView(
-                
-                height: 100,
-                color: .clear
-                
-            )) { make in
-                
-                make.background = .color(.systemPink)
-                
-            }
+            .banner(view)
             .present(from: self)
 
     }
     
     @IBAction private func didTapToast(_ sender: UIButton) {
         
+        let view = contentView()
+        
+        let label = UILabel()
+        label.text = "Hello! This is an awesome toast brought to you by Cardboard 😎"
+        label.font = .preferredFont(forTextStyle: .headline)
+        label.numberOfLines = 0
+        view.addSubview(label)
+        label.snp.makeConstraints { make in
+            make.top.left.equalTo(16)
+            make.right.equalTo(-16)
+            make.bottom.equalTo(-16)
+        }
+        
         self.currentCard = Card
-            .toast(contentView(height: 64, color: .systemPink))
+            .toast(view)
             .present(from: self)
         
     }
@@ -118,7 +165,7 @@ class ViewController: UIViewController {
             
             make.animator = CustomCardAnimator()
             make.statusBar = .lightContent
-            make.background = .blurred(style: .systemUltraThinMaterial)
+            make.background = .blurred(style: .systemThinMaterial)
             make.corners.roundedCornerRadius = UIDevice.current.isModern ? UIScreen.main.cornerRadius : 24
             make.corners.roundedCorners = .allCorners
             make.isSwipeToDismissEnabled = false
@@ -135,17 +182,14 @@ class ViewController: UIViewController {
     }
     
     @IBAction private func didTapDismiss(_ sender: UIButton) {
-        
         self.currentCard?.dismiss()
-        
     }
     
     private func contentView(width: CGFloat? = nil,
-                             height: CGFloat? = nil,
-                             color: UIColor = .white) -> CardContentView {
+                             height: CGFloat? = nil) -> CardContentView {
         
         let view = CardContentView()
-        view.backgroundColor = color
+        view.backgroundColor = .clear
         view.snp.makeConstraints { make in
             
             if let w = width {
