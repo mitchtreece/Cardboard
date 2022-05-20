@@ -18,14 +18,10 @@ class CustomCardAnimator: CardAnimator {
         self.duration = 0.8
         
         self.timingProvider = UISpringTimingParameters(
-            dampingRatio: 0.5,
+            dampingRatio: 0.7,
             initialVelocity: .init(dx: 0.3, dy: 0.3)
         )
         
-    }
-    
-    private var cornerRadius: CGFloat {
-        return UIDevice.current.isModern ? UIScreen.main.cornerRadius : 24
     }
     
     override func setup(ctx: CardAnimator.Context) {
@@ -42,12 +38,12 @@ class CustomCardAnimator: CardAnimator {
 
         ctx.sourceView.roundCorners(
             .allCorners,
-            radius: (ctx.animation == .presentation) ? self.cornerRadius : 0,
+            radius: (ctx.animation == .presentation) ? 24 : 0,
             curve: .continuous
         )
         
         ctx.sourceView.transform = (ctx.animation == .presentation) ?
-            .init(scaleX: 0.85, y: 0.85) :
+            .init(scaleX: 0.88, y: 0.88) :
             .identity
         
     }
