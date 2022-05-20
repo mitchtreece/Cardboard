@@ -96,9 +96,11 @@ class ViewController: UIViewController {
         self.currentCard = Card(sheetView) { make in
             
             make.contentOverlay = .color(.black.withAlphaComponent(0.4))
-            make.edges.setInsets(12, for: [.left, .right])
             make.isContentOverlayTapToDismissEnabled = false
             make.isSwipeToDismissEnabled = false
+            
+            make.edges.setInsets(12, for: [.left, .right])
+            make.edges.setInset(12, for: .bottom, when: .safeArea(false))
             
         }
         .present(from: self)
@@ -119,10 +121,13 @@ class ViewController: UIViewController {
             make.background = .blurred(style: .systemUltraThinMaterial)
             make.corners.roundedCornerRadius = UIDevice.current.isModern ? UIScreen.main.cornerRadius : 24
             make.corners.roundedCorners = .allCorners
-            make.edges.setInsets(12, for: [.left, .right])
-            make.edges.setSafeAreaAvoidance(.card, for: [.top, .bottom])
             make.isSwipeToDismissEnabled = false
             make.isContentOverlayTapToDismissEnabled = false
+            
+            make.edges.setInset(12, for: .top, when: .safeAreaLegacyStatusBar)
+            make.edges.setInsets(12, for: [.left, .right])
+            make.edges.setInset(12, for: .bottom, when: .safeArea(false))
+            make.edges.setSafeAreaAvoidance(.card, for: [.top, .bottom])
             
         }
         .present(from: self)

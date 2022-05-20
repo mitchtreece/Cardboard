@@ -44,20 +44,43 @@ public struct CardEdgeStyle {
             
         }
         
+        /// Representation of the various inset condition types.
+        public enum InsetCondition {
+            
+            /// Always apply insets
+            case always
+            
+            /// Apply insets conditionally based on an edge's safe-area inset value is
+            /// equal to `0` or not.
+            case safeArea(Bool)
+            
+            /// Apply insets conditionally if an edge's safe-area inset value is equal
+            /// to the legacy status bar height.
+            case safeAreaLegacyStatusBar
+                        
+            /// Apply insets conditionally using a custom function.
+            case custom(()->(Bool))
+            
+        }
+        
         /// The edge's type.
         public let type: EdgeType
-        
+                
         /// The edge's safe-area avoidance type.
         public var safeAreaAvoidance: SafeAreaAvoidance
         
         /// The edge's inset.
         public var inset: CGFloat
         
+        /// The edge's inset condition.
+        public var insetCondition: InsetCondition
+        
         internal init(type: EdgeType) {
             
             self.type = type
             self.safeAreaAvoidance = .none
             self.inset = 0
+            self.insetCondition = .always
             
         }
         
@@ -74,27 +97,87 @@ public struct CardEdgeStyle {
     
     /// The style's right edge settings.
     public var right = Edge(type: .right)
+    
+    internal var all: [Edge] {
+        
+        return [
+            self.top,
+            self.left,
+            self.bottom,
+            self.right
+        ]
+        
+    }
+    
+    /// Sets an edge inset.
+    /// - parameter inset: The inset value.
+    /// - parameter edge: The edge to apply this inset to.
+    /// - parameter when: The edge inset condition.
+    public mutating func setInset(_ inset: CGFloat,
+                                  for edge: Edge.EdgeType,
+                                  when condition: Edge.InsetCondition = .always) {
+        
+        switch edge {
+        case .top:
+            
+            self.top.inset = inset
+            self.top.insetCondition = condition
+            
+        case .left:
+            
+            self.left.inset = inset
+            self.left.insetCondition = condition
+
+        case .bottom:
+            
+            self.bottom.inset = inset
+            self.bottom.insetCondition = condition
+
+        case .right:
+            
+            self.right.inset = inset
+            self.right.insetCondition = condition
+
+        }
+        
+    }
         
     /// Sets edge insets.
     /// - parameter inset: The inset value.
     /// - parameter edges: The edge's to apply this inset to; _defaults to all_.
+    /// - parameter when: The edge inset condition.
     public mutating func setInsets(_ inset: CGFloat,
-                                   for edges: [Edge.EdgeType] = [.top, .left, .bottom, .right]) {
+                                   for edges: [Edge.EdgeType] = [.top, .left, .bottom, .right],
+                                   when condition: Edge.InsetCondition = .always) {
         
         for edge in edges {
             
-            switch edge {
-            case .top: self.top.inset = inset
-            case .left: self.left.inset = inset
-            case .bottom: self.bottom.inset = inset
-            case .right: self.right.inset = inset
-            }
+            setInset(
+                inset,
+                for: edge,
+                when: condition
+            )
             
         }
         
     }
     
-    /// Sets edge safe-area avoidance.
+    /// Sets an edge safe-area avoidance.
+    /// - parameter avoidance: The safe-area avoidance type.
+    /// - parameter edge: The edge to apply this safe-area avoidance type to.
+    public mutating func setSafeAreaAvoidance(_ avoidance: Edge.SafeAreaAvoidance,
+                                              for edge: Edge.EdgeType) {
+        
+        switch edge {
+        case .top: self.top.safeAreaAvoidance = avoidance
+        case .left: self.left.safeAreaAvoidance = avoidance
+        case .bottom: self.bottom.safeAreaAvoidance = avoidance
+        case .right: self.right.safeAreaAvoidance = avoidance
+        }
+        
+    }
+    
+    /// Sets edge safe-area avoidances.
     /// - parameter avoidance: The safe-area avoidance type.
     /// - parameter edges: The edge's to apply this safe-area avoidance type to; _defaults to all_.
     public mutating func setSafeAreaAvoidance(_ avoidance: Edge.SafeAreaAvoidance,
@@ -102,12 +185,10 @@ public struct CardEdgeStyle {
         
         for edge in edges {
             
-            switch edge {
-            case .top: self.top.safeAreaAvoidance = avoidance
-            case .left: self.left.safeAreaAvoidance = avoidance
-            case .bottom: self.bottom.safeAreaAvoidance = avoidance
-            case .right: self.right.safeAreaAvoidance = avoidance
-            }
+            setSafeAreaAvoidance(
+                avoidance,
+                for: edge
+            )
             
         }
         

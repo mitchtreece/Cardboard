@@ -881,8 +881,8 @@
 		8559AEF4199F9BAB3414FFDAEBBBF1AD /* Styles */ = {
 			isa = PBXGroup;
 			children = (
-				A987CF599E4B12B1449A3236B2EE58BC /* CardCornerStyle.swift */,
 				CC640BCF1272EE29C84F263CCAD681A5 /* CardEdgeStyle.swift */,
+				A987CF599E4B12B1449A3236B2EE58BC /* CardCornerStyle.swift */,
 				DE1DD20E446AA787B88AD18E789E79D7 /* CardShadowStyle.swift */,
 			);
 			name = Styles;
