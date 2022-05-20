@@ -53,6 +53,7 @@
 		228507AF7F8408FC6C1C0D3378D4DB70 /* UIViewControllerDirectionalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D964F482BA0DAE2A1A1D36359064A248 /* UIViewControllerDirectionalTransition.swift */; };
 		23E6BAAE91D27064F7C93A4349720032 /* ConstraintMakerPriortizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990116AF7BB63859384B0C210928D3BA /* ConstraintMakerPriortizable.swift */; };
 		25C9B118FAAD90D577716B54FCDA95E3 /* OptionalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF189075FAF183A4DDD17C991B04379A /* OptionalType.swift */; };
+		2692B97A28371C5400CB593A /* UIScreen+Cardboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2692B97928371C5400CB593A /* UIScreen+Cardboard.swift */; };
 		2696C58EDC68E152E4190F97937302A0 /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 25B374E993488B209BAE9FED1980558D /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		26C17F61BE43BF78592FBDAD8578D87F /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98964668B9913AC23AF5F8CED8E3A6 /* Key.swift */; };
 		28824499B15F5899F305E35984B84128 /* Collection+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA4997B6961BB40B525A9E57A5F22EC /* Collection+Espresso.swift */; };
@@ -319,6 +320,7 @@
 		239E7FAB52DFE338D611D365D4303461 /* Cardboard-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Cardboard-dummy.m"; sourceTree = "<group>"; };
 		25B374E993488B209BAE9FED1980558D /* Swinject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Swinject.h; path = Sources/Swinject.h; sourceTree = "<group>"; };
 		25FFC35BA2AC7D6CC23D9660C9140D70 /* UIContextMenu.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIContextMenu.swift; path = Espresso/Classes/UIKit/Menus/UIContextMenu.swift; sourceTree = "<group>"; };
+		2692B97928371C5400CB593A /* UIScreen+Cardboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Cardboard.swift"; sourceTree = "<group>"; };
 		27532BB4F6513D2B88A17467F7162A67 /* CardInsetsCalculator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CardInsetsCalculator.swift; path = Cardboard/Classes/CardInsetsCalculator.swift; sourceTree = "<group>"; };
 		296569525B6733CFA3571FC6FE113F9D /* Pods-Cardboard_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Cardboard_Example.release.xcconfig"; sourceTree = "<group>"; };
 		2B5BAE4AAF2A03B7809B2C8D4983F36A /* RevealServer.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; name = RevealServer.xcframework; path = RevealServer/RevealServer.xcframework; sourceTree = "<group>"; };
@@ -842,6 +844,7 @@
 				B231886C4A41E281F7CD048BD67A4C7C /* CardBuilder.swift */,
 				27532BB4F6513D2B88A17467F7162A67 /* CardInsetsCalculator.swift */,
 				18C08D3971CF180B97EE882B2EBE9EBA /* CardViewController.swift */,
+				2692B97928371C5400CB593A /* UIScreen+Cardboard.swift */,
 				CDE1B6A8485FA822D8D3CE85DFB18B6A /* Animators */,
 				9799447A6B8A9A428688031E19599F21 /* Pod */,
 				DF3A57879B562B58734DF016411CF648 /* Protocols */,
@@ -1527,6 +1530,7 @@
 				EEB0B2DDDA755F2CB7B453ABE33DF82F /* CardInsetsCalculator.swift in Sources */,
 				EAA61240B5A03CC87D4A7A964A757A68 /* CardShadowStyle.swift in Sources */,
 				CAD391DCCC7A8C4A20EEC07D282F2186 /* CardStyleProvider.swift in Sources */,
+				2692B97A28371C5400CB593A /* UIScreen+Cardboard.swift in Sources */,
 				431D46C4A356295499C9B3FBF45E464B /* CardView.swift in Sources */,
 				E4B863D58E63B0C5F635F51DFF949582 /* CardViewController.swift in Sources */,
 				D6DC90867F7B0A4D2E1E5DB8B3462AC6 /* DefaultCardAnimator.swift in Sources */,

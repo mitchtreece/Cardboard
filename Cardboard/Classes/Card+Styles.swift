@@ -73,9 +73,7 @@ public extension Card { /* Styles */
             
             make.hidesHomeIndicator = true
             make.corners.roundedCorners = .allCorners
-            make.corners.roundedCornerRadius = 44
-            
-            // TODO: Make corner radius smaller for legacy devices
+            make.corners.roundedCornerRadius = (UIScreen.main.cornerRadius != 0) ? UIScreen.main.cornerRadius : 8
             
             make.edges.setInsets(6)
             make.edges.setSafeAreaAvoidance(.none)
