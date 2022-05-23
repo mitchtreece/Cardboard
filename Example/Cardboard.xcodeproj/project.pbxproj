@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		266807DD280F834F00758DB5 /* CustomCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266807DC280F834F00758DB5 /* CustomCardView.swift */; };
+		2692B9782836F11900CB593A /* CustomCardAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2692B9772836F11900CB593A /* CustomCardAnimator.swift */; };
+		2697C41928343676008B9285 /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697C41828343676008B9285 /* SheetView.swift */; };
+		2697C41B283436C0008B9285 /* SheetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2697C41A283436C0008B9285 /* SheetView.xib */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -29,6 +33,10 @@
 
 /* Begin PBXFileReference section */
 		243124206C6B1FBFB8D544B1 /* Pods_Cardboard_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cardboard_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		266807DC280F834F00758DB5 /* CustomCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCardView.swift; sourceTree = "<group>"; };
+		2692B9772836F11900CB593A /* CustomCardAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCardAnimator.swift; sourceTree = "<group>"; };
+		2697C41828343676008B9285 /* SheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetView.swift; sourceTree = "<group>"; };
+		2697C41A283436C0008B9285 /* SheetView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SheetView.xib; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* Cardboard_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cardboard_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -44,9 +52,9 @@
 		96BC8F61F7732FE0CF96584B /* Pods-Cardboard_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cardboard_Example.release.xcconfig"; path = "Target Support Files/Pods-Cardboard_Example/Pods-Cardboard_Example.release.xcconfig"; sourceTree = "<group>"; };
 		9A095B578E64050230203907 /* Pods-Cardboard_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cardboard_Tests.release.xcconfig"; path = "Target Support Files/Pods-Cardboard_Tests/Pods-Cardboard_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		ADAFF33E8034F23065AE9C2B /* Pods-Cardboard_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cardboard_Example.debug.xcconfig"; path = "Target Support Files/Pods-Cardboard_Example/Pods-Cardboard_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		B215DAE171B23EA2645C3779 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		D729D2F2DDF10A18066C825B /* Cardboard.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = Cardboard.podspec; path = ../Cardboard.podspec; sourceTree = "<group>"; };
-		F52771D7C7C95D30FFDB08C9 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		B215DAE171B23EA2645C3779 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		D729D2F2DDF10A18066C825B /* Cardboard.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Cardboard.podspec; path = ../Cardboard.podspec; sourceTree = "<group>"; };
+		F52771D7C7C95D30FFDB08C9 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,8 +85,18 @@
 				7877488378FD67CBA13CD409 /* Pods-Cardboard_Tests.debug.xcconfig */,
 				9A095B578E64050230203907 /* Pods-Cardboard_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		2629FFC728063B390053FB82 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				607FACD91AFB9204008FA782 /* Main.storyboard */,
+				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
+				607FACDC1AFB9204008FA782 /* Images.xcassets */,
+				607FACD41AFB9204008FA782 /* Info.plist */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		607FACC71AFB9204008FA782 = {
@@ -107,21 +125,14 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
-				607FACD91AFB9204008FA782 /* Main.storyboard */,
-				607FACDC1AFB9204008FA782 /* Images.xcassets */,
-				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
-				607FACD31AFB9204008FA782 /* Supporting Files */,
+				266807DC280F834F00758DB5 /* CustomCardView.swift */,
+				2692B9772836F11900CB593A /* CustomCardAnimator.swift */,
+				2697C41828343676008B9285 /* SheetView.swift */,
+				2697C41A283436C0008B9285 /* SheetView.xib */,
+				2629FFC728063B390053FB82 /* Resources */,
 			);
 			name = "Example for Cardboard";
 			path = Cardboard;
-			sourceTree = "<group>";
-		};
-		607FACD31AFB9204008FA782 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				607FACD41AFB9204008FA782 /* Info.plist */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		607FACE81AFB9204008FA782 /* Tests */ = {
@@ -227,6 +238,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -248,6 +260,7 @@
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
+				2697C41B283436C0008B9285 /* SheetView.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -270,10 +283,18 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Cardboard_Example/Pods-Cardboard_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Cardboard/Cardboard.framework",
+				"${BUILT_PRODUCTS_DIR}/Espresso/Espresso.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/Reveal-SDK/RevealServer.framework/RevealServer",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cardboard.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Espresso.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RevealServer.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -333,6 +354,9 @@
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				2692B9782836F11900CB593A /* CustomCardAnimator.swift in Sources */,
+				2697C41928343676008B9285 /* SheetView.swift in Sources */,
+				266807DD280F834F00758DB5 /* CustomCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,7 +443,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -465,7 +489,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -478,8 +502,10 @@
 			baseConfigurationReference = ADAFF33E8034F23065AE9C2B /* Pods-Cardboard_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = Cardboard/Info.plist;
+				INFOPLIST_FILE = Cardboard/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -493,8 +519,10 @@
 			baseConfigurationReference = 96BC8F61F7732FE0CF96584B /* Pods-Cardboard_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = Cardboard/Info.plist;
+				INFOPLIST_FILE = Cardboard/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
