@@ -181,9 +181,13 @@ This sets the top & bottom edge safe-area avoidance mode to **card**. When the c
 It's good to note that insets are still applied after safe-area calculations. In the above example, the top inset of `8` will be added to the top safe-area offset (in this case the status-bar's height) if the condition is met - resulting in a total top inset of: `28`.
 
 ## TODO
+
+- **Semi-Modal Sizing Modes**: Similar to the system "semi-modal" cards (i.e. share sheet). Having the ability to present a card in a collapsed state, and expand it if needed could be useful.
+
 - **Card Presentation Levels**: As of now, all cards are presented from a *source* view controller. However, there are some situations where it would be more useful to present on something more "global" (i.e. at a window-level). This could be for something like presenting notification cards over an entire application - instead of just over a single view controller.
 
 - **Card Queuing**: Right now, all cards are presented immediately without any context as to other cards / presentations. Instead of always presenting immediately, being able to "enqueue" a card for presentation would be helpful in several scenarios. For example, imagine presenting notification cards. You might only want one notification to be active at a time (this is how the iOS notification system works). Having a queuing system would allow us to achieve this.
 
 ## Contributing
+
 Pull-requests are more than welcome. Bug fix? Feature? Open a PR and we'll get it merged in!
