@@ -740,7 +740,8 @@
 				27532BB4F6513D2B88A17467F7162A67 /* CardInsetsCalculator.swift */,
 				2692B97928371C5400CB593A /* UIScreen+Cardboard.swift */,
 			);
-			path = Helpers;
+			name = Helpers;
+			path = Cardboard/Classes/Helpers;
 			sourceTree = "<group>";
 		};
 		379FB7A0A8462B2CAA745A9B9FCF3639 /* Frameworks */ = {
