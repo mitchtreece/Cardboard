@@ -13,6 +13,9 @@ open class CardAnimator {
     /// An animation context that provides various properties & attributes used during card presentation & dismissals.
     public struct Context {
         
+        /// The animation's type.
+        public let animation: Animation
+        
         /// The presenting view controller's view.
         public let sourceView: UIView
         
@@ -30,9 +33,6 @@ open class CardAnimator {
         
         /// The card's insets.
         public let insets: UIEdgeInsets
-        
-        /// The animation's animation type.
-        public let animation: Animation
         
     }
     
@@ -88,7 +88,7 @@ open class CardAnimator {
     open func animate(ctx: Context) {
         fatalError("CardAnimtor subclasses must implement animate(ctx:)")
     }
-    
+      
     /// Called after animations are finished.
     /// Override this function to provide custom cleanup logic.
     /// - parameter ctx: The animation context.

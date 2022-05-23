@@ -27,14 +27,17 @@ internal protocol CardBuildable {
     /// The card's background style; _defaults to none_.
     var background: Card.BackgroundStyle { get set }
     
-    /// The card's edge styling; _defaults to none_.
-    var edges: CardEdgeStyle { get set }
+    /// The card's edge configuration; _defaults to none_.
+    var edges: CardEdges { get set }
     
-    /// The card's corner styling; _defaults to none_.
-    var corners: CardCornerStyle { get set }
+    /// The card's size configuration; _defaults to default_.
+    var size: CardSize { get set }
     
-    /// The card's shadow styling; _defaults to none_.
-    var shadow: CardShadowStyle { get set }
+    /// The card's corner configuration; _defaults to none_.
+    var corners: CardCorners { get set }
+    
+    /// The card's shadow configuration; _defaults to none_.
+    var shadow: CardShadow { get set }
     
     /// Flag indicating if the card should hide the home indicator upon presentation; _defaults to false_.
     var hidesHomeIndicator: Bool { get set }

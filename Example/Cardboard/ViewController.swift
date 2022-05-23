@@ -26,7 +26,9 @@ class ViewController: UIViewController {
     @IBAction private func didTapDefault(_ sender: UIButton) {
 
         self.currentCard = Card
-            .defaultModal(contentView(height: 500))
+            .defaultModal(buildContentView()) { make in
+                make.size.mode = .fixed(500)
+            }
             .present(from: self)
         
     }
@@ -34,14 +36,16 @@ class ViewController: UIViewController {
     @IBAction private func didTapSystem(_ sender: UIButton) {
         
         self.currentCard = Card
-            .system(contentView(height: 350))
+            .system(buildContentView()) { make in
+                make.size.mode = .fixed(350)
+            }
             .present(from: self)
         
     }
     
     @IBAction private func didTapNotification(_ sender: UIButton) {
         
-        let view = contentView()
+        let view = buildContentView()
         
         let titleLabel = UILabel()
         titleLabel.text = "Notification"
@@ -72,7 +76,7 @@ class ViewController: UIViewController {
     
     @IBAction private func didTapBanner(_ sender: UIButton) {
         
-        let view = contentView()
+        let view = buildContentView()
         
         let titleLabel = UILabel()
         titleLabel.text = "Banner"
@@ -103,7 +107,7 @@ class ViewController: UIViewController {
     
     @IBAction private func didTapToast(_ sender: UIButton) {
         
-        let view = contentView()
+        let view = buildContentView()
         
         let label = UILabel()
         label.text = "Hello! This is an awesome toast brought to you by Cardboard 😎"
@@ -128,10 +132,14 @@ class ViewController: UIViewController {
         let height = (width * 0.7)
         
         self.currentCard = Card
-            .alert(contentView(
-                width: width,
-                height: height
-            ))
+            .alert(buildContentView()) { make in
+                
+                make.size.mode = .fixedSize(.init(
+                    width: width,
+                    height: height
+                ))
+                
+            }
             .present(from: self)
                 
     }
@@ -156,7 +164,7 @@ class ViewController: UIViewController {
     
     @IBAction private func didTapCustom(_ sender: UIButton) {
               
-        let view = CustomCardView()
+        let view = buildContentView()
         view.snp.makeConstraints { make in
             make.height.equalTo(300)
         }
@@ -185,23 +193,10 @@ class ViewController: UIViewController {
         self.currentCard?.dismiss()
     }
     
-    private func contentView(width: CGFloat? = nil,
-                             height: CGFloat? = nil) -> CardContentView {
+    private func buildContentView() -> CardContentView {
         
         let view = CardContentView()
         view.backgroundColor = .clear
-        view.snp.makeConstraints { make in
-            
-            if let w = width {
-                make.width.equalTo(w)
-            }
-            
-            if let h = height {
-                make.height.equalTo(h)
-            }
-            
-        }
-        
         return view
         
     }

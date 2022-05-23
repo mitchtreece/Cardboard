@@ -1,5 +1,5 @@
 //
-//  CardCornerStyle.swift
+//  CardCorners.swift
 //  Cardboard
 //
 //  Created by Mitch Treece on 4/17/22.
@@ -7,8 +7,8 @@
 
 import UIKit
 
-/// A style object that provides various card corner properties & attributes.
-public struct CardCornerStyle {
+/// An object that provides various card corner properties & attributes.
+public struct CardCorners {
     
     /// The corners to be rounded.
     public var roundedCorners: UIRectCorner
@@ -26,16 +26,16 @@ public struct CardCornerStyle {
     
 }
 
-public extension CardCornerStyle {
+public extension CardCorners {
     
-    /// An "empty" corner style.
+    /// An "empty" corner configuration.
     ///
     /// Corners: none
     ///
     /// Radius: 0
-    static var none: CardCornerStyle {
+    static var none: CardCorners {
         
-        return CardCornerStyle(
+        return CardCorners(
             roundedCorners: [],
             roundedCornerRadius: 0
         )

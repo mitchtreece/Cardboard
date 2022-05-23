@@ -16,6 +16,7 @@ internal class CardViewController: UIViewController {
     private var contentOverlayEffectView: UIVisualEffectView?
     private var cardView: CardView!
     private var cardContentContainerView: UIView!
+    private var cardAnchorOverflowView: UIView?
     
     private weak var sourceViewController: UIViewController?
     private var swipeRecognizer: UIPanGestureRecognizer?
@@ -140,10 +141,10 @@ internal class CardViewController: UIViewController {
         }
         
         // Card
-        
+                
         let cardInsets = self.insetsCalculator.cardInsets()
         let contentInsets = self.insetsCalculator.contentInsets()
-        
+
         self.cardView = CardView(styleProvider: self.styleProvider)
         self.containerView.addSubview(self.cardView)
         self.cardView.snp.makeConstraints { make in
@@ -213,7 +214,7 @@ internal class CardViewController: UIViewController {
             }
 
         }
-        
+                
         self.cardContentContainerView = UIView()
         self.cardContentContainerView.backgroundColor = .clear
         self.cardView.contentView.addSubview(self.cardContentContainerView)
@@ -226,7 +227,35 @@ internal class CardViewController: UIViewController {
         
         self.cardContentContainerView.addSubview(self.contentView)
         self.contentView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            
+            switch self.styleProvider.size.mode {
+            case .content: make.edges.equalToSuperview()
+            case .fixed(let value):
+                
+                make.edges.equalToSuperview()
+                
+                switch self.styleProvider.anchor {
+                case .top, .bottom: make.height.equalTo(value)
+                case .left, .right: make.width.equalTo(value)
+                case .center:
+                    
+                    make.width.equalTo(value)
+                    make.height.equalTo(value)
+                    
+                }
+                
+            case .fixedSize(let size):
+                
+                make.edges.equalToSuperview()
+                
+                switch self.styleProvider.anchor {
+                case .top, .bottom: make.height.equalTo(size.height)
+                case .left, .right: make.width.equalTo(size.width)
+                case .center: make.size.equalTo(size)
+                }
+                
+            }
+            
         }
         
     }
@@ -273,7 +302,8 @@ internal class CardViewController: UIViewController {
             
             self.view.layoutIfNeeded()
 
-            self.styleProvider.animator
+            self.styleProvider
+                .animator
                 .setup(ctx: self.animationContext(animation: .presentation))
 
             viewController.present(
@@ -282,14 +312,17 @@ internal class CardViewController: UIViewController {
                 completion: nil
             )
             
-            self.actionProvider.willPresentAction?()
+            self.actionProvider
+                .willPresentAction?()
 
             DispatchQueue.main.async { [weak self] in
                 
                 self?.animateCard(presentation: true) {
 
                     self?.startDismissTimerIfNeeded()
-                    self?.actionProvider.didPresentAction?()
+                    
+                    self?.actionProvider
+                        .didPresentAction?()
 
                 }
 
@@ -332,13 +365,13 @@ internal class CardViewController: UIViewController {
     private func animationContext(animation: CardAnimator.Animation) -> CardAnimator.Context {
         
         return CardAnimator.Context(
+            animation: animation,
             sourceView: self.sourceViewController!.view,
             containerView: self.containerView,
             contentOverlayView: self.contentOverlayContentView,
             cardView: self.cardView,
             anchor: self.styleProvider.anchor,
-            insets: self.insetsCalculator.cardInsets(),
-            animation: animation
+            insets: self.insetsCalculator.cardInsets()
         )
         
     }
@@ -388,7 +421,7 @@ internal class CardViewController: UIViewController {
         viewAnimtor.addAnimations { [weak self] in
             
             guard let self = self else { return }
-                        
+            
             animator.animate(ctx: context)
             
             self.setNeedsStatusBarAppearanceUpdate()

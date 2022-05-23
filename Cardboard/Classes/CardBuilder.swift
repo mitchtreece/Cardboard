@@ -16,9 +16,10 @@ public struct CardBuilder: CardBuildable {
     public var statusBar: UIStatusBarStyle = .default
     public var contentOverlay: Card.BackgroundStyle = .none
     public var background: Card.BackgroundStyle = .none
-    public var edges: CardEdgeStyle = .none
-    public var corners: CardCornerStyle = .none
-    public var shadow: CardShadowStyle = .none
+    public var edges: CardEdges = .none
+    public var size: CardSize = .default
+    public var corners: CardCorners = .none
+    public var shadow: CardShadow = .none
     public var hidesHomeIndicator: Bool = false
     public var isSwipeToDismissEnabled: Bool = false
     public var isContentOverlayTapToDismissEnabled: Bool = false
@@ -43,6 +44,7 @@ public struct CardBuilder: CardBuildable {
         self.contentOverlay = buildable.contentOverlay
         self.background = buildable.background
         self.edges = buildable.edges
+        self.size = buildable.size
         self.corners = buildable.corners
         self.shadow = buildable.shadow
         self.hidesHomeIndicator = buildable.hidesHomeIndicator

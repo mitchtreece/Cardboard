@@ -88,9 +88,10 @@ public class Card: CardBuildable, CardStyleProvider, CardActionProvider {
     internal var statusBar: UIStatusBarStyle = .default
     internal var contentOverlay: Card.BackgroundStyle = .none
     internal var background: Card.BackgroundStyle = .none
-    internal var edges: CardEdgeStyle = .none
-    internal var corners: CardCornerStyle = .none
-    internal var shadow: CardShadowStyle = .none
+    internal var edges: CardEdges = .none
+    internal var size: CardSize = .default
+    internal var corners: CardCorners = .none
+    internal var shadow: CardShadow = .none
     internal var hidesHomeIndicator: Bool = false
     internal var isSwipeToDismissEnabled: Bool = false
     internal var isContentOverlayTapToDismissEnabled: Bool = false
@@ -176,6 +177,7 @@ public class Card: CardBuildable, CardStyleProvider, CardActionProvider {
         self.contentOverlay = builder.contentOverlay
         self.background = builder.background
         self.edges = builder.edges
+        self.size = builder.size
         self.corners = builder.corners
         self.shadow = builder.shadow
         self.hidesHomeIndicator = builder.hidesHomeIndicator

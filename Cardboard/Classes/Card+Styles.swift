@@ -23,19 +23,19 @@ public extension Card { /* Styles */
             make.contentOverlay = .color(.black.withAlphaComponent(0.5))
             make.background = .blurred(style: .systemMaterial)
             
-            var edgeStyle = CardEdgeStyle()
-            edgeStyle.setSafeAreaAvoidance(.content)
-            make.edges = edgeStyle
+            var edges = CardEdges()
+            edges.setSafeAreaAvoidance(.content)
+            make.edges = edges
             
-            make.corners = CardCornerStyle(
+            make.corners = CardCorners(
                 roundedCorners: [.topLeft, .topRight],
                 roundedCornerRadius: 32
             )
             
-            make.shadow = CardShadowStyle(
+            make.shadow = CardShadow(
                 color: .black,
                 radius: 8,
-                offset: CardShadowStyle.offset(2, for: .bottom),
+                offset: CardShadow.offset(2, for: .bottom),
                 alpha: 0.1
             )
             
@@ -86,7 +86,7 @@ public extension Card { /* Styles */
             make.duration = .seconds(4)
             make.corners.roundedCorners = .allCorners
             make.corners.roundedCornerRadius = 24
-            make.shadow.offset = CardShadowStyle.offset(2, for: .top)
+            make.shadow.offset = CardShadow.offset(2, for: .top)
             make.isContentOverlayTapToDismissEnabled = false
             make.isContentOverlayTouchThroughEnabled = true
                         
@@ -160,7 +160,7 @@ public extension Card { /* Styles */
             make.anchor = .center
             make.animator = AlertCardAnimator()
             make.corners.roundedCorners = .allCorners
-            make.shadow.offset = CardShadowStyle.offset(2, for: .center)
+            make.shadow.offset = CardShadow.offset(2, for: .center)
             make.edges = .none
             
         }

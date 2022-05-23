@@ -15,9 +15,10 @@ internal protocol CardStyleProvider {
     var statusBar: UIStatusBarStyle { get }
     var contentOverlay: Card.BackgroundStyle { get }
     var background: Card.BackgroundStyle { get }
-    var edges: CardEdgeStyle { get }
-    var corners: CardCornerStyle { get }
-    var shadow: CardShadowStyle { get }
+    var edges: CardEdges { get }
+    var size: CardSize { get }
+    var corners: CardCorners { get }
+    var shadow: CardShadow { get }
     var hidesHomeIndicator: Bool { get }
     var isSwipeToDismissEnabled: Bool { get }
     var isContentOverlayTapToDismissEnabled: Bool { get }
@@ -28,9 +29,9 @@ internal protocol CardStyleProvider {
 
 internal extension CardStyleProvider {
     
-    var edgesForAnchor: [CardEdgeStyle.Edge] {
+    var edgesForAnchor: [CardEdges.Edge] {
         
-        var edges = [CardEdgeStyle.Edge]()
+        var edges = [CardEdges.Edge]()
 
         switch self.anchor {
         case .top:

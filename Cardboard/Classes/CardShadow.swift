@@ -1,5 +1,5 @@
 //
-//  CardShadowStyle.swift
+//  CardShadow.swift
 //  Cardboard
 //
 //  Created by Mitch Treece on 4/17/22.
@@ -7,8 +7,8 @@
 
 import UIKit
 
-/// A style object that provides various card shadow properties & attributes.
-public struct CardShadowStyle {
+/// An object that provides various card shadow properties & attributes.
+public struct CardShadow {
     
     /// The shadow color.
     public var color: UIColor
@@ -36,9 +36,9 @@ public struct CardShadowStyle {
     
 }
 
-public extension CardShadowStyle {
+public extension CardShadow {
     
-    /// Gets a anchor-normalized shadow offset value.
+    /// Gets an anchor-normalized shadow offset value.
     /// - parameter value: The offset value.
     /// - parameter anchor: The card anchor.
     /// - returns: An anchor-normalized shadow offset value.
@@ -55,7 +55,7 @@ public extension CardShadowStyle {
         
     }
     
-    /// An "empty" shadow style.
+    /// An "empty" shadow configuration.
     ///
     /// Color: clear
     ///
@@ -64,9 +64,9 @@ public extension CardShadowStyle {
     /// offset: 0
     ///
     /// alpha: 0
-    static var none: CardShadowStyle {
+    static var none: CardShadow {
         
-        return CardShadowStyle(
+        return CardShadow(
             color: .clear,
             radius: 0,
             offset: .zero,

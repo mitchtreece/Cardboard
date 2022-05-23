@@ -1,5 +1,5 @@
 //
-//  CardEdgeStyle.swift
+//  CardEdges.swift
 //  Cardboard
 //
 //  Created by Mitch Treece on 4/17/22.
@@ -7,10 +7,10 @@
 
 import UIKit
 
-/// A style object that provides various card edge properties & attributes.
-public struct CardEdgeStyle {
+/// An object that provides various card edge properties & attributes.
+public struct CardEdges {
     
-    /// An edge object that provides various properties & attributes related to an edge.
+    /// An object that provides various properties & attributes related to a specific edge.
     public struct Edge {
         
         /// Representation of the various edge types.
@@ -86,16 +86,16 @@ public struct CardEdgeStyle {
         
     }
     
-    /// The style's top edge settings.
+    /// The top edge settings.
     public var top = Edge(type: .top)
     
-    /// The style's left edge settings.
+    /// The left edge settings.
     public var left = Edge(type: .left)
     
-    /// The style's bottom edge settings.
+    /// The bottom edge settings.
     public var bottom = Edge(type: .bottom)
     
-    /// The style's right edge settings.
+    /// The right edge settings.
     public var right = Edge(type: .right)
     
     internal var all: [Edge] {
@@ -108,52 +108,52 @@ public struct CardEdgeStyle {
         ]
         
     }
-    
-    /// Sets an edge inset.
-    /// - parameter inset: The inset value.
+
+    /// Sets an edge inset value.
+    /// - parameter value: The inset value.
     /// - parameter edge: The edge to apply this inset to.
     /// - parameter when: The edge inset condition.
-    public mutating func setInset(_ inset: CGFloat,
+    public mutating func setInset(_ value: CGFloat,
                                   for edge: Edge.EdgeType,
                                   when condition: Edge.InsetCondition = .always) {
         
         switch edge {
         case .top:
             
-            self.top.inset = inset
+            self.top.inset = value
             self.top.insetCondition = condition
             
         case .left:
             
-            self.left.inset = inset
+            self.left.inset = value
             self.left.insetCondition = condition
 
         case .bottom:
             
-            self.bottom.inset = inset
+            self.bottom.inset = value
             self.bottom.insetCondition = condition
 
         case .right:
             
-            self.right.inset = inset
+            self.right.inset = value
             self.right.insetCondition = condition
 
         }
         
     }
         
-    /// Sets edge insets.
+    /// Sets edge inset values.
     /// - parameter inset: The inset value.
     /// - parameter edges: The edge's to apply this inset to; _defaults to all_.
     /// - parameter when: The edge inset condition.
-    public mutating func setInsets(_ inset: CGFloat,
+    public mutating func setInsets(_ value: CGFloat,
                                    for edges: [Edge.EdgeType] = [.top, .left, .bottom, .right],
                                    when condition: Edge.InsetCondition = .always) {
         
         for edge in edges {
             
             setInset(
-                inset,
+                value,
                 for: edge,
                 when: condition
             )
@@ -196,15 +196,17 @@ public struct CardEdgeStyle {
         
 }
 
-public extension CardEdgeStyle {
+public extension CardEdges {
     
-    /// An "empty" edge style.
+    /// An "empty" edge configuration.
     ///
     /// Insets: 0
     ///
     /// Safe Area Avoidance: none
-    static var none: CardEdgeStyle {
-        return CardEdgeStyle()
+    ///
+    /// Anchor Overflow Amount: 0
+    static var none: CardEdges {
+        return CardEdges()
     }
     
 }

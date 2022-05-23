@@ -38,7 +38,7 @@ internal struct CardInsetsCalculator {
         
         var insets: UIEdgeInsets = .zero
         
-        func setInsetValue(for edge: CardEdgeStyle.Edge) {
+        func setInsetValue(for edge: CardEdges.Edge) {
             
             switch edge.type {
             case .top: insets.top = edge.inset
@@ -132,7 +132,7 @@ internal struct CardInsetsCalculator {
     
     // MARK: Private
     
-    private func safeAreaInset(for edge: CardEdgeStyle.Edge) -> CGFloat {
+    private func safeAreaInset(for edge: CardEdges.Edge) -> CGFloat {
         
         switch edge.type {
         case .top: return self.safeAreaInsets.top
@@ -145,7 +145,7 @@ internal struct CardInsetsCalculator {
     
     private func add(value: CGFloat,
                      to insets: UIEdgeInsets,
-                     for edge: CardEdgeStyle.Edge) -> UIEdgeInsets {
+                     for edge: CardEdges.Edge) -> UIEdgeInsets {
         
         var _insets = insets
         
