@@ -81,9 +81,7 @@ public class Card: CardBuildable, CardStyleProvider, CardActionProvider {
         case interactive(Interaction)
 
     }
-    
-    // These are documented via `CardBuildable`
-    
+        
     internal var anchor: Card.Anchor = .bottom
     internal var animator: CardAnimator = DefaultCardAnimator()
     internal var duration: Card.Duration = .none

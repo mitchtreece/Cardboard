@@ -9,21 +9,6 @@ import UIKit
 
 public extension Card { /* Styles */
     
-    // MARK: Private
-    
-    private static func buildCard(_ card: Card,
-                                  _ build: BuilderBlock?) -> Card {
-        
-        guard let build = build else { return card }
-        
-        var builder = CardBuilder(buildable: card)
-        build(&builder)
-
-        return card
-            .setup(builder: builder)
-        
-    }
-    
     // MARK: Public
     
     /// A default-modal card style.
@@ -184,6 +169,21 @@ public extension Card { /* Styles */
             card,
             build
         )
+        
+    }
+    
+    // MARK: Private
+    
+    private static func buildCard(_ card: Card,
+                                  _ build: BuilderBlock?) -> Card {
+        
+        guard let build = build else { return card }
+        
+        var builder = CardBuilder(buildable: card)
+        build(&builder)
+
+        return card
+            .setup(builder: builder)
         
     }
 

@@ -9,9 +9,7 @@ import UIKit
 
 /// A builder object that provides various style & action attributes used to create a card.
 public struct CardBuilder: CardBuildable {
-    
-    // These are documented via `CardBuildable`
-        
+            
     public var anchor: Card.Anchor = .bottom
     public var animator: CardAnimator = DefaultCardAnimator()
     public var duration: Card.Duration = .none
