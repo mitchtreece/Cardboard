@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.summary          = 'Customizable modal-card library for iOS'
 
   s.description      = <<-DESC
-  Cardboard is a customizable modal-card library that makes it incredibly
+  Cardboard is a customizable iOS modal-card library that makes it incredibly
   easy to build highly-stylized cards, sheets, notifications, toasts, or alerts.
   DESC
 
