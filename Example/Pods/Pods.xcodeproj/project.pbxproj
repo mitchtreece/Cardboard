@@ -322,7 +322,7 @@
 		25B374E993488B209BAE9FED1980558D /* Swinject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Swinject.h; path = Sources/Swinject.h; sourceTree = "<group>"; };
 		25FFC35BA2AC7D6CC23D9660C9140D70 /* UIContextMenu.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIContextMenu.swift; path = Espresso/Classes/UIKit/Menus/UIContextMenu.swift; sourceTree = "<group>"; };
 		2692B97928371C5400CB593A /* UIScreen+Cardboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Cardboard.swift"; sourceTree = "<group>"; };
-		2692B983283C11C100CB593A /* CardSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSize.swift; sourceTree = "<group>"; };
+		2692B983283C11C100CB593A /* CardSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CardSize.swift; path = Cardboard/Classes/CardSize.swift; sourceTree = "<group>"; };
 		27532BB4F6513D2B88A17467F7162A67 /* CardInsetsCalculator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CardInsetsCalculator.swift; sourceTree = "<group>"; };
 		296569525B6733CFA3571FC6FE113F9D /* Pods-Cardboard_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Cardboard_Example.release.xcconfig"; sourceTree = "<group>"; };
 		2B5BAE4AAF2A03B7809B2C8D4983F36A /* RevealServer.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; name = RevealServer.xcframework; path = RevealServer/RevealServer.xcframework; sourceTree = "<group>"; };
