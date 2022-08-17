@@ -1,5 +1,5 @@
 PODS:
-  - Cardboard (1.0.0):
+  - Cardboard (1.1.0):
     - SnapKit (~> 5.0)
   - Espresso/Core (2.4.1):
     - Swinject (~> 2.0)
@@ -27,7 +27,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Cardboard: 8e097d622ccbf0651cfaa95a1953470e0e026c5f
+  Cardboard: 2ad5eb476f3aa8b6b3079c52ac2e2e93e462c93d
   Espresso: 791442a1728c1cb7e3ddbd285fa8f2afd853520f
   Reveal-SDK: 62a85d5beaac3dd9bdb2464e217562d80896f747
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
@@ -35,4 +35,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 2a92c3b96524744d582e59869d866f1c3c34a9ea
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3

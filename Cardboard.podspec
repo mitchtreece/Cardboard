@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name             = 'Cardboard'
-  s.version          = '1.0.0'
+  s.version          = '1.1.0'
   s.summary          = 'Customizable modal-card library for iOS'
 
   s.description      = <<-DESC
@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 
   s.swift_version         = '5'
   s.ios.deployment_target = '13.0'
-  s.source_files          = 'Cardboard/Classes/**/*'
+  s.source_files          = 'Sources/Cardboard/**/*'
 
   s.dependency            'SnapKit', '~> 5.0'
 

@@ -1,58 +1,49 @@
 ![Cardboard](Assets/Banner.png)
 
-[![Version](https://img.shields.io/cocoapods/v/Cardboard.svg?style=for-the-badge)](http://cocoapods.org/pods/Cardboard)
-![Swift](https://img.shields.io/badge/Swift-5-orange.svg?style=for-the-badge)
-![iOS](https://img.shields.io/badge/iOS-13--15-green.svg?style=for-the-badge)
-[![License](https://img.shields.io/cocoapods/l/Cardboard.svg?style=for-the-badge)](http://cocoapods.org/pods/Cardboard)
+<div align="center">
 
-## Overview
+![Version](https://img.shields.io/badge/Version-1.1.0-AFC8F9.svg?style=for-the-badge&labelColor=5C8EF4)
+![iOS](https://img.shields.io/badge/iOS-13+-AFC8F9.svg?style=for-the-badge&labelColor=5C8EF4)
+![Swift](https://img.shields.io/badge/Swift-5-AFC8F9.svg?style=for-the-badge&labelColor=5C8EF4)
 
-Cardboard is a customizable modal-card library for iOS
+</div>
+
+# Cardboard
 
 <table>
   <tr>
-    <td style="border-color:transparent"><img src="Assets/Default.gif"/></td>
-    <td style="border-color:transparent"><img src="Assets/Notification.gif"/></td>
-    <td style="border-color:transparent"><img src="Assets/System.gif"/></td>
+    <td style="border-color:transparent"><img src="Assets/Screens/Default.gif"/></td>
+    <td style="border-color:transparent"><img src="Assets/Screens/Notification.gif"/></td>
+    <td style="border-color:transparent"><img src="Assets/Screens/System.gif"/></td>
+    <td style="border-color:transparent"><img src="Assets/Screens/Toast.gif"/></td>
+    <td style="border-color:transparent"><img src="Assets/Screens/Alert.gif"/></td>
+    <td style="border-color:transparent"><img src="Assets/Screens/Banner.gif"/></td>
+    <td style="border-color:transparent"><img src="Assets/Screens/Custom.gif"/></td>
   </tr>
 </table>
-<table>
-  <tr>
-    <td style="border-color:transparent"><img src="Assets/Toast.gif"/></td>
-    <td style="border-color:transparent"><img src="Assets/Alert.gif"/></td>
-    <td style="border-color:transparent"><img src="Assets/Banner.gif"/></td>
-    <td style="border-color:transparent"><img src="Assets/Custom.gif"/></td>
-  </tr>
-</table>
-
-## Installation
-
-### CocoaPods
-Cardboard is integrated with CocoaPods!
-
-1. Add the following to your `Podfile`:
-```
-use_frameworks!
-pod 'Cardboard', '~> 1.0'
-```
-2. In your project directory, run `pod install`
-3. Import the `Cardboard` module wherever you need it
-4. Profit
-
-### Manually
-You can also manually add the source files to your project
-
-1. Clone this git repo
-2. Add all the Swift files in the `Cardboard/` subdirectory to your project
-3. Profit
-
-## Cardboard
 
 Cardboard is a modal-card presentation & customization system built with speed and simplicity in mind.
 
 It's also the spiritual-successor of [Bulletin](https://github.com/mitchtreece/Bulletin)
 
-### Usage
+---
+
+## Installation
+
+### SPM
+
+```
+.package(url: "https://github.com/mitchtreece/Cardboard.git", .upToNextMajor(from: "1.0.0"))
+```
+
+### CocoaPods
+
+```
+use_frameworks!
+pod 'Cardboard', '~> 1.0'
+```
+
+## Usage
 
 Getting started with Cardboard is dead simple! All you need to do is make a custom card content view, and present it:
 
@@ -86,7 +77,7 @@ class CustomViewController: UIViewController {
 }
 ```
 
-### Customization
+## Customization
 
 Cardboard comes with some built-in style options:
 
@@ -133,7 +124,7 @@ Card.notification(view) { make in
 
 You can adjust almost every aspect of a card, right down to what kinds of interactions you want it to support 🎉
 
-### Edges, Insets, & Safe Areas
+## Edges, Insets, & Safe Areas
 
 With the amount of devices, screen features, & ways your app's interface can be setup, it's no surprise that managing view display properties can become complicated - especially when supporting a large list of devices. To help ease the pain, Cardboard was built with flexibility in mind. Configuring a card to be displayed simultaneously on modern (iPhone X - like devices; i.e. rounded screen corners, notch, home grabber, etc) & legacy (no screen corners, notch, or home grabber) devices is as easy as specifying some edge-inset rules, conditions, & safe-area avoidance modes:
 
