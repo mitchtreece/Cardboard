@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        self.stackViewBottomConstraint.constant = UIDevice.current.isModern ? 0 : 20
+        self.stackViewBottomConstraint.constant = AppleDevice.current.isModern ? 0 : 20
 
     }
     
@@ -174,7 +174,7 @@ class ViewController: UIViewController {
             make.animator = CustomCardAnimator()
             make.statusBar = .lightContent
             make.background = .blurred(style: .systemThinMaterial)
-            make.corners.roundedCornerRadius = UIDevice.current.isModern ? UIScreen.main.cornerRadius : 24
+            make.corners.roundedCornerRadius = AppleDevice.current.isModern ? UIScreen.main.cornerRadius : 24
             make.corners.roundedCorners = .allCorners
             make.isSwipeToDismissEnabled = false
             make.isContentOverlayTapToDismissEnabled = false

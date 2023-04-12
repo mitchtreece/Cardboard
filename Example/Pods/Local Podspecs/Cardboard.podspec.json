@@ -20,7 +20,7 @@
   "platforms": {
     "ios": "13.0"
   },
-  "source_files": "Sources/Cardboard/**/*",
+  "source_files": "Sources/Core/**/*",
   "dependencies": {
     "SnapKit": [
       "~> 5.0"

@@ -1,30 +1,35 @@
-// swift-tools-version: 5.6
+// swift-tools-version:5.3
 
 import PackageDescription
 
 let package = Package(
-    
     name: "Cardboard",
-    
-    platforms: [
-        
-        .iOS(.v13)
-        
-    ],
-    
+    platforms: [.iOS(.v13)],
+    swiftLanguageVersions: [.v5],
+    dependencies: [],
     products: [
 
         .library(
-            name: "Cardboard",
-            targets: ["Cardboard"]
+            name: "Cardboard", 
+            targets: ["Core"]
         )
 
     ],
-    
     targets: [
 
-        .target(name: "Cardboard")
+        .target(
+            name: "Core",
+            path: "Sources/Core",
+            dependencies: [
+
+                .package(
+                    name: "SnapKit",
+                    url: "https://github.com/SnapKit/SnapKit",
+                    .upToNextMajor(from: .init(5, 0, 0))
+                )
+
+            ]
+        )
 
     ]
-    
 )
