@@ -500,7 +500,9 @@
 			baseConfigurationReference = ADAFF33E8034F23065AE9C2B /* Pods-Cardboard_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = Cardboard/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Cardboard;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0.0;
@@ -517,7 +519,9 @@
 			baseConfigurationReference = 96BC8F61F7732FE0CF96584B /* Pods-Cardboard_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = Cardboard/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Cardboard;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0.0;
