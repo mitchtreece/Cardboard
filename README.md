@@ -27,8 +27,6 @@ Swift modal-card presentation & customization system built for iOS ⭐️
 
 Also the spiritual-successor of [Bulletin](https://github.com/mitchtreece/Bulletin)
 
----
-
 ## Installation
 
 ### SPM
