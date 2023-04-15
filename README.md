@@ -5,6 +5,7 @@
 ![Version](https://img.shields.io/badge/Version-1.1.0-AFC8F9.svg?style=for-the-badge&labelColor=5C8EF4)
 ![iOS](https://img.shields.io/badge/iOS-13+-AFC8F9.svg?style=for-the-badge&labelColor=5C8EF4)
 ![Swift](https://img.shields.io/badge/Swift-5-AFC8F9.svg?style=for-the-badge&labelColor=5C8EF4)
+![Swift](https://img.shields.io/badge/Xcode-14-AFC8F9.svg?style=for-the-badge&labelColor=5C8EF4)
 
 </div>
 
@@ -22,9 +23,9 @@
   </tr>
 </table>
 
-Cardboard is a modal-card presentation & customization system built with speed and simplicity in mind.
+Swift modal-card presentation & customization system built for iOS ⭐️
 
-It's also the spiritual-successor of [Bulletin](https://github.com/mitchtreece/Bulletin)
+Also the spiritual-successor of [Bulletin](https://github.com/mitchtreece/Bulletin)
 
 ---
 
@@ -32,14 +33,23 @@ It's also the spiritual-successor of [Bulletin](https://github.com/mitchtreece/B
 
 ### SPM
 
+The easiest way to get started is by installing via Xcode. Just add Cardboard as a Swift package & choose the modules you want.
+
+If you're adding Cardboard as a dependency of your own Swift package, just add a package entry to your dependencies.
+
 ```
-.package(url: "https://github.com/mitchtreece/Cardboard.git", .upToNextMajor(from: "1.0.0"))
+.package(
+    name: "Cardboard",
+    url: "https://github.com/mitchtreece/Cardboard",
+    .upToNextMajor(from: .init(1, 1, 0))
+)
 ```
 
 ### CocoaPods
 
+As of Cardboard `1.1.0`, CocoaPods support has been dropped in favor of SPM. If you're depending on a Cardboard version prior to `1.1.0`, you can still integrate using CocoaPods.
+
 ```
-use_frameworks!
 pod 'Cardboard', '~> 1.0'
 ```
 

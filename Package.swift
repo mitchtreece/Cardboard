@@ -5,31 +5,38 @@ import PackageDescription
 let package = Package(
     name: "Cardboard",
     platforms: [.iOS(.v13)],
-    swiftLanguageVersions: [.v5],
-    dependencies: [],
     products: [
 
         .library(
             name: "Cardboard", 
-            targets: ["Core"]
+            targets: ["Cardboard"]
+        )
+
+    ],
+    dependencies: [
+
+        .package(
+            name: "SnapKit",
+            url: "https://github.com/SnapKit/SnapKit",
+            .upToNextMajor(from: .init(5, 6, 0))
         )
 
     ],
     targets: [
 
         .target(
-            name: "Core",
-            path: "Sources/Core",
+            name: "Cardboard",
             dependencies: [
 
-                .package(
-                    name: "SnapKit",
-                    url: "https://github.com/SnapKit/SnapKit",
-                    .upToNextMajor(from: .init(5, 0, 0))
+                .product(
+                    name: "SnapKit", 
+                    package: "SnapKit"
                 )
 
-            ]
+            ],
+            path: "Sources/Core"
         )
 
-    ]
+    ],
+    swiftLanguageVersions: [.v5]
 )
