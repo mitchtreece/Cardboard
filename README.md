@@ -2,10 +2,10 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/Version-1.1.1-AFC8F9.svg?style=for-the-badge&labelColor=5C8EF4)
+![Version](https://img.shields.io/badge/Version-1.2.0-AFC8F9.svg?style=for-the-badge&labelColor=5C8EF4)
 ![iOS](https://img.shields.io/badge/iOS-13+-AFC8F9.svg?style=for-the-badge&labelColor=5C8EF4)
 ![Swift](https://img.shields.io/badge/Swift-5-AFC8F9.svg?style=for-the-badge&labelColor=5C8EF4)
-![Swift](https://img.shields.io/badge/Xcode-14-AFC8F9.svg?style=for-the-badge&labelColor=5C8EF4)
+![Swift](https://img.shields.io/badge/Xcode-15-AFC8F9.svg?style=for-the-badge&labelColor=5C8EF4)
 
 </div>
 
@@ -39,7 +39,7 @@ If you're adding Cardboard as a dependency of your own Swift package, just add a
 .package(
     name: "Cardboard",
     url: "https://github.com/mitchtreece/Cardboard",
-    .upToNextMajor(from: .init(1, 1, 0))
+    .upToNextMajor(from: .init(1, 0, 0))
 )
 ```
 
